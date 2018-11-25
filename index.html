@@ -6,10 +6,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 
 <body>
+    <div class="jumbotron teal lighten-2">
+        <h1 class="display-4 text-center">Project-1</h1>
+    </div>
 
+    <nav>
+        <div class="nav-wrapper brown darken-1">
+            <ul class="left hide-on-med-and-down">
+                <li class="active"><a href="index.html">Crossword Puzzles</a></li>
+                <li><a href="weather.html">Weather</a></li>
+                <li><a href="horoscope.html">Horoscope</a></li>
+                <li><a href="article.html">Article</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- select date and search -->
+    <div class="row">
+        <form class="col s12 form-inline">
+            <div class="input-field col s6">
+                <input type="date" id="date-input" placeholder="MM/DD/YYYY">
+            </div>
+            <div class="col s6">
+                <button class="btn waves-effect waves-light" type="submit" id="search">Search</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <!-- id for crossword game -->
+        <div class="col-md-6">
+            <div id="crossword"></div>
+        </div>
+        <!-- id for game hints -->
+        <div class="col-md-6">
+            <div id="hints"></div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer>
+        <div class="footer-copyright">
+            <div class="container">
+                <div id="footer"></div>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
