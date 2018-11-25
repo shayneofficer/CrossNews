@@ -68,5 +68,14 @@ $.ajax({
     throw err;
 });
 
-
 // ==================================================================================================================
+
+var horoscopeURL = "https://www.horoscopes-and-astrology.com/json";
+
+$.ajax({
+    url: horoscopeURL,
+    method: "GET"
+}).then(function (response) {
+    // Console log response for testing purposes
+    console.log(response);
+});
