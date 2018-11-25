@@ -6,10 +6,14 @@ var day = "15";
 
 var crossWordURL = `https://raw.githubusercontent.com/doshea/nyt_crosswords/master/${year}/${month}/${day}.json`;
 
-$.getJSON(crossWordURL, function (data) {
-    // Console log the data object for testing purposes
-    // console.log(data);
-});
+$.ajax({
+    url: crossWordURL,
+    method: "GET"
+}).then(function (data) {
+    data = JSON.parse(data);
+    console.log(data);
+})
+
 
 // ==================================================================================================================
 // Retrieve weather info from the Dark Sky API
@@ -22,17 +26,15 @@ var weatherLongitude = "-87.623177";
 var weatherYear = "2018";
 var weatherMonth = "11";
 var weatherDay = "24";
-var weatherHour = "12";
-var weatherMinute = "00";
-var weatherSecond = "00";
 
 
 var weatherKey = "ec5b98b7b3c4b26cd294595db6f0a868"
-var weatherURL = `https://api.darksky.net/forecast/${weatherKey}/${weatherLattitude},${weatherLongitude},${weatherYear}-${weatherMonth}-${weatherDay}T12:00:00`;
+var weatherURL = `https://api.darksky.net/forecast/${weatherKey}/${weatherLattitude},${weatherLongitude},${weatherYear}-${weatherMonth}-${weatherDay}T12:00:00?exclude=currently,minutely,hourly,flags`;
 
 $.ajax({
     url: weatherURL,
-    method: "GET"
+    method: "GET",
+    dataType: "jsonp"
 }).then(function (response) {
     // Console log the response object for testing purposes
     console.log(response);
