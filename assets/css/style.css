@@ -15,11 +15,12 @@
     border: 1px solid black;
 }
 
+
 .clue:hover {
     background-color: gray;
 }
 
-#page-title {
+.page-title {
     font-family: 'Vidaloka', serif;
     letter-spacing: 3px;
     text-transform: uppercase;
