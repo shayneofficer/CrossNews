@@ -12,8 +12,47 @@ $.ajax({
     url: crossWordURL,
     method: "GET"
 }).then(function (response) {
+    // ===============================================================================================================
+    // Crossword Display
     response = JSON.parse(response);
+    console.log("CrossWord Creation:")
+    var rows = response.size.rows;
+    var cols = response.size.cols;
+
     console.log(response);
+    console.log(`rows: ${rows}`);
+    console.log(`cols: ${cols}`);
+    //Steps:
+    //Figure out board dimensions
+    var crosswordHolder = $("<div class='grid-holder'>");
+    //Calculate square sizes
+    //Square Creation
+    for (var i = 0; i < rows; i++) {
+        var newRow = $("<div class='row-holder'>");
+        for (var j = 0; j < cols; j++) {
+            var count = i * cols + j;
+            console.log(`count: ${count}`);
+            //Assign Letter Value/Clue Number Value
+            var letterHolder = $("<div class='letter-holder'>");
+            letterHolder.attr("data-letter", response.grid[count]);
+            letterHolder.attr("data-clue-number", response.gridnums[count]);
+            console.log(response.gridnums[count] + " " + response.grid[count]);
+
+            //Formating Cell
+            if (response.grid[count] === ".") {
+                letterHolder.css("background-color", "black");
+            } else if (response.gridnums[count] <= 0) {
+                letterHolder.html(response.grid[count] + "<br>" + count);
+            } else {
+                letterHolder.html(response.gridnums[count] + " " + response.grid[count] + "<br>" + count);
+            }
+
+            newRow.append(letterHolder);
+        }
+        crosswordHolder.append(newRow);
+    }
+    $("#crossword").append(crosswordHolder);
+
 });
 
 
