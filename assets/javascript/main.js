@@ -40,9 +40,9 @@ $.ajax({
             if (response.grid[count] === "." || count >= response.grid.length) {
                 letterHolder.css("background-color", "black");
             } else if (response.gridnums[count] <= 0) {
-                letterHolder.html(response.grid[count] /*+ "<br>" + count*/);
+                letterHolder.html(`<div class='grid-letter'>${response.grid[count]}</div>`/*+ "<br>" + count*/);
             } else {
-                letterHolder.html(response.gridnums[count] + " " + response.grid[count] /*+ "<br>" + count*/);
+                letterHolder.html(`<div class='grid-number'>${response.gridnums[count]}</div><div class='grid-letter'>${response.grid[count]}</div>` /*+ "<br>" + count*/);
             }
 
             newRow.append(letterHolder);
