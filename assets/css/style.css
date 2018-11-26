@@ -15,7 +15,7 @@
     border: 1px solid black;
 }
 
-#page-title {
+.page-title {
     font-family: 'Vidaloka', serif;
     letter-spacing: 3px;
     text-transform: uppercase;
