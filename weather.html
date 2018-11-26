@@ -4,14 +4,12 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Project 1</title>
+    <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/reset.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css">
-
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
 </head>
@@ -24,36 +22,30 @@
     <nav>
         <div class="nav-wrapper brown darken-1">
             <ul class="left hide-on-med-and-down">
-                <li class="active"><a href="index.html">Crossword Puzzles</a></li>
-                <li><a href="weather.html">Weather</a></li>
+                <li><a href="index.html">Crossword Puzzles</a></li>
+                <li class="active"><a href="weather.html">Weather</a></li>
                 <li><a href="horoscope.html">Horoscope</a></li>
                 <li><a href="article.html">Article</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- select date and search -->
+    <!-- class for weather -->
+    <div id="weather"></div>
+    <!-- search field for city -->
     <div class="row">
         <form class="col s12 form-inline">
             <div class="input-field col s6">
-                <input type="date" id="date-input" placeholder="MM/DD/YYYY">
+                <input class="form-control mr-sm-2" type="text" placeholder="City">
             </div>
-            <div class="col s6">
-                <button class="btn waves-effect waves-light" type="submit" id="search">Search</button>
+            <div class="input-field col s6">
+                <button class="btn waves-effect waves-light" type="submit">Search</button>
             </div>
         </form>
     </div>
-
-    <div class="row">
-        <!-- id for crossword game -->
-        <div class="col-md-6">
-            <div id="crossword"></div>
-        </div>
-        <!-- id for game hints -->
-        <div class="col-md-6">
-            <div id="hints"></div>
-        </div>
-    </div>
+    <div class="wind"></div>
+    <div class="humidity"></div>
+    <div class="temp"></div>
 
     <!-- footer -->
     <footer>
@@ -63,7 +55,6 @@
             </div>
         </div>
     </footer>
-
 </body>
 
 </html>
