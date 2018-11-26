@@ -1,3 +1,4 @@
+
 .grid-holder {
 
 }
@@ -12,4 +13,16 @@
     width: 40px;
     box-sizing: border-box;
     border: 1px solid black;
+}
+
+#page-title {
+    font-family: 'Vidaloka', serif;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+#headline{
+    font-family: 'Vidaloka', serif;
+    text-transform: uppercase;
+    font-weight: bold;
 }
