@@ -64,11 +64,20 @@ function newDate(date) {
     // console.log("newDate():");
     // console.log(date);
     $("#date-historic").text(moment(date).format("MM/DD/YYYY"));
-    year = moment(date).year();
-    month = moment(date).month() + 1;
-    day = moment(date).date();
+    year = "" + moment(date).year();
+    month = "" + (moment(date).month() + 1);
+    if(month.length<2) {
+        month = "0" + month
+    }
+    
+    day = "" + moment(date).date();
+    if(day.length<2) {
+        day = "0" + day
+    }
     console.log(`${month}/${day}/${year}`);
 }
+
+console.log(`m/d/y ${month}/${day}/${year}`);
 
 var crossWordURL = `https://raw.githubusercontent.com/doshea/nyt_crosswords/master/${year}/${month}/${day}.json`;
 
