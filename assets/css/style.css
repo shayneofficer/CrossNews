@@ -1,3 +1,20 @@
+
+.grid-holder {
+
+}
+
+.row-holder {
+    width: 600px;
+}
+
+.letter-holder {
+    float: left;
+    height: 40px;
+    width: 40px;
+    box-sizing: border-box;
+    border: 1px solid black;
+}
+
 #page-title {
     font-family: 'Vidaloka', serif;
     letter-spacing: 3px;
@@ -9,4 +26,3 @@
     text-transform: uppercase;
     font-weight: bold;
 }
-
