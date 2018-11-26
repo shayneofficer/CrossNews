@@ -2,14 +2,82 @@
 // Retrieve crossword info from the GitHub archive
 
 // Day in History
-
 var year = "2000";
 var month = "06";
 var day = "15";
 
-function newDate(date) {
-    
+randomDate();
+
+//Assign selected historic date on button click
+$("#search").on("click", function () {
+    var stringDate = $("#date-input").val();
+    console.log(stringDate);
+    console.log(typeof stringDate);
+
+    if (stringDate != "") {
+        var date = moment(stringDate);
+        // console.log(date);
+
+        newDate(date);
+    } else {
+        console.log("Error: Not valid Date");
+    }
+});
+
+//Get random historic date
+function randomDate() {
+    //Year range
+    var yearMin = 1980;
+    var yearMax = 2017;
+    //Random year
+    var year = Math.floor(Math.random() * (yearMax - yearMin) + yearMin);
+
+    //Year range
+    var monthMin = 1;
+    var monthMax = 12;
+    //Random month
+    var month = Math.floor(Math.random() * (monthMax - monthMin) + monthMin);
+
+    //Day range
+    var dayMin = 1;
+    var dayMax = 31;
+    if (month === 2) {
+        dayMax = 28;
+    } else if (month === 4 || month === 6 || month === 9 || month === 11) {
+        dayMax = 30;
+    }
+    //Random day
+    var day = Math.floor(Math.random() * (dayMax - dayMin) + dayMin);
+
+    var randomDate = `${month}-${day}-${year}`;
+    // console.log(randomDate);
+    newDate(randomDate);
 }
+
+//random historic date button on click
+$("#random-date").on("click", function () {
+    randomDate();
+});
+
+//Assign new historic date
+function newDate(date) {
+    // console.log("newDate():");
+    // console.log(date);
+    $("#date-historic").text(moment(date).format("MM/DD/YYYY"));
+    year = "" + moment(date).year();
+    month = "" + (moment(date).month() + 1);
+    if(month.length<2) {
+        month = "0" + month
+    }
+    
+    day = "" + moment(date).date();
+    if(day.length<2) {
+        day = "0" + day
+    }
+    console.log(`${month}/${day}/${year}`);
+}
+
+console.log(`m/d/y ${month}/${day}/${year}`);
 
 var crossWordURL = `https://raw.githubusercontent.com/doshea/nyt_crosswords/master/${year}/${month}/${day}.json`;
 
