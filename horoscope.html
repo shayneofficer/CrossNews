@@ -14,22 +14,48 @@
         crossorigin="anonymous"></script>
 </head>
 
-<body>
- <h1> Your Daily Horoscope </h1>
+<body id="horoscope-bg">
+    <div class="jumbotron teal lighten-2">
+        <h1 class="display-4 text-center page-title">Project-1</h1>
+    </div>
+
+    <nav>
+        <div class="nav-wrapper brown darken-1">
+            <ul class="left hide-on-med-and-down">
+                <li><a href="index.html">Crossword Puzzles</a></li>
+                <li><a href="weather.html">Weather</a></li>
+                <li class="active"><a href="horoscope.html">Horoscope</a></li>
+                <li><a href="article.html">Article</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <h1> Your Daily Horoscope </h1>
     <!-- turn buttons into images that work as buttons  -->
+  
     <button class="btn btn-info" id="aries"> <img src="https://img.icons8.com/ios/50/000000/aries-filled.png">Aries</button>
     <button class="btn btn-info" id="taurus"><img src="https://img.icons8.com/ios/50/000000/taurus-filled.png">Taurus</button>
     <button class="btn btn-info" id="gemini"><img src="https://img.icons8.com/ios/50/000000/aries-filled.png">Gemini</button>
     <button class="btn btn-info" id="cancer"><img src="https://img.icons8.com/ios/50/000000/gemini-filled.png">Cancer</button>
     <button class="btn btn-info" id="leo"><img src="https://img.icons8.com/ios/50/000000/leo-filled.png">Leo</button>
     <button class="btn btn-info" id="virgo"><img src="https://img.icons8.com/ios/50/000000/virgo-filled.png">Virgo</button>
-    <button class="btn btn-info"id="libra"><img src="https://img.icons8.com/ios/50/000000/libra-filled.png">Libra</button>
+    <button class="btn btn-info" id="libra"><img src="https://img.icons8.com/ios/50/000000/libra-filled.png">Libra</button>
     <button class="btn btn-info" id="scorpio"><img src="https://img.icons8.com/ios/50/000000/scorpio-filled.png">Scorpio</button>
     <button class="btn btn-info" id="sagittarius"><img src="https://img.icons8.com/ios/50/000000/sagittarius-filled.png">Sagittarius</button>
     <button class="btn btn-info" id="capricorn"><img src="https://img.icons8.com/ios/50/000000/capricorn-filled.png">Capricorn</button>
     <button class="btn btn-info" id="aquarius"><img src="https://img.icons8.com/ios/50/000000/aquarius-filled.png">Aquarius</button>
     <button class="btn btn-info" id="pisces"><img src="https://img.icons8.com/ios/50/000000/pisces-filled.png">Pisces</button>
     
+
+    <!-- footer -->
+    <footer class="teal lighten-2">
+        <div class="footer-copyright text-center white-text">
+            <div id="footer">
+                © 2014 Copyright Text
+            </div>
+        </div>
+    </footer>
+
 </body>
 
 </html>
