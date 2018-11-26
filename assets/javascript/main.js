@@ -1,7 +1,7 @@
 // ==================================================================================================================
 // Retrieve crossword info from the GitHub archive
 
-// Day of crossword
+// Day in History
 var year = "2000";
 var month = "06";
 var day = "15";
