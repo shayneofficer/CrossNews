@@ -1,10 +1,15 @@
 // ==================================================================================================================
 // Retrieve crossword info from the GitHub archive
 
-// Day of crossword
+// Day in History
+
 var year = "2000";
 var month = "06";
 var day = "15";
+
+function newDate(date) {
+    
+}
 
 var crossWordURL = `https://raw.githubusercontent.com/doshea/nyt_crosswords/master/${year}/${month}/${day}.json`;
 
@@ -40,9 +45,9 @@ $.ajax({
             if (response.grid[count] === "." || count >= response.grid.length) {
                 letterHolder.css("background-color", "black");
             } else if (response.gridnums[count] <= 0) {
-                letterHolder.html(response.grid[count] /*+ "<br>" + count*/);
+                letterHolder.html(`<div class='grid-letter'>${response.grid[count]}</div>`/*+ "<br>" + count*/);
             } else {
-                letterHolder.html(response.gridnums[count] + " " + response.grid[count] /*+ "<br>" + count*/);
+                letterHolder.html(`<div class='grid-number'>${response.gridnums[count]}</div><div class='grid-letter'>${response.grid[count]}</div>` /*+ "<br>" + count*/);
             }
 
             newRow.append(letterHolder);
