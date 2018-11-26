@@ -7,7 +7,7 @@ var year = "2000";
 var month = "06";
 var day = "15";
 
-function newDate() {
+function newDate(date) {
     
 }
 
