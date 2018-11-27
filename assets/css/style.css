@@ -3,15 +3,6 @@
     background-color: #efefef;
 }
 
-
-.page-title {
-    font-family: 'Vidaloka', serif;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    background-color: #efefef;
-    
-}
-
 .grid-holder {
     margin-left: 50px;
 }
@@ -73,8 +64,8 @@
     font-style: italic;
 }
 .sign-btn {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     margin-bottom: 5px;
     align-content: center;
 
