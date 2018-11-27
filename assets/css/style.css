@@ -1,5 +1,15 @@
 .jumbotron{
     margin-bottom: 0px;
+    background-color: #efefef;
+}
+
+
+.page-title {
+    font-family: 'Vidaloka', serif;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background-color: #efefef;
+    
 }
 
 .nav-style {
@@ -43,13 +53,6 @@
     background-color: gray;
 }
 
-.page-title {
-    font-family: 'Vidaloka', serif;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    background-color: #efefef;
-    
-}
 
 #headline{
     font-family: 'Vidaloka', serif;
