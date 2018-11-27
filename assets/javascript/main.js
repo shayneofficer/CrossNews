@@ -288,6 +288,8 @@ function generateCrossword() {
     }).then(function (response) {
         // ===============================================================================================================
         // Crossword Display
+        $("#failure-div").empty();
+
         response = JSON.parse(response);
         console.log("CrossWord Creation:");
         var rows = response.size.rows;
@@ -365,11 +367,9 @@ function generateCrossword() {
         $("#hints").append(acrossClues);
         $("#hints").append(downClues);
     }).fail(function (error) {
-        console.log("FAIL!")
-        var failureDiv = $("<div>");
-        failureDiv.html(`<h2>Sorry, we don't have the crossword for that date :-(</h2>`);
-        $("#crossword-and-hints").empty();
-        $("#crossword-and-hints").css("justify-content", "center");
-        $("#crossword-and-hints").append(failureDiv);
+        $("#crossword").empty();
+        $("#hints").empty();
+        $("#failure-div").html(`<h2>Sorry, we don't have the crossword for that date :-(</h2>`);
+        $("#failure-div").css("text-align", "center");
     });
 }
