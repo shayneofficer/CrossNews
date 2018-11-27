@@ -261,7 +261,7 @@ function generateCrossword() {
                 else {
                     letterHolder.html(`<div class='grid-number'>${response.gridnums[count]}</div><div class='grid-letter'></div>` /*+ "<br>" + count*/);
                 }
-                letterHolder.text(indexedLetters[count].letterValue);
+                // letterHolder.text(indexedLetters[count].letterValue);
 
                 newRow.append(letterHolder);
             }
