@@ -26,7 +26,7 @@ $("#search").on("click", function () {
         // console.log(date);
 
         newDate(date);
-        generateCrossword();
+
     } else {
         console.log("Error: Not valid Date");
     }
@@ -65,7 +65,6 @@ function randomDate() {
 //random historic date button on click
 $("#random-date").on("click", function () {
     randomDate();
-    generateCrossword();
 });
 
 //Assign new historic date
@@ -89,6 +88,8 @@ function newDate(date) {
     sessionStorage.setItem("month", month);
     sessionStorage.setItem("day", day);
     sessionStorage.setItem("year", year);
+
+    generateCrossword();
 }
 
 console.log(`m/d/y ${month}/${day}/${year}`);
@@ -159,7 +160,7 @@ var headlineDay = sessionStorage.getItem("day");
 var nytURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
 nytURL += '?' + $.param({
     'api-key': "b9f91d369ff59547cd47b931d8cbc56b:0:74623931",
-    'fl': "headline",
+    'fl': "headline,pub_date",
     'begin_date': (headlineYear + headlineMonth + headlineDay),
     'end_date': (headlineYear + headlineMonth + headlineDay)
 });
@@ -210,7 +211,7 @@ function generateCrossword() {
             for (var j = 0; j < cols; j++) {
                 var count = i * cols + j;
                 //Assign Letter Value/Clue Number Value
-                var letterHolder = $("<div class='letter-holder'>");
+                var letterHolder = $(`<div class='letter-holder'id='x${j}:y${i}'>`);
                 letterHolder.attr("data-letter", response.grid[count]);
                 letterHolder.attr("data-clue-number", response.gridnums[count]);
                 //Formating Cell
@@ -218,10 +219,10 @@ function generateCrossword() {
                     letterHolder.css("background-color", "black");
                 }
                 else if (response.gridnums[count] <= 0) {
-                    letterHolder.html(`<div class='grid-letter'>${response.grid[count]}</div>` /*+ "<br>" + count*/);
+                    letterHolder.html(`<div class='grid-letter'></div>` /*+ "<br>" + count*/);
                 }
                 else {
-                    letterHolder.html(`<div class='grid-number'>${response.gridnums[count]}</div><div class='grid-letter'>${response.grid[count]}</div>` /*+ "<br>" + count*/);
+                    letterHolder.html(`<div class='grid-number'>${response.gridnums[count]}</div><div class='grid-letter'></div>` /*+ "<br>" + count*/);
                 }
                 newRow.append(letterHolder);
             }
@@ -250,5 +251,11 @@ function generateCrossword() {
         $("#hints").empty();
         $("#hints").append(acrossClues);
         $("#hints").append(downClues);
+    }).fail(function (error) {
+        var failureDiv = $("<div>");
+        failureDiv.html(`<h2>Sorry, we don't have the crossword for that date :-(</h2>`);
+        $("#crossword-and-hints").empty();
+        $("#crossword-and-hints").css("justify-content", "center");
+        $("#crossword-and-hints").append(failureDiv);
     });
 }
