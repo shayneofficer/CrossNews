@@ -19,6 +19,7 @@
 <body id="weather-bg">
     <div class="jumbotron teal lighten-2">
         <h1 class="display-4 text-center page-title">Project-1</h1>
+        <h3 class="text-center" id="date-historic"></h3>
     </div>
 
     <nav>
@@ -41,13 +42,17 @@
                 <input class="form-control mr-sm-2" type="text" placeholder="City">
             </div>
             <div class="input-field col s6">
-                <button class="btn waves-effect waves-light" type="submit">Search</button>
+                <button id="weather-btn" class="btn waves-effect waves-light" type="submit">Search</button>
             </div>
         </form>
     </div>
-    <div class="wind"></div>
-    <div class="humidity"></div>
-    <div class="temp"></div>
+    <div id="weather-icon"></div>
+    <div id="weather-summary"></div>
+    <div id="wind"></div>
+    <div id="humidity"></div>
+    <div id="temp"></div>
+    <div id="cloud-cover"></div>
+    <div id="precip"></div>
 
     <!-- footer -->
     <footer class="grey darken-3">
@@ -57,6 +62,8 @@
             </div>
         </div>
     </footer>
+
+    <script src="./assets/javascript/main.js"></script>
 </body>
 
 </html>
