@@ -77,6 +77,11 @@ function newDate(date) {
         day = "0" + day
     }
     console.log(`${month}/${day}/${year}`);
+
+    sessionStorage.clear();
+    sessionStorage.setItem("month", month);
+    sessionStorage.setItem("day", day);
+    sessionStorage.setItem("year", year);
 }
 
 console.log(`m/d/y ${month}/${day}/${year}`);
@@ -88,26 +93,7 @@ generateCrossword();
 // Retrieve weather info from the Dark Sky API
 
 // (Chicago) lattitude & longitude
-var weatherLattitude = "41.881832";
-var weatherLongitude = "-87.623177";
-
-// Day of weather (set to same date as crossword)
-var weatherYear = year;
-var weatherMonth = month;
-var weatherDay = day;
-
-
-var weatherKey = "ec5b98b7b3c4b26cd294595db6f0a868"
-var weatherURL = `https://api.darksky.net/forecast/${weatherKey}/${weatherLattitude},${weatherLongitude},${weatherYear}-${weatherMonth}-${weatherDay}T12:00:00?exclude=currently,minutely,hourly,flags`;
-
-$.ajax({
-    url: weatherURL,
-    method: "GET",
-    dataType: "jsonp"
-}).then(function (response) {
-    // Console log the response object for testing purposes
-    console.log(response);
-});
+displayWeather();
 
 // ==================================================================================================================
 // Retrieve article info from the New York Times Article Search API
@@ -146,6 +132,29 @@ $.ajax({
     // Console log response for testing purposes
     console.log(response);
 });
+
+function displayWeather() {
+    var weatherLattitude = "41.881832";
+    var weatherLongitude = "-87.623177";
+    // Day of weather (set to same date as crossword)
+    var weatherYear = sessionStorage.getItem("year");
+    var weatherMonth = sessionStorage.getItem("month");
+    var weatherDay = sessionStorage.getItem("day");
+    var weatherKey = "ec5b98b7b3c4b26cd294595db6f0a868";
+    var weatherURL = `https://api.darksky.net/forecast/${weatherKey}/${weatherLattitude},${weatherLongitude},${weatherYear}-${weatherMonth}-${weatherDay}T12:00:00?exclude=currently,minutely,hourly,flags`;
+    $.ajax({
+        url: weatherURL,
+        method: "GET",
+        dataType: "jsonp"
+    }).then(function (response) {
+        // Console log the response object for testing purposes
+        console.log(response);
+        $(".weather-summary").text(response.daily.data[0].summary);
+        $(".wind").text("Wind speed: " + response.daily.data[0].windSpeed);
+        $(".humidity").text("Humidity: " + response.daily.data[0].humidity);
+        $(".temp").text("Temperature (high): " + response.daily.data[0].temperatureHigh + "\nTemperature (low): " + response.daily.data[0].temperatureLow);
+    });
+}
 
 function generateCrossword() {
     var crossWordURL = `https://raw.githubusercontent.com/doshea/nyt_crosswords/master/${year}/${month}/${day}.json`;
