@@ -128,7 +128,7 @@ function newDate(date) {
     // } else {
     //     console.log(`ERROR UNKNOWN PAGE: Session Storage 'page':${sessionStorage.getItem("page")}`)
     // }
-    
+
     generateCrossword();
     weatherCall();
     newsCall();
@@ -166,7 +166,7 @@ function weatherCall() {
         $("#weather-icon").html(`<img src="assets/images/weather-icons/${weather.icon}.jpg" alt="${weather.icon} icon">`);
         $("#weather-summary").text(`${weather.summary}`);
         $("#wind").text(`${weather.windSpeed} MPH Wind Speed`);
-        var humidity = weather.humidity * 100
+        var humidity = Math.round(weather.humidity * 100);
         $("#humidity").text(`${humidity}% Humidity`);
         var temp = Math.round((weather.temperatureHigh + weather.temperatureLow) / 2);
         $("#temp").html(`${temp}&#8457;`);
