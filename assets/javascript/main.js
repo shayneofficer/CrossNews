@@ -118,7 +118,7 @@ function newDate(date) {
     } else if (sessionStorage.getItem("page") === "weather") {
         weatherCall();
     } else if (sessionStorage.getItem("page") === "horoscope") {
-
+        horoscopeCall();
     } else if (sessionStorage.getItem("page") === "article") {
         newsCall();
     } else {
