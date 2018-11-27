@@ -117,20 +117,21 @@ function newDate(date) {
 
     console.log(`m/d/y ${month}/${day}/${year}`);
 
-    if (sessionStorage.getItem("page") === "index") {
-        generateCrossword();
-    } else if (sessionStorage.getItem("page") === "weather") {
-        weatherCall();
-    } else if (sessionStorage.getItem("page") === "horoscope") {
+    // if (sessionStorage.getItem("page") === "index") {
+    //     generateCrossword();
+    // } else if (sessionStorage.getItem("page") === "weather") {
+    //     weatherCall();
+    // } else if (sessionStorage.getItem("page") === "horoscope") {
 
-    } else if (sessionStorage.getItem("page") === "article") {
-        newsCall();
-    } else {
-        console.log(`ERROR UNKNOWN PAGE: Session Storage 'page':${sessionStorage.getItem("page")}`)
-    }
-
-
-
+    // } else if (sessionStorage.getItem("page") === "article") {
+    //     newsCall();
+    // } else {
+    //     console.log(`ERROR UNKNOWN PAGE: Session Storage 'page':${sessionStorage.getItem("page")}`)
+    // }
+    
+    generateCrossword();
+    weatherCall();
+    newsCall();
 }
 
 
@@ -288,6 +289,8 @@ function generateCrossword() {
     }).then(function (response) {
         // ===============================================================================================================
         // Crossword Display
+        $("#failure-div").empty();
+
         response = JSON.parse(response);
         console.log("CrossWord Creation:");
         var rows = response.size.rows;
@@ -365,11 +368,9 @@ function generateCrossword() {
         $("#hints").append(acrossClues);
         $("#hints").append(downClues);
     }).fail(function (error) {
-        console.log("FAIL!")
-        var failureDiv = $("<div>");
-        failureDiv.html(`<h2>Sorry, we don't have the crossword for that date :-(</h2>`);
-        $("#crossword-and-hints").empty();
-        $("#crossword-and-hints").css("justify-content", "center");
-        $("#crossword-and-hints").append(failureDiv);
+        $("#crossword").empty();
+        $("#hints").empty();
+        $("#failure-div").html(`<h2>Sorry, we don't have the crossword for that date :-(</h2>`);
+        $("#failure-div").css("text-align", "center");
     });
 }
