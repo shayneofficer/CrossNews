@@ -55,6 +55,10 @@
     margin-left: 50px;
 }
 
+#crossword-and-hints {
+    margin-bottom: 10em;
+}
+
 footer {
     position: -webkit-sticky;
     position: sticky;
