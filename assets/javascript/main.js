@@ -108,9 +108,6 @@ function newDate(date) {
     // console.log(`${month}/${day}/${year}`);
 
 
-
-
-    // sessionStorage.clear();
     sessionStorage.setItem("month", month);
     sessionStorage.setItem("day", day);
     sessionStorage.setItem("year", year);
@@ -129,7 +126,6 @@ function newDate(date) {
     } else {
         console.log(`ERROR UNKNOWN PAGE: Session Storage 'page':${sessionStorage.getItem("page")}`)
     }
-
 
 }
 
@@ -263,6 +259,7 @@ function generateCrossword() {
         //Square Creation
         for (var i = 0; i < rows; i++) {
             var newRow = $("<div class='row-holder'>");
+            newRow.css("width", `${rows*40}px`);
             for (var j = 0; j < cols; j++) {
                 var count = i * cols + j;
                 //Assign Letter Value/Clue Number Value
