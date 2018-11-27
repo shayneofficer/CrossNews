@@ -28,7 +28,7 @@
 <body>
     <div class="jumbotron" id="weather-bg">
         <h1 class="display-4 text-center page-title white-text">Project-1</h1>
-        <h3 class="text-center" id="date-historic"></h3>
+        <h3 class="text-center white-text" id="date-historic"></h3>
     </div>
 
     <nav>
@@ -56,13 +56,15 @@
         </form>
     </div>
 
-    <div id="weather-icon"></div>
-    <div id="weather-summary"></div>
-    <div id="wind"></div>
-    <div id="humidity"></div>
-    <div id="temp"></div>
-    <div id="cloud-cover"></div>
-    <div id="precip"></div>
+    <div class="text-center" id="weather-display">
+        <div id="weather-icon"></div>
+        <div id="weather-summary"></div>
+        <div id="wind"></div>
+        <div id="humidity"></div>
+        <div id="temp"></div>
+        <div id="cloud-cover"></div>
+        <div id="precip"></div>
+    </div>
 
     <!-- footer -->
     <footer class="grey darken-4">
@@ -74,6 +76,7 @@
     </footer>
 
     <!-- JavaScript -->
+    <script>sessionStorage.setItem("page", "weather");</script>
     <script src="./assets/javascript/main.js"></script>
 </body>
 
