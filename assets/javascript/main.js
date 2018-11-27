@@ -140,35 +140,37 @@ $("#weather-btn").on("click", function(){
 });
 
 weatherCall();
+
 // ==================================================================================================================
 // Retrieve article info from the New York Times Article Search API
 
-// Day of headline (set to same date as crossword & weather)
-// var headlineYear = year;
-// var headlineMonth = month;
-// var headlineDay = day;
+//Day of headline (set to same date as crossword & weather)
+var headlineYear = year;
+var headlineMonth = month;
+var headlineDay = day;
 
-// var nytURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
-// nytURL += '?' + $.param({
-//     'api-key': "b9f91d369ff59547cd47b931d8cbc56b:0:74623931",
-//     'fl': "headline",
-//     'begin_date': (headlineYear + headlineMonth + headlineDay),
-//     'end_date': (headlineYear + headlineMonth + headlineDay)
-// });
+var nytURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+nytURL += '?' + $.param({
+    'api-key': "b9f91d369ff59547cd47b931d8cbc56b:0:74623931",
+    'fl': "headline",
+    'begin_date': (headlineYear + headlineMonth + headlineDay),
+    'end_date': (headlineYear + headlineMonth + headlineDay)
+});
 
-// $.ajax({
-//     url: nytURL,
-//     method: "GET",
-// }).then(function (response) {
-//     // Console log response for testing purposes
-//     console.log(response);
-// }).fail(function (err) {
-//     throw err;
-// });
+$.ajax({
+    url: nytURL,
+    method: "GET",
+}).then(function (response) {
+    // Console log response for testing purposes
+    console.log(response);
+}).fail(function (err) {
+    throw err;
+});
 
 // ==================================================================================================================
+//Horoscopes
 
-// var horoscopeURL = "https://www.horoscopes-and-astrology.com/json";
+var horoscopeURL = "https://www.horoscopes-and-astrology.com/json";
 
 $.ajax({
     url: horoscopeURL,
@@ -177,6 +179,9 @@ $.ajax({
     // Console log response for testing purposes
     console.log(response);
 });
+
+// ==================================================================================================================
+//Crosswords
 
 function generateCrossword() {
     var crossWordURL = `https://raw.githubusercontent.com/doshea/nyt_crosswords/master/${year}/${month}/${day}.json`;
