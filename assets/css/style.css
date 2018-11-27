@@ -12,10 +12,6 @@
     
 }
 
-.nav-style {
-    background-color: #272727;
-}
-
 .grid-holder {
     margin-left: 50px;
 }
@@ -54,6 +50,12 @@
 }
 
 
+.page-title {
+    font-family: 'Vidaloka', serif;
+    letter-spacing: 3px;
+    text-transform: uppercase;  
+}
+
 #headline{
     font-family: 'Vidaloka', serif;
     text-transform: uppercase;
@@ -83,12 +85,13 @@
     border-style: none;
     padding-top: 10px;
 }
-.footer-style {
-    background-color:#272727;
-}
 
 #index-bg{
     background: url("../images/indexbg.jpg");
+}
+
+#weather-bg{
+    background: url("../images/weather1.png");
 }
 
 #horoscope-bg{
