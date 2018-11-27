@@ -1,9 +1,13 @@
 .jumbotron{
     margin-bottom: 0px;
 }
+<<<<<<< HEAD
 .nav-style {
     background-color: #272727;
 }
+=======
+
+>>>>>>> 340fbb709c512a4bdfce6ff89dfc00705f6c574c
 .grid-holder {
     margin-left: 50px;
 }
@@ -58,6 +62,7 @@
 #crossword{
     margin-left: 50px;
 }
+<<<<<<< HEAD
 #signs-div {
 
 }
@@ -79,4 +84,20 @@
 }
 .footer-style {
     background-color:#272727;
+=======
+
+#crossword-and-hints {
+    margin-bottom: 10em;
+}
+
+footer {
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    margin: 0px;
+    border-top: 5px solid #4db6ac;
+    padding: 20px 0px 5px 0px;
+>>>>>>> 340fbb709c512a4bdfce6ff89dfc00705f6c574c
 }
