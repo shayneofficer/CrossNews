@@ -3,26 +3,6 @@
     background-color: #efefef;
 }
 
-
-.page-title {
-    font-family: 'Vidaloka', serif;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    background-color: #efefef;
-    
-}
-
-.nav-style {
-    background-color: #272727;
-}
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> 5e9b7dd7e4349e1b740eb281ca3ad7a380c74aa4
-=======
->>>>>>> 3934a6580046f19d7ea4ba0a467d37d4ae06eaa3
 .grid-holder {
     margin-left: 50px;
 }
@@ -61,6 +41,12 @@
 }
 
 
+.page-title {
+    font-family: 'Vidaloka', serif;
+    letter-spacing: 3px;
+    text-transform: uppercase;  
+}
+
 #headline{
     font-family: 'Vidaloka', serif;
     text-transform: uppercase;
@@ -90,12 +76,13 @@
     border-style: none;
     padding-top: 10px;
 }
-.footer-style {
-    background-color:#272727;
-}
 
 #index-bg{
     background: url("../images/indexbg.jpg");
+}
+
+#weather-bg{
+    background: url("../images/weather1.png");
 }
 
 #horoscope-bg{
