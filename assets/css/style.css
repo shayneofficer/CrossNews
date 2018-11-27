@@ -117,11 +117,12 @@ footer {
     width: 100%;
     margin: 0px;
     border-top: 5px solid #4db6ac;
-    padding: 20px 0px 5px 0px;
+    padding: 5px 0px 5px 0px;
 }
 
 #weather-display{
     border:2px solid black;
     display: inline-block;
     padding:50px;
+    margin:20px 70px;
 }

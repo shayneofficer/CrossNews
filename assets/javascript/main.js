@@ -108,9 +108,6 @@ function newDate(date) {
     // console.log(`${month}/${day}/${year}`);
 
 
-
-
-    // sessionStorage.clear();
     sessionStorage.setItem("month", month);
     sessionStorage.setItem("day", day);
     sessionStorage.setItem("year", year);
@@ -129,8 +126,7 @@ function newDate(date) {
     } else {
         console.log(`ERROR UNKNOWN PAGE: Session Storage 'page':${sessionStorage.getItem("page")}`)
     }
-    
-  
+
 }
 
 // ==================================================================================================================
@@ -164,7 +160,7 @@ function weatherCall() {
         $("#weather-icon").html(`<img src="assets/images/weather-icons/${weather.icon}.jpg" alt="${weather.icon} icon">`);
         $("#weather-summary").text(`${weather.summary}`);
         $("#wind").text(`${weather.windSpeed} MPH Wind Speed`);
-        var humidity = weather.humidity * 100
+        var humidity = Math.round(weather.humidity * 100);
         $("#humidity").text(`${humidity}% Humidity`);
         var temp = Math.round((weather.temperatureHigh + weather.temperatureLow) / 2);
         $("#temp").html(`${temp}&#8457;`);
@@ -188,7 +184,7 @@ $("#weather-btn").on("click", function () {
 // Retrieve article info from the New York Times Article Search API
 
 function newsCall() {
-    
+
     // Day of headline (set to same date as crossword & weather)
     var headlineYear = sessionStorage.getItem("year");
     var headlineMonth = sessionStorage.getItem("month");
@@ -263,6 +259,7 @@ function generateCrossword() {
         //Square Creation
         for (var i = 0; i < rows; i++) {
             var newRow = $("<div class='row-holder'>");
+            newRow.css("width", `${rows*40}px`);
             for (var j = 0; j < cols; j++) {
                 var count = i * cols + j;
                 //Assign Letter Value/Clue Number Value
