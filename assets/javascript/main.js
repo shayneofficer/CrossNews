@@ -117,9 +117,20 @@ function newDate(date) {
 
     console.log(`m/d/y ${month}/${day}/${year}`);
 
-    newsCall();
-    weatherCall();
-    generateCrossword();
+    if (sessionStorage.getItem("page") === "index") {
+        generateCrossword();
+    } else if (sessionStorage.getItem("page") === "weather") {
+        weatherCall();
+    } else if (sessionStorage.getItem("page") === "horoscope") {
+
+    } else if (sessionStorage.getItem("page") === "article") {
+        newsCall();
+    } else {
+        console.log(`ERROR UNKNOWN PAGE: Session Storage 'page':${sessionStorage.getItem("page")}`)
+    }
+
+
+
 }
 
 
@@ -248,16 +259,18 @@ function newsCall() {
 
 // ==================================================================================================================
 //Horoscopes
+function horoscopeCall() {
+    var horoscopeURL = "https://www.horoscopes-and-astrology.com/json";
 
-var horoscopeURL = "https://www.horoscopes-and-astrology.com/json";
-
-$.ajax({
-    url: horoscopeURL,
-    method: "GET"
-}).then(function (response) {
-    // Console log response for testing purposes
-    console.log(response);
-});
+    $.ajax({
+        url: horoscopeURL,
+        method: "GET"
+    }).then(function (response) {
+        // Console log response for testing purposes
+        console.log("Horoscope Obj:")
+        console.log(response);
+    });
+}
 
 // ==================================================================================================================
 //Crosswords
@@ -324,10 +337,11 @@ function generateCrossword() {
         acrossClues.html("<strong>Across</strong>");
         var downClues = $("<div class='col s6' id='down-clues'>");
         downClues.html("<strong>Down</strong>");
+
         for (var i = 0; i < response.clues.across.length; i++) {
             var newClue = $("<div class='clue'>");
             var index = parseInt(response.clues.across[i]);
-            console.log(index);
+            // console.log(index);
 
             answersAcross.push(response.answers.across[i]);
 
@@ -335,10 +349,11 @@ function generateCrossword() {
             newClue.text(response.clues.across[i]);
             acrossClues.append(newClue);
         }
+
         for (var i = 0; i < response.clues.down.length; i++) {
             var newClue = $("<div class='clue'>");
             var index = parseInt(response.clues.down[i]);
-            console.log(index);
+            // console.log(index);
 
             answersDown.push(response.answers.down[i]);
 
@@ -350,6 +365,7 @@ function generateCrossword() {
         $("#hints").append(acrossClues);
         $("#hints").append(downClues);
     }).fail(function (error) {
+        console.log("FAIL!")
         var failureDiv = $("<div>");
         failureDiv.html(`<h2>Sorry, we don't have the crossword for that date :-(</h2>`);
         $("#crossword-and-hints").empty();
