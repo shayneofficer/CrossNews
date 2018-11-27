@@ -107,6 +107,9 @@ function newDate(date) {
     }
     // console.log(`${month}/${day}/${year}`);
 
+
+
+
     sessionStorage.clear();
     sessionStorage.setItem("month", month);
     sessionStorage.setItem("day", day);
@@ -114,6 +117,7 @@ function newDate(date) {
 
     console.log(`m/d/y ${month}/${day}/${year}`);
 
+    newsCall();
     weatherCall();
     generateCrossword();
 }
@@ -173,29 +177,74 @@ $("#weather-btn").on("click", function () {
 // ==================================================================================================================
 // Retrieve article info from the New York Times Article Search API
 
+function newsCall() {
+    // var headlineYear = year;
+    // var headlineMonth = month;
+    // var headlineDay = day;
+    // console.log(year + month + day);
+    // var newsURL = "https://newsapi.org/v2/top-headlines?country=us&apiKey=ed9a64470959409989b120e1a280e824";
+    // newsURL += '?' + $.param({
+    //     'api-key': "ed9a64470959409989b120e1a280e824",
+    //     // 'fl': "headline",
+    //     'begin_date': (year + month + day),
+    //     'end_date': (year + month + day)
+    // });
+    // $.ajax({
+    //     url: newsURL,
+    //     method: "GET",
+    // }).then(function (response) {
+    //     // Console log response for testing purposes
+    //     console.log(response);
+    // }).fail(function (err) {
+    //     throw err;
+    // });
+    // Day of headline (set to same date as crossword & weather)
+    var headlineYear = year;
+    var headlineMonth = month;
+    var headlineDay = day;
+    console.log(headlineYear + headlineMonth + headlineDay);
+    var nytURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+    nytURL += '?' + $.param({
+        'api-key': "b9f91d369ff59547cd47b931d8cbc56b:0:74623931",
+        'fl': "web_url,headline",
+        'begin_date': (headlineYear + headlineMonth + headlineDay),
+        'end_date': (headlineYear + headlineMonth + headlineDay)
+    });
+    $.ajax({
+        url: nytURL,
+        method: "GET",
+    }).then(function (response) {
+        // Console log response for testing purposes
+        console.log(response);
+    }).fail(function (err) {
+        throw err;
+    });
+}
+
+
 
 // Day of headline (set to same date as crossword & weather)
-var headlineYear = sessionStorage.getItem("year");
-var headlineMonth = sessionStorage.getItem("month");
-var headlineDay = sessionStorage.getItem("day");
+// var headlineYear = sessionStorage.getItem("year");
+// var headlineMonth = sessionStorage.getItem("month");
+// var headlineDay = sessionStorage.getItem("day");
 
-var nytURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
-nytURL += '?' + $.param({
-    'api-key': "b9f91d369ff59547cd47b931d8cbc56b:0:74623931",
-    'fl': "headline,pub_date",
-    'begin_date': (headlineYear + headlineMonth + headlineDay),
-    'end_date': (headlineYear + headlineMonth + headlineDay)
-});
+// var nytURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+// nytURL += '?' + $.param({
+//     'api-key': "b9f91d369ff59547cd47b931d8cbc56b:0:74623931",
+//     'fl': "headline,pub_date",
+//     'begin_date': (headlineYear + headlineMonth + headlineDay),
+//     'end_date': (headlineYear + headlineMonth + headlineDay)
+// });
 
-$.ajax({
-    url: nytURL,
-    method: "GET",
-}).then(function (response) {
-    // Console log response for testing purposes
-    console.log(response);
-}).fail(function (err) {
-    throw err;
-});
+// $.ajax({
+//     url: nytURL,
+//     method: "GET",
+// }).then(function (response) {
+//     // Console log response for testing purposes
+//     console.log(response);
+// }).fail(function (err) {
+//     throw err;
+// });
 
 // ==================================================================================================================
 //Horoscopes
