@@ -119,13 +119,13 @@ function newDate(date) {
     console.log(`m/d/y ${month}/${day}/${year}`);
 
     if (sessionStorage.getItem("page") === "index") {
-        generateCrossword();
+        generateCrossword(); newsCall();
     } else if (sessionStorage.getItem("page") === "weather") {
         weatherCall();
     } else if (sessionStorage.getItem("page") === "horoscope") {
 
     } else if (sessionStorage.getItem("page") === "article") {
-        newsCall();
+        articleCall();
     } else {
         console.log(`ERROR UNKNOWN PAGE: Session Storage 'page':${sessionStorage.getItem("page")}`)
     }
@@ -356,7 +356,17 @@ function articleCall() {
         method: "GET",
     }).then(function (response) {
         // Console log response for testing purposes
-        console.log(response.response.docs[0].web_url);
+        for (let i = 0; i < response.response.docs.length; i++) {
+            // console.log(response);
+            console.log(response.response.docs[i].headline);
+            // console.log(response.response.docs[i].snippet);
+            // console.log(response.response.docs[i].web_url);
+            // $('#article-section').append("hello");
+            var article = $("<div class='card-body'>")
+            article.text(response.response.docs[i].headline.main);
+            $(".card").append(article);
+        }
+        
         // $('#headline').text(response.response.docs[0].headline.main);
     }).fail(function (err) {
         throw err;
