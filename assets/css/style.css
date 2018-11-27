@@ -3,15 +3,6 @@
     background-color: #efefef;
 }
 
-
-.page-title {
-    font-family: 'Vidaloka', serif;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    background-color: #efefef;
-    
-}
-
 .grid-holder {
     margin-left: 50px;
 }
@@ -49,14 +40,11 @@
     background-color: gray;
 }
 
-<<<<<<< HEAD
 .page-title {
     font-family: 'Vidaloka', serif;
     letter-spacing: 3px;
     text-transform: uppercase;  
 }
-=======
->>>>>>> 3934a6580046f19d7ea4ba0a467d37d4ae06eaa3
 
 #headline{
     font-family: 'Vidaloka', serif;
