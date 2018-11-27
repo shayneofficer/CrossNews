@@ -36,7 +36,7 @@ $("#search").on("click", function () {
 function randomDate() {
     //Year range
     var yearMin = 1980;
-    var yearMax = 2017;
+    var yearMax = 2015;
     //Random year
     var year = Math.floor(Math.random() * (yearMax - yearMin) + yearMin);
 
@@ -71,6 +71,19 @@ $("#random-date").on("click", function () {
 function newDate(date) {
     // console.log("newDate():");
     // console.log(date);
+    var unixDate = moment(date).unix();
+    var unixCurrentDate = moment().unix();
+    // console.log(`if ${unixDate} > ${unixCurrentDate}`);
+    if(unixDate > unixCurrentDate){
+        // console.log("True");
+        var currentYear = "" + moment().year();
+        var currentMonth = "" + (moment().month() + 1);
+        var currentDay = "" + moment().date();
+        date = `${currentMonth}/${currentDay}/${currentYear}`;
+        // console.log(`date: ${date}`);
+    } else {
+        // console.log("False");
+    }
     $("#date-historic").text(moment(date).format("MM/DD/YYYY"));
     year = "" + moment(date).year();
     month = "" + (moment(date).month() + 1);
@@ -80,9 +93,9 @@ function newDate(date) {
 
     day = "" + moment(date).date();
     if (day.length < 2) {
-        day = "0" + day
+        day = "0" + day;
     }
-    console.log(`${month}/${day}/${year}`);
+    // console.log(`${month}/${day}/${year}`);
 
     sessionStorage.clear();
     sessionStorage.setItem("month", month);
@@ -152,6 +165,7 @@ weatherCall();
 // ==================================================================================================================
 // Retrieve article info from the New York Times Article Search API
 
+
 // Day of headline (set to same date as crossword & weather)
 var headlineYear = sessionStorage.getItem("year");
 var headlineMonth = sessionStorage.getItem("month");
@@ -176,6 +190,7 @@ $.ajax({
 });
 
 // ==================================================================================================================
+//Horoscopes
 
 var horoscopeURL = "https://www.horoscopes-and-astrology.com/json";
 
@@ -186,6 +201,9 @@ $.ajax({
     // Console log response for testing purposes
     console.log(response);
 });
+
+// ==================================================================================================================
+//Crosswords
 
 function generateCrossword() {
     var crossWordURL = `https://raw.githubusercontent.com/doshea/nyt_crosswords/master/${sessionStorage.getItem("year")}/${sessionStorage.getItem("month")}/${sessionStorage.getItem("day")}.json`;
