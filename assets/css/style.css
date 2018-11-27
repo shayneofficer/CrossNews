@@ -40,11 +40,11 @@
     background-color: gray;
 }
 
-
 .page-title {
     font-family: 'Vidaloka', serif;
     letter-spacing: 3px;
-    text-transform: uppercase;  
+    text-transform: uppercase; 
+    font-weight: bold; 
 }
 
 #headline{
@@ -86,6 +86,10 @@ margin-bottom: 60px;
 }
 #index-bg{
     background: url("../images/indexbg.jpg");
+}
+
+#crossbg{
+    background: url("../images/crossword.jpg");
 }
 
 #weather-bg{

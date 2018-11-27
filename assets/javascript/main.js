@@ -1,5 +1,9 @@
 // ==================================================================================================================
-// Retrieve crossword info from the GitHub archive
+// Variable Creation
+//Crossword Variables
+var indexedLetters = [];
+var answersDown = [];
+var answersAcross = [];
 
 // Day in History
 var year;
@@ -12,6 +16,12 @@ if (
     sessionStorage.getItem("day") === null
 ) {
     randomDate();
+} else {
+    year = sessionStorage.getItem("year");
+    month = sessionStorage.getItem("month");
+    day = sessionStorage.getItem("day");
+
+    newDate(`${month}-${day}-${year}`);
 }
 
 
@@ -74,7 +84,7 @@ function newDate(date) {
     var unixDate = moment(date).unix();
     var unixCurrentDate = moment().unix();
     // console.log(`if ${unixDate} > ${unixCurrentDate}`);
-    if(unixDate > unixCurrentDate){
+    if (unixDate > unixCurrentDate) {
         // console.log("True");
         var currentYear = "" + moment().year();
         var currentMonth = "" + (moment().month() + 1);
@@ -97,17 +107,21 @@ function newDate(date) {
     }
     // console.log(`${month}/${day}/${year}`);
 
+
+
+
     sessionStorage.clear();
     sessionStorage.setItem("month", month);
     sessionStorage.setItem("day", day);
     sessionStorage.setItem("year", year);
 
+    console.log(`m/d/y ${month}/${day}/${year}`);
+
+    newsCall();
+    weatherCall();
     generateCrossword();
 }
 
-console.log(`m/d/y ${month}/${day}/${year}`);
-
-generateCrossword();
 
 // ==================================================================================================================
 // Retrieve weather info from the Dark Sky API
@@ -160,34 +174,77 @@ $("#weather-btn").on("click", function () {
     weatherCall();
 });
 
-weatherCall();
-
 // ==================================================================================================================
 // Retrieve article info from the New York Times Article Search API
 
+function newsCall() {
+    // var headlineYear = year;
+    // var headlineMonth = month;
+    // var headlineDay = day;
+    // console.log(year + month + day);
+    // var newsURL = "https://newsapi.org/v2/top-headlines?country=us&apiKey=ed9a64470959409989b120e1a280e824";
+    // newsURL += '?' + $.param({
+    //     'api-key': "ed9a64470959409989b120e1a280e824",
+    //     // 'fl': "headline",
+    //     'begin_date': (year + month + day),
+    //     'end_date': (year + month + day)
+    // });
+    // $.ajax({
+    //     url: newsURL,
+    //     method: "GET",
+    // }).then(function (response) {
+    //     // Console log response for testing purposes
+    //     console.log(response);
+    // }).fail(function (err) {
+    //     throw err;
+    // });
+    // Day of headline (set to same date as crossword & weather)
+    var headlineYear = year;
+    var headlineMonth = month;
+    var headlineDay = day;
+    console.log(headlineYear + headlineMonth + headlineDay);
+    var nytURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+    nytURL += '?' + $.param({
+        'api-key': "b9f91d369ff59547cd47b931d8cbc56b:0:74623931",
+        'fl': "web_url,headline",
+        'begin_date': (headlineYear + headlineMonth + headlineDay),
+        'end_date': (headlineYear + headlineMonth + headlineDay)
+    });
+    $.ajax({
+        url: nytURL,
+        method: "GET",
+    }).then(function (response) {
+        // Console log response for testing purposes
+        console.log(response);
+    }).fail(function (err) {
+        throw err;
+    });
+}
+
+
 
 // Day of headline (set to same date as crossword & weather)
-var headlineYear = sessionStorage.getItem("year");
-var headlineMonth = sessionStorage.getItem("month");
-var headlineDay = sessionStorage.getItem("day");
+// var headlineYear = sessionStorage.getItem("year");
+// var headlineMonth = sessionStorage.getItem("month");
+// var headlineDay = sessionStorage.getItem("day");
 
-var nytURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
-nytURL += '?' + $.param({
-    'api-key': "b9f91d369ff59547cd47b931d8cbc56b:0:74623931",
-    'fl': "headline,pub_date",
-    'begin_date': (headlineYear + headlineMonth + headlineDay),
-    'end_date': (headlineYear + headlineMonth + headlineDay)
-});
+// var nytURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+// nytURL += '?' + $.param({
+//     'api-key': "b9f91d369ff59547cd47b931d8cbc56b:0:74623931",
+//     'fl': "headline,pub_date",
+//     'begin_date': (headlineYear + headlineMonth + headlineDay),
+//     'end_date': (headlineYear + headlineMonth + headlineDay)
+// });
 
-$.ajax({
-    url: nytURL,
-    method: "GET",
-}).then(function (response) {
-    // Console log response for testing purposes
-    console.log(response);
-}).fail(function (err) {
-    throw err;
-});
+// $.ajax({
+//     url: nytURL,
+//     method: "GET",
+// }).then(function (response) {
+//     // Console log response for testing purposes
+//     console.log(response);
+// }).fail(function (err) {
+//     throw err;
+// });
 
 // ==================================================================================================================
 //Horoscopes
@@ -206,6 +263,11 @@ $.ajax({
 //Crosswords
 
 function generateCrossword() {
+    //Reset Crossword Variables
+    indexedLetters = [];
+    answersDown = [];
+    answersAcross = [];
+
     var crossWordURL = `https://raw.githubusercontent.com/doshea/nyt_crosswords/master/${sessionStorage.getItem("year")}/${sessionStorage.getItem("month")}/${sessionStorage.getItem("day")}.json`;
     $.ajax({
         url: crossWordURL,
@@ -230,8 +292,14 @@ function generateCrossword() {
                 var count = i * cols + j;
                 //Assign Letter Value/Clue Number Value
                 var letterHolder = $(`<div class='letter-holder'id='x${j}:y${i}'>`);
-                letterHolder.attr("data-letter", response.grid[count]);
+                letterHolder.attr("data-index", count);
                 letterHolder.attr("data-clue-number", response.gridnums[count]);
+
+                indexedLetters.push({
+                    id: `x${j}:y${i}`,
+                    letterValue: response.grid[count]
+                });
+
                 //Formating Cell
                 if (response.grid[count] === "." || count >= response.grid.length) {
                     letterHolder.css("background-color", "black");
@@ -242,6 +310,8 @@ function generateCrossword() {
                 else {
                     letterHolder.html(`<div class='grid-number'>${response.gridnums[count]}</div><div class='grid-letter'></div>` /*+ "<br>" + count*/);
                 }
+                // letterHolder.text(indexedLetters[count].letterValue);
+
                 newRow.append(letterHolder);
             }
             crosswordHolder.append(newRow);
@@ -256,13 +326,23 @@ function generateCrossword() {
         downClues.html("<strong>Down</strong>");
         for (var i = 0; i < response.clues.across.length; i++) {
             var newClue = $("<div class='clue'>");
-            newClue.attr("data-answer", response.answers.across[i]);
+            var index = parseInt(response.clues.across[i]);
+            console.log(index);
+
+            answersAcross.push(response.answers.across[i]);
+
+            newClue.attr("data-index", index);
             newClue.text(response.clues.across[i]);
             acrossClues.append(newClue);
         }
         for (var i = 0; i < response.clues.down.length; i++) {
             var newClue = $("<div class='clue'>");
-            newClue.attr("data-answer", response.answers.down[i]);
+            var index = parseInt(response.clues.down[i]);
+            console.log(index);
+
+            answersDown.push(response.answers.down[i]);
+
+            newClue.attr("data-hint", index);
             newClue.text(response.clues.down[i]);
             downClues.append(newClue);
         }
