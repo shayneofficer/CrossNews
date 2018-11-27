@@ -100,6 +100,10 @@ margin-bottom: 60px;
     background: url("../images/horoscope.jpg");
 }
 
+#article-bg{
+    background: url("../images/article.jpg");
+}
+
 #crossword-and-hints {
     margin-bottom: 10em;
 }
