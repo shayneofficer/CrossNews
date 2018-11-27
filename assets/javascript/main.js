@@ -2,11 +2,18 @@
 // Retrieve crossword info from the GitHub archive
 
 // Day in History
-var year = "2000";
-var month = "06";
-var day = "15";
+var year;
+var month;
+var day;
 
-randomDate();
+if (
+    sessionStorage.getItem("year") === null ||
+    sessionStorage.getItem("month") === null ||
+    sessionStorage.getItem("day") === null
+) {
+    randomDate();
+}
+
 
 //Assign selected historic date on button click
 $("#search").on("click", function () {
@@ -19,7 +26,7 @@ $("#search").on("click", function () {
         // console.log(date);
 
         newDate(date);
-        generateCrossword();
+
     } else {
         console.log("Error: Not valid Date");
     }
@@ -29,7 +36,7 @@ $("#search").on("click", function () {
 function randomDate() {
     //Year range
     var yearMin = 1980;
-    var yearMax = 2017;
+    var yearMax = 2015;
     //Random year
     var year = Math.floor(Math.random() * (yearMax - yearMin) + yearMin);
 
@@ -58,13 +65,25 @@ function randomDate() {
 //random historic date button on click
 $("#random-date").on("click", function () {
     randomDate();
-    generateCrossword();
 });
 
 //Assign new historic date
 function newDate(date) {
     // console.log("newDate():");
     // console.log(date);
+    var unixDate = moment(date).unix();
+    var unixCurrentDate = moment().unix();
+    // console.log(`if ${unixDate} > ${unixCurrentDate}`);
+    if(unixDate > unixCurrentDate){
+        // console.log("True");
+        var currentYear = "" + moment().year();
+        var currentMonth = "" + (moment().month() + 1);
+        var currentDay = "" + moment().date();
+        date = `${currentMonth}/${currentDay}/${currentYear}`;
+        // console.log(`date: ${date}`);
+    } else {
+        // console.log("False");
+    }
     $("#date-historic").text(moment(date).format("MM/DD/YYYY"));
     year = "" + moment(date).year();
     month = "" + (moment(date).month() + 1);
@@ -74,9 +93,9 @@ function newDate(date) {
 
     day = "" + moment(date).date();
     if (day.length < 2) {
-        day = "0" + day
+        day = "0" + day;
     }
-    console.log(`${month}/${day}/${year}`);
+    // console.log(`${month}/${day}/${year}`);
 
 
 
@@ -87,6 +106,7 @@ function newDate(date) {
     sessionStorage.setItem("year", year);
 
 
+    generateCrossword();
 }
 
 console.log(`m/d/y ${month}/${day}/${year}`);
@@ -103,9 +123,9 @@ function weatherCall() {
     var weatherLongitude = "-87.623177";
 
     // Day of weather (set to same date as crossword)
-    var weatherYear = year;
-    var weatherMonth = month;
-    var weatherDay = day;
+    var weatherYear = sessionStorage.getItem("year");
+    var weatherMonth = sessionStorage.getItem("month");
+    var weatherDay = sessionStorage.getItem("day");
     console.log(`Weather date: ${weatherMonth}/${weatherDay}/${weatherYear}`);
 
     var weatherKey = "ec5b98b7b3c4b26cd294595db6f0a868"
@@ -127,11 +147,11 @@ function weatherCall() {
         $("#wind").text(`${weather.windSpeed} MPH Wind Speed`);
         var humidity = weather.humidity * 100
         $("#humidity").text(`${humidity}% Humidity`);
-        var temp = Math.round((weather.temperatureHigh + weather.temperatureLow)/2);
+        var temp = Math.round((weather.temperatureHigh + weather.temperatureLow) / 2);
         $("#temp").html(`${temp}&#8457;`);
         var cloudCover = weather.cloudCover * 100;
         $("#cloud-cover").text(`${cloudCover}% Cloud Cover`);
-        if(typeof weather.precipType != "undefined") {
+        if (typeof weather.precipType != "undefined") {
             var precip = weather.precipProbability * 100;
             $("#precip").text(`${precip}% chance of ${weather.precipType}`);
         } else {
@@ -141,13 +161,15 @@ function weatherCall() {
     });
 }
 
-$("#weather-btn").on("click", function(){
+$("#weather-btn").on("click", function () {
     weatherCall();
 });
 
 weatherCall();
+
 // ==================================================================================================================
 // Retrieve article info from the New York Times Article Search API
+
 function newsCall() {
     // var headlineYear = year;
     // var headlineMonth = month;
@@ -192,9 +214,35 @@ function newsCall() {
     });
 }
 
-// ==================================================================================================================
 
-// var horoscopeURL = "https://www.horoscopes-and-astrology.com/json";
+
+// Day of headline (set to same date as crossword & weather)
+// var headlineYear = sessionStorage.getItem("year");
+// var headlineMonth = sessionStorage.getItem("month");
+// var headlineDay = sessionStorage.getItem("day");
+
+// var nytURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+// nytURL += '?' + $.param({
+//     'api-key': "b9f91d369ff59547cd47b931d8cbc56b:0:74623931",
+//     'fl': "headline,pub_date",
+//     'begin_date': (headlineYear + headlineMonth + headlineDay),
+//     'end_date': (headlineYear + headlineMonth + headlineDay)
+// });
+
+// $.ajax({
+//     url: nytURL,
+//     method: "GET",
+// }).then(function (response) {
+//     // Console log response for testing purposes
+//     console.log(response);
+// }).fail(function (err) {
+//     throw err;
+// });
+
+// ==================================================================================================================
+//Horoscopes
+
+var horoscopeURL = "https://www.horoscopes-and-astrology.com/json";
 
 $.ajax({
     url: horoscopeURL,
@@ -204,8 +252,11 @@ $.ajax({
     console.log(response);
 });
 
+// ==================================================================================================================
+//Crosswords
+
 function generateCrossword() {
-    var crossWordURL = `https://raw.githubusercontent.com/doshea/nyt_crosswords/master/${year}/${month}/${day}.json`;
+    var crossWordURL = `https://raw.githubusercontent.com/doshea/nyt_crosswords/master/${sessionStorage.getItem("year")}/${sessionStorage.getItem("month")}/${sessionStorage.getItem("day")}.json`;
     $.ajax({
         url: crossWordURL,
         method: "GET"
@@ -228,7 +279,7 @@ function generateCrossword() {
             for (var j = 0; j < cols; j++) {
                 var count = i * cols + j;
                 //Assign Letter Value/Clue Number Value
-                var letterHolder = $("<div class='letter-holder'>");
+                var letterHolder = $(`<div class='letter-holder'id='x${j}:y${i}'>`);
                 letterHolder.attr("data-letter", response.grid[count]);
                 letterHolder.attr("data-clue-number", response.gridnums[count]);
                 //Formating Cell
@@ -236,10 +287,10 @@ function generateCrossword() {
                     letterHolder.css("background-color", "black");
                 }
                 else if (response.gridnums[count] <= 0) {
-                    letterHolder.html(`<div class='grid-letter'>${response.grid[count]}</div>` /*+ "<br>" + count*/);
+                    letterHolder.html(`<div class='grid-letter'></div>` /*+ "<br>" + count*/);
                 }
                 else {
-                    letterHolder.html(`<div class='grid-number'>${response.gridnums[count]}</div><div class='grid-letter'>${response.grid[count]}</div>` /*+ "<br>" + count*/);
+                    letterHolder.html(`<div class='grid-number'>${response.gridnums[count]}</div><div class='grid-letter'></div>` /*+ "<br>" + count*/);
                 }
                 newRow.append(letterHolder);
             }
@@ -247,6 +298,7 @@ function generateCrossword() {
         }
         $("#crossword").empty();
         $("#crossword").append(crosswordHolder);
+
         //Crosswords Hints   
         var acrossClues = $("<div class='col s6' id='across-clues'>");
         acrossClues.html("<strong>Across</strong>");
@@ -267,5 +319,11 @@ function generateCrossword() {
         $("#hints").empty();
         $("#hints").append(acrossClues);
         $("#hints").append(downClues);
+    }).fail(function (error) {
+        var failureDiv = $("<div>");
+        failureDiv.html(`<h2>Sorry, we don't have the crossword for that date :-(</h2>`);
+        $("#crossword-and-hints").empty();
+        $("#crossword-and-hints").css("justify-content", "center");
+        $("#crossword-and-hints").append(failureDiv);
     });
 }

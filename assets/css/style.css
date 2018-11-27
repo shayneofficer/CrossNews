@@ -1,5 +1,6 @@
 .jumbotron{
     margin-bottom: 0px;
+    background-color: #efefef;
 }
 
 .grid-holder {
@@ -42,7 +43,7 @@
 .page-title {
     font-family: 'Vidaloka', serif;
     letter-spacing: 3px;
-    text-transform: uppercase;
+    text-transform: uppercase;  
 }
 
 #headline{
@@ -55,17 +56,40 @@
     margin-left: 50px;
 }
 
+#signs-div {
+
+}
+.sign-dates{
+    font-style: italic;
+}
+.sign-btn {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 5px;
+    align-content: center;
+
+}
+.sign-img {
+    margin-bottom: 10px;
+    vertical-align: middle;
+    border-style: none;
+    padding-top: 10px;
+}
 
 #index-bg{
     background: url("../images/indexbg.jpg");
 }
 
+#weather-bg{
+    background: url("../images/weather1.png");
+}
+
 #horoscope-bg{
     background: url("../images/horoscope.jpg");
+}
 
 #crossword-and-hints {
     margin-bottom: 10em;
-
 }
 
 footer {
