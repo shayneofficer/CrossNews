@@ -86,8 +86,17 @@
     background-color:#272727;
 =======
 
+
+#index-bg{
+    background: url("../images/indexbg.jpg");
+}
+
+#horoscope-bg{
+    background: url("../images/horoscope.jpg");
+
 #crossword-and-hints {
     margin-bottom: 10em;
+
 }
 
 footer {
