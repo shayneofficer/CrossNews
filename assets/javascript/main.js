@@ -2,11 +2,18 @@
 // Retrieve crossword info from the GitHub archive
 
 // Day in History
-var year = "2000";
-var month = "06";
-var day = "15";
+var year;
+var month;
+var day;
 
-randomDate();
+if (
+    sessionStorage.getItem("year") === null ||
+    sessionStorage.getItem("month") === null ||
+    sessionStorage.getItem("day") === null
+) {
+    randomDate();
+}
+
 
 //Assign selected historic date on button click
 $("#search").on("click", function () {
@@ -110,9 +117,9 @@ function weatherCall() {
     var weatherLongitude = "-87.623177";
 
     // Day of weather (set to same date as crossword)
-    var weatherYear = year;
-    var weatherMonth = month;
-    var weatherDay = day;
+    var weatherYear = sessionStorage.getItem("year");
+    var weatherMonth = sessionStorage.getItem("month");
+    var weatherDay = sessionStorage.getItem("day");
     console.log(`Weather date: ${weatherMonth}/${weatherDay}/${weatherYear}`);
 
     var weatherKey = "ec5b98b7b3c4b26cd294595db6f0a868"
@@ -134,11 +141,11 @@ function weatherCall() {
         $("#wind").text(`${weather.windSpeed} MPH Wind Speed`);
         var humidity = weather.humidity * 100
         $("#humidity").text(`${humidity}% Humidity`);
-        var temp = Math.round((weather.temperatureHigh + weather.temperatureLow)/2);
+        var temp = Math.round((weather.temperatureHigh + weather.temperatureLow) / 2);
         $("#temp").html(`${temp}&#8457;`);
         var cloudCover = weather.cloudCover * 100;
         $("#cloud-cover").text(`${cloudCover}% Cloud Cover`);
-        if(typeof weather.precipType != "undefined") {
+        if (typeof weather.precipType != "undefined") {
             var precip = weather.precipProbability * 100;
             $("#precip").text(`${precip}% chance of ${weather.precipType}`);
         } else {
@@ -148,7 +155,7 @@ function weatherCall() {
     });
 }
 
-$("#weather-btn").on("click", function(){
+$("#weather-btn").on("click", function () {
     weatherCall();
 });
 
@@ -157,10 +164,11 @@ weatherCall();
 // ==================================================================================================================
 // Retrieve article info from the New York Times Article Search API
 
-//Day of headline (set to same date as crossword & weather)
-var headlineYear = year;
-var headlineMonth = month;
-var headlineDay = day;
+
+// Day of headline (set to same date as crossword & weather)
+var headlineYear = sessionStorage.getItem("year");
+var headlineMonth = sessionStorage.getItem("month");
+var headlineDay = sessionStorage.getItem("day");
 
 var nytURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
 nytURL += '?' + $.param({
@@ -197,7 +205,7 @@ $.ajax({
 //Crosswords
 
 function generateCrossword() {
-    var crossWordURL = `https://raw.githubusercontent.com/doshea/nyt_crosswords/master/${year}/${month}/${day}.json`;
+    var crossWordURL = `https://raw.githubusercontent.com/doshea/nyt_crosswords/master/${sessionStorage.getItem("year")}/${sessionStorage.getItem("month")}/${sessionStorage.getItem("day")}.json`;
     $.ajax({
         url: crossWordURL,
         method: "GET"
@@ -239,6 +247,7 @@ function generateCrossword() {
         }
         $("#crossword").empty();
         $("#crossword").append(crosswordHolder);
+
         //Crosswords Hints   
         var acrossClues = $("<div class='col s6' id='across-clues'>");
         acrossClues.html("<strong>Across</strong>");
