@@ -117,20 +117,21 @@ function newDate(date) {
 
     console.log(`m/d/y ${month}/${day}/${year}`);
 
-    if (sessionStorage.getItem("page") === "index") {
-        generateCrossword();
-    } else if (sessionStorage.getItem("page") === "weather") {
-        weatherCall();
-    } else if (sessionStorage.getItem("page") === "horoscope") {
+    // if (sessionStorage.getItem("page") === "index") {
+    //     generateCrossword();
+    // } else if (sessionStorage.getItem("page") === "weather") {
+    //     weatherCall();
+    // } else if (sessionStorage.getItem("page") === "horoscope") {
 
-    } else if (sessionStorage.getItem("page") === "article") {
-        newsCall();
-    } else {
-        console.log(`ERROR UNKNOWN PAGE: Session Storage 'page':${sessionStorage.getItem("page")}`)
-    }
-
-
-
+    // } else if (sessionStorage.getItem("page") === "article") {
+    //     newsCall();
+    // } else {
+    //     console.log(`ERROR UNKNOWN PAGE: Session Storage 'page':${sessionStorage.getItem("page")}`)
+    // }
+    
+    generateCrossword();
+    weatherCall();
+    newsCall();
 }
 
 
