@@ -118,23 +118,6 @@ function newDate(date) {
 
     console.log(`m/d/y ${month}/${day}/${year}`);
 
-<<<<<<< HEAD
-    // if (sessionStorage.getItem("page") === "index") {
-    //     generateCrossword();
-    // } else if (sessionStorage.getItem("page") === "weather") {
-    //     weatherCall();
-    // } else if (sessionStorage.getItem("page") === "horoscope") {
-
-    // } else if (sessionStorage.getItem("page") === "article") {
-    //     newsCall();
-    // } else {
-    //     console.log(`ERROR UNKNOWN PAGE: Session Storage 'page':${sessionStorage.getItem("page")}`)
-    // }
-
-    generateCrossword();
-    weatherCall();
-    newsCall();
-=======
     if (sessionStorage.getItem("page") === "index") {
         generateCrossword();
     } else if (sessionStorage.getItem("page") === "weather") {
@@ -146,9 +129,8 @@ function newDate(date) {
     } else {
         console.log(`ERROR UNKNOWN PAGE: Session Storage 'page':${sessionStorage.getItem("page")}`)
     }
-    
-  
->>>>>>> 57fa290d1fd097f1f081f63b1918c2735364f908
+
+
 }
 
 // ==================================================================================================================
@@ -206,7 +188,7 @@ $("#weather-btn").on("click", function () {
 // Retrieve article info from the New York Times Article Search API
 
 function newsCall() {
-    
+
     // Day of headline (set to same date as crossword & weather)
     var headlineYear = sessionStorage.getItem("year");
     var headlineMonth = sessionStorage.getItem("month");
