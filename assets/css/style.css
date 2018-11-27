@@ -43,7 +43,8 @@
 .page-title {
     font-family: 'Vidaloka', serif;
     letter-spacing: 3px;
-    text-transform: uppercase;  
+    text-transform: uppercase; 
+    font-weight: bold; 
 }
 
 #headline{
@@ -58,9 +59,11 @@
 }
 
 #signs-div {
-
+ text-align: center;
+    
 }
 .sign-dates{
+
     font-style: italic;
 }
 .sign-btn {
@@ -76,9 +79,18 @@
     border-style: none;
     padding-top: 10px;
 }
-
+#sign-row1 {
+margin-top: 30px;
+}
+#sign-row2 {
+margin-bottom: 60px;
+}
 #index-bg{
     background: url("../images/indexbg.jpg");
+}
+
+#crossbg{
+    background: url("../images/crossword.jpg");
 }
 
 #weather-bg{
@@ -87,6 +99,10 @@
 
 #horoscope-bg{
     background: url("../images/horoscope.jpg");
+}
+
+#article-bg{
+    background: url("../images/article.jpg");
 }
 
 #crossword-and-hints {
@@ -102,4 +118,10 @@ footer {
     margin: 0px;
     border-top: 5px solid #4db6ac;
     padding: 20px 0px 5px 0px;
+}
+
+#weather-display{
+    border:2px solid black;
+    display: inline-block;
+    padding:50px;
 }

@@ -6,20 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Weather</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Reset CSS -->
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/reset.css">
+    <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Lora|Vidaloka" rel="stylesheet">
+    <!-- Style CSS -->
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css">
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
+    <!-- Moment.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <!-- Materialize JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
 <body>
     <div class="jumbotron" id="weather-bg">
         <h1 class="display-4 text-center page-title white-text">Project-1</h1>
-        <h3 class="text-center" id="date-historic"></h3>
+        <h3 class="text-center white-text" id="date-historic"></h3>
     </div>
 
     <nav>
@@ -47,13 +56,15 @@
         </form>
     </div>
 
-    <div id="weather-icon"></div>
-    <div id="weather-summary"></div>
-    <div id="wind"></div>
-    <div id="humidity"></div>
-    <div id="temp"></div>
-    <div id="cloud-cover"></div>
-    <div id="precip"></div>
+    <div class="text-center" id="weather-display">
+        <div id="weather-icon"></div>
+        <div id="weather-summary"></div>
+        <div id="wind"></div>
+        <div id="humidity"></div>
+        <div id="temp"></div>
+        <div id="cloud-cover"></div>
+        <div id="precip"></div>
+    </div>
 
     <!-- footer -->
     <footer class="grey darken-4">
@@ -64,6 +75,8 @@
         </div>
     </footer>
 
+    <!-- JavaScript -->
+    <script>sessionStorage.setItem("page", "weather");</script>
     <script src="./assets/javascript/main.js"></script>
 </body>
 

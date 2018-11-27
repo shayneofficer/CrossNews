@@ -6,25 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Horoscope</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Reset CSS -->
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/reset.css">
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Lora|Vidaloka" rel="stylesheet">
+    <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <!-- Style CSS -->
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css">
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="jumbotron" id="horoscope-bg">
-        <h1 class="display-4 text-center page-title white-text">Your Daily Horoscope</h1>
+        <h1 class="display-4 text-center page-title white-text">Project-1</h1>
     </div>
 
     <nav>
         <div class="nav-wrapper grey darken-4">
             <ul class="left hide-on-med-and-down">
                 <li><a href="index.html">Crossword Puzzles</a></li>
-                <li><a href="weatherhttps://github.com/shayneofficer/Project-1/pull/38/conflict?name=horoscope.html&ancestor_oid=b4bec0d66eaf62ea55996a6f91ecd65153769f12&base_oid=d192bb77adc12f20d240e15d47d1b6886ec87a0c&head_oid=57dd7dfdfc4075fbd358344405294563ed6e2f1c.html">Weather</a></li>
+                <li><a href="weather.html">Weather</a></li>
                 <li class="active"><a href="horoscope.html">Horoscope</a></li>
                 <li><a href="article.html">Article</a></li>
             </ul>
@@ -32,66 +38,77 @@
     </nav>
 
     <div id="signs-div">
-        <button class="btn btn-info sign-btn" data-sign="aries"> <img src="https://img.icons8.com/ios/50/000000/aries-filled.png"
-                class="sign-img">
-            <h5>Aries</h5>
-            <p class="sign-dates">March 21 - April 19</p>
-        </button>
-        <button class="btn btn-info  sign-btn" data-sign="taurus"><img src="https://img.icons8.com/ios/50/000000/taurus-filled.png"
-                class="sign-img">
-            <h5>Taurus</h5>
-            <p class="sign-dates">April 20 - May 20</p>
-        </button>
-        <button class="btn btn-info  sign-btn" data-sign="gemini"><img src="https://img.icons8.com/ios/50/000000/aries-filled.png"
-                class="sign-img">
-            <h5>Gemini</h5>
-            <p class="sign-dates">May 21 - June 20</p>
-        </button>
-        <button class="btn btn-info  sign-btn" data-sign="cancer"><img src="https://img.icons8.com/ios/50/000000/gemini-filled.png"
-                class="sign-img">
-            <h5>Cancer</h5>
-            <p class="sign-dates">June 21 - July 22</p>
-        </button>
-        <button class="btn btn-info  sign-btn" data-sign="leo"><img src="https://img.icons8.com/ios/50/000000/leo-filled.png"
-                class="sign-img">
-            <h5>Leo</h5>
-            <p class="sign-dates">July 23 - Aug 22</p>
-        </button>
-        <button class="btn btn-info  sign-btn" data-sign="virgo"><img src="https://img.icons8.com/ios/50/000000/virgo-filled.png"
-                class="sign-img">
-            <h5>Virgo</h5>
-            <p class="sign-dates">Aug 23 - Sep 22</p>
-        </button>
-        <button class="btn btn-info  sign-btn" data-sign="libra"><img src="https://img.icons8.com/ios/50/000000/libra-filled.png"
-                class="sign-img">
-            <h5>Libra</h5>
-            <p class="sign-dates">Sep 23 - Oct 22</p>
-        </button>
-        <button class="btn btn-info  sign-btn" data-sign="scorpio"><img src="https://img.icons8.com/ios/50/000000/scorpio-filled.png"
-                class="sign-img">
-            <h5>Scorpio</h5>
-            <p class="sign-dates">Oct 23 - Nov 22</p>
-        </button>
-        <button class="btn btn-info  sign-btn" data-sign="sagittarius"><img src="https://img.icons8.com/ios/50/000000/sagittarius-filled.png"
-                class="sign-img">
-            <h5>Sagittarius</h5>
-            <p class="sign-dates">Nov 23 - Dec 21</p>
-        </button>
-        <button class="btn btn-info  sign-btn" data-sign="capricorn"><img src="https://img.icons8.com/ios/50/000000/capricorn-filled.png"
-                class="sign-img">
-            <h5>Capricorn</h5>
-            <p class="sign-dates">Dec 22 - Jan 19 </p>
-        </button>
-        <button class="btn btn-info  sign-btn" data-sign="aquarius"><img src="https://img.icons8.com/ios/50/000000/aquarius-filled.png"
-                class="sign-img">
-            <h5>Aquarius</h5>
-            <p class="sign-dates">Jan 20 - Feb 18</p>
-        </button>
-        <button class="btn btn-info  sign-btn" data-sign="pisces"><img src="https://img.icons8.com/ios/50/000000/pisces-filled.png"
-                class="sign-img">
-            <h5>Pisces</h5>
-            <p class="sign-dates">Feb 19 - Mar 20</p>
-        </button>
+
+        <div class="row" id="sign-row1">
+            <div class="col s12">
+                <button class="btn btn-info  sign-btn" data-sign="taurus"><img src="https://img.icons8.com/metro/000000/taurus.png"
+                        class="sign-img">
+                    <h5>Taurus</h5>
+                    <p class="sign-dates">Apr l 20 - May 20</p>
+                </button>
+                <button class="btn btn-info sign-btn" data-sign="aries"> <img src="https://img.icons8.com/metro/000000/aries-filled.png"
+                        class="sign-img">
+                    <h5>Aries</h5>
+                    <p class="sign-dates">Mar 21 - Apr 19</p>
+                </button>
+                <button class="btn btn-info  sign-btn" data-sign="gemini"><img src="https://img.icons8.com/metro/000000/aries-filled.png"
+                        class="sign-img">
+                    <h5>Gemini</h5>
+                    <p class="sign-dates">May 21 - Jun 20</p>
+                </button>
+                <button class="btn btn-info  sign-btn" data-sign="cancer"><img src="https://img.icons8.com/metro/000000/gemini-filled.png"
+                        class="sign-img">
+                    <h5>Cancer</h5>
+                    <p class="sign-dates">Jun 21 - Jul 22</p>
+                </button>
+                <button class="btn btn-info  sign-btn" data-sign="leo"><img src="https://img.icons8.com/metro/000000/leo-filled.png"
+                        class="sign-img">
+                    <h5>Leo</h5>
+                    <p class="sign-dates">July 23 - Aug 22 </p>
+                </button>
+                <button class="btn btn-info  sign-btn" data-sign="virgo"><img src="https://img.icons8.com/metro/000000/virgo-filled.png"
+                        class="sign-img">
+                    <h5>Virgo</h5>
+                    <p class="sign-dates">Aug 23 - Sep 22</p>
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12" id='sign-row2'>
+                <button class="btn btn-info  sign-btn" data-sign="libra"><img src="https://img.icons8.com/metro/000000/libra-filled.png"
+                        class="sign-img">
+                    <h5>Libra</h5>
+                    <p class="sign-dates">Sep 23 - Oct 22</p>
+                </button>
+                <button class="btn btn-info  sign-btn" data-sign="scorpio"><img src="https://img.icons8.com/metro/000000/scorpio-filled.png"
+                        class="sign-img">
+                    <h5>Scorpio</h5>
+                    <p class="sign-dates">Oct 23 - Nov 22</p>
+                </button>
+                <button class="btn btn-info  sign-btn" data-sign="sagittarius"><img src="https://img.icons8.com/metro/000000/sagittarius-filled.png"
+                        class="sign-img">
+                    <h5>Sagittarius</h5>
+                    <p class="sign-dates">Nov 23 - Dec 21</p>
+                </button>
+                <button class="btn btn-info  sign-btn" data-sign="capricorn"><img src="https://img.icons8.com/metro/000000/capricorn-filled.png"
+                        class="sign-img">
+                    <h5>Capricorn</h5>
+                    <p class="sign-dates">Dec 22 - Jan 19 </p>
+                </button>
+                <button class="btn btn-info  sign-btn" data-sign="aquarius"><img src="https://img.icons8.com/metro/000000/aquarius-filled.png"
+                        class="sign-img">
+                    <h5>Aquarius</h5>
+                    <p class="sign-dates">Jan 20 - Feb 18</p>
+                </button>
+                <button class="btn btn-info  sign-btn" data-sign="pisces"><img src="https://img.icons8.com/metro/000000/pisces-filled.png"
+                        class="sign-img">
+                    <h5>Pisces</h5>
+                    <p class="sign-dates">Feb 19 - Mar 20</p>
+                </button>
+            </div>
+        </div>
+
     </div>
 
     <!-- footer -->
@@ -99,6 +116,7 @@
         <div class="footer-copyright text-center white-text">
             <div id="footer">
                 © 2014 Copyright Text
+
             </div>
         </div>
     </footer>
