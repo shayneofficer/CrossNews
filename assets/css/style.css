@@ -55,6 +55,14 @@
     margin-left: 50px;
 }
 
+#index-bg{
+    background: url("../images/indexbg.jpg");
+}
+
+#horoscope-bg{
+    background: url("../images/horoscope.jpg");
+}
+
 footer {
     position: -webkit-sticky;
     position: sticky;
