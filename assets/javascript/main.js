@@ -19,6 +19,7 @@ $("#search").on("click", function () {
         // console.log(date);
 
         newDate(date);
+        generateCrossword();
     } else {
         console.log("Error: Not valid Date");
     }
@@ -57,6 +58,7 @@ function randomDate() {
 //random historic date button on click
 $("#random-date").on("click", function () {
     randomDate();
+    generateCrossword();
 });
 
 //Assign new historic date
@@ -75,85 +77,22 @@ function newDate(date) {
         day = "0" + day
     }
     console.log(`${month}/${day}/${year}`);
+
+    sessionStorage.clear();
+    sessionStorage.setItem("month", month);
+    sessionStorage.setItem("day", day);
+    sessionStorage.setItem("year", year);
 }
 
 console.log(`m/d/y ${month}/${day}/${year}`);
 
-// var crossWordURL = `https://raw.githubusercontent.com/doshea/nyt_crosswords/master/${year}/${month}/${day}.json`;
-
-// $.ajax({
-//     url: crossWordURL,
-//     method: "GET"
-// }).then(function (response) {
-//     // ===============================================================================================================
-//     // Crossword Display
-//     response = JSON.parse(response);
-//     console.log("CrossWord Creation:")
-//     var rows = response.size.rows;
-//     var cols = response.size.cols;
-
-//     console.log(response);
-//     console.log(`rows: ${rows}`);
-//     console.log(`cols: ${cols}`);
-
-//     //Figure out board dimensions
-//     var crosswordHolder = $("<div class='grid-holder'>");
-//     //Calculate square sizes
-//     //Square Creation
-//     for (var i = 0; i < rows; i++) {
-//         var newRow = $("<div class='row-holder'>");
-//         for (var j = 0; j < cols; j++) {
-//             var count = i * cols + j;
-//             //Assign Letter Value/Clue Number Value
-//             var letterHolder = $("<div class='letter-holder'>");
-//             letterHolder.attr("data-letter", response.grid[count]);
-//             letterHolder.attr("data-clue-number", response.gridnums[count]);
-
-//             //Formating Cell
-//             if (response.grid[count] === "." || count >= response.grid.length) {
-//                 letterHolder.css("background-color", "black");
-//             } else if (response.gridnums[count] <= 0) {
-//                 letterHolder.html(`<div class='grid-letter'>${response.grid[count]}</div>`/*+ "<br>" + count*/);
-//             } else {
-//                 letterHolder.html(`<div class='grid-number'>${response.gridnums[count]}</div><div class='grid-letter'>${response.grid[count]}</div>` /*+ "<br>" + count*/);
-//             }
-
-//             newRow.append(letterHolder);
-//         }
-//         crosswordHolder.append(newRow);
-//     }
-//     $("#crossword").append(crosswordHolder);
-
-//     //Crosswords Hints   
-//     var acrossClues = $("<div class='col s6' id='across-clues'>");
-//     acrossClues.html("<strong>Across</strong>");
-
-//     var downClues = $("<div class='col s6' id='down-clues'>");
-//     downClues.html("<strong>Down</strong>");
-
-//     for (var i = 0; i < response.clues.across.length; i++) {
-//         var newClue = $("<div class='clue'>");
-//         newClue.attr("data-answer", response.answers.across[i]);
-//         newClue.text(response.clues.across[i]);
-//         acrossClues.append(newClue);
-//     }
-
-//     for (var i = 0; i < response.clues.down.length; i++) {
-//         var newClue = $("<div class='clue'>");
-//         newClue.attr("data-answer", response.answers.down[i]);
-//         newClue.text(response.clues.down[i]);
-//         downClues.append(newClue);
-//     }
-
-//     $("#hints").append(acrossClues);
-//     $("#hints").append(downClues);
-// });
-
+generateCrossword();
 
 // ==================================================================================================================
 // Retrieve weather info from the Dark Sky API
 
-function weatherCall() {// (Chicago) lattitude & longitude
+function weatherCall() {
+    // (Chicago) lattitude & longitude
     var weatherLattitude = "41.881832";
     var weatherLongitude = "-87.623177";
 
@@ -231,10 +170,76 @@ weatherCall();
 
 // var horoscopeURL = "https://www.horoscopes-and-astrology.com/json";
 
-// $.ajax({
-//     url: horoscopeURL,
-//     method: "GET"
-// }).then(function (response) {
-//     // Console log response for testing purposes
-//     console.log(response);
-// });
+$.ajax({
+    url: horoscopeURL,
+    method: "GET"
+}).then(function (response) {
+    // Console log response for testing purposes
+    console.log(response);
+});
+
+function generateCrossword() {
+    var crossWordURL = `https://raw.githubusercontent.com/doshea/nyt_crosswords/master/${year}/${month}/${day}.json`;
+    $.ajax({
+        url: crossWordURL,
+        method: "GET"
+    }).then(function (response) {
+        // ===============================================================================================================
+        // Crossword Display
+        response = JSON.parse(response);
+        console.log("CrossWord Creation:");
+        var rows = response.size.rows;
+        var cols = response.size.cols;
+        console.log(response);
+        console.log(`rows: ${rows}`);
+        console.log(`cols: ${cols}`);
+        //Figure out board dimensions
+        var crosswordHolder = $("<div class='grid-holder'>");
+        //Calculate square sizes
+        //Square Creation
+        for (var i = 0; i < rows; i++) {
+            var newRow = $("<div class='row-holder'>");
+            for (var j = 0; j < cols; j++) {
+                var count = i * cols + j;
+                //Assign Letter Value/Clue Number Value
+                var letterHolder = $("<div class='letter-holder'>");
+                letterHolder.attr("data-letter", response.grid[count]);
+                letterHolder.attr("data-clue-number", response.gridnums[count]);
+                //Formating Cell
+                if (response.grid[count] === "." || count >= response.grid.length) {
+                    letterHolder.css("background-color", "black");
+                }
+                else if (response.gridnums[count] <= 0) {
+                    letterHolder.html(`<div class='grid-letter'>${response.grid[count]}</div>` /*+ "<br>" + count*/);
+                }
+                else {
+                    letterHolder.html(`<div class='grid-number'>${response.gridnums[count]}</div><div class='grid-letter'>${response.grid[count]}</div>` /*+ "<br>" + count*/);
+                }
+                newRow.append(letterHolder);
+            }
+            crosswordHolder.append(newRow);
+        }
+        $("#crossword").empty();
+        $("#crossword").append(crosswordHolder);
+        //Crosswords Hints   
+        var acrossClues = $("<div class='col s6' id='across-clues'>");
+        acrossClues.html("<strong>Across</strong>");
+        var downClues = $("<div class='col s6' id='down-clues'>");
+        downClues.html("<strong>Down</strong>");
+        for (var i = 0; i < response.clues.across.length; i++) {
+            var newClue = $("<div class='clue'>");
+            newClue.attr("data-answer", response.answers.across[i]);
+            newClue.text(response.clues.across[i]);
+            acrossClues.append(newClue);
+        }
+        for (var i = 0; i < response.clues.down.length; i++) {
+            var newClue = $("<div class='clue'>");
+            newClue.attr("data-answer", response.answers.down[i]);
+            newClue.text(response.clues.down[i]);
+            downClues.append(newClue);
+        }
+        $("#hints").empty();
+        $("#hints").append(acrossClues);
+        $("#hints").append(downClues);
+    });
+}
