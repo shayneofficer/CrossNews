@@ -80,6 +80,14 @@
 
 }
 
+.modal-trigger {
+    color: black;
+}
+
+.modal-trigger:hover {
+    color: white;
+}
+
 .sign-img {
     margin-bottom: 10px;
     vertical-align: middle;
@@ -128,9 +136,26 @@ footer {
 
 #weather-display{
     border:2px solid black;
-    display: inline-block;
     padding:50px;
-    margin:20px 70px;
+    margin:20px auto;
+    background: white;
+    width:50%;
+}
+
+#weather-icon>img{
+    width:200px;
+}
+
+.icon {
+    float: left;
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.weather {
+    font-size: 30px;
+    text-align: justify;
+ 
 }
 
 @media only screen and (max-width: 1360px){
@@ -153,5 +178,11 @@ footer {
 @media only screen and (max-width: 980px){
     #crossword-and-hints {
         margin-left: auto;
+    }
+}
+
+@media only screen and (max-width: 700px){
+    #crossword-and-hints {
+        margin-left: 0px;
     }
 }
