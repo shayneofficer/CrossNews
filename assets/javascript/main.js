@@ -328,7 +328,7 @@ function generateCrossword() {
             answersAcross.push(response.answers.across[i]);
 
             newClue.attr("data-index", index);
-            newClue.html(`<a class="modal-trigger" href="#hint-modal">${response.clues.across[i]}</a>`);
+            newClue.html(`<a class="modal-trigger hint-btn" href="#hint-modal" data-num=${i} data-direction="across">${response.clues.across[i]}</a>`);
             acrossClues.append(newClue);
         }
 
@@ -340,7 +340,7 @@ function generateCrossword() {
             answersDown.push(response.answers.down[i]);
 
             newClue.attr("data-hint", index);
-            newClue.html(`<a class="modal-trigger" href="#hint-modal">${response.clues.down[i]}</a>`);
+            newClue.html(`<a class="modal-trigger hint-btn" href="#hint-modal" data-num=${i} data-direction="down">${response.clues.down[i]}</a>`);
             downClues.append(newClue);
         }
         $("#hints").empty();
@@ -355,6 +355,34 @@ function generateCrossword() {
 }
 
 $(document).ready(function () {
+    var ans = "";
+    $(document).on("click", ".hint-btn", function () {
+        var hintArray = $(this).text().split(". ");
+        if ($(this).attr("data-direction") === "across") {
+            ans = answersAcross[$(this).attr("data-num")];
+        }
+        else {
+            ans = answersDown[$(this).attr("data-num")];
+        }
+        $("#hint-modal .modal-content").html(`
+        <h1>${hintArray[1]}</h1>
+        <h2>Answer: ${ans}</h2>
+        `);
+    })
+
+    $("#modal-guess").on("click", function () {
+        var guess = "";
+        guess = $("#guess-input").val().trim().toUpperCase();
+        if (guess === ans) {
+            console.log(`Answer: ${ans}`);
+            console.log(`Guess: ${guess}: correct!`);
+        }
+        else {
+            console.log(`Answer: ${ans}`);
+            console.log(`Guess: ${guess}: incorrect!`);
+        }
+    })
+
     $('.modal').modal();
 });
 
