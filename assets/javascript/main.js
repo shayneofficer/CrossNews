@@ -259,7 +259,7 @@ function generateCrossword() {
         //Square Creation
         for (var i = 0; i < rows; i++) {
             var newRow = $("<div class='row-holder'>");
-            newRow.css("width", `${rows*40}px`);
+            newRow.css("width", `${rows * 40}px`);
             for (var j = 0; j < cols; j++) {
                 var count = i * cols + j;
                 //Assign Letter Value/Clue Number Value
@@ -305,7 +305,7 @@ function generateCrossword() {
             answersAcross.push(response.answers.across[i]);
 
             newClue.attr("data-index", index);
-            newClue.text(response.clues.across[i]);
+            newClue.html(`<a class="modal-trigger" href="#hint-modal">${response.clues.across[i]}</a>`);
             acrossClues.append(newClue);
         }
 
@@ -317,7 +317,7 @@ function generateCrossword() {
             answersDown.push(response.answers.down[i]);
 
             newClue.attr("data-hint", index);
-            newClue.text(response.clues.down[i]);
+            newClue.html(`<a class="modal-trigger" href="#hint-modal">${response.clues.down[i]}</a>`);
             downClues.append(newClue);
         }
         $("#hints").empty();
@@ -330,6 +330,10 @@ function generateCrossword() {
         $("#failure-div").css("text-align", "center");
     });
 }
+
+$(document).ready(function () {
+    $('.modal').modal();
+});
 
 //Articles
 
@@ -363,7 +367,7 @@ function articleCall() {
             article.text(response.response.docs[i].headline.main);
             $(".card").append(article);
         }
-        
+
         // $('#headline').text(response.response.docs[0].headline.main);
     }).fail(function (err) {
         throw err;
