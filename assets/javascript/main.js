@@ -120,7 +120,7 @@ function newDate(date) {
     } else if (sessionStorage.getItem("page") === "weather") {
         weatherCall();
     } else if (sessionStorage.getItem("page") === "horoscope") {
-
+        // horoscopeCall();
     } else if (sessionStorage.getItem("page") === "article") {
         articleCall();
     } else {
@@ -159,8 +159,10 @@ function weatherCall() {
 
         $("#weather-icon").html(`<img src="assets/images/weather-icons/${weather.icon}.jpg" alt="${weather.icon} icon">`);
         $("#weather-summary").text(`${weather.summary}`);
-        $("#wind").text(`${weather.windSpeed} MPH Wind Speed`);
-        var humidity = Math.round(weather.humidity * 100);
+
+        $("#wind").text(`Wind Speed: ${weather.windSpeed} MPH`);
+        var humidity = weather.humidity * 100
+        
         $("#humidity").text(`${humidity}% Humidity`);
         var temp = Math.round((weather.temperatureHigh + weather.temperatureLow) / 2);
         $("#temp").html(`${temp}&#8457;`);
@@ -192,7 +194,9 @@ function newsCall() {
     // var headlineYear = year;
     // var headlineMonth = month;
     // var headlineDay = day;
+
     console.log(headlineYear + headlineMonth + headlineDay);
+
     var nytURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
     nytURL += '?' + $.param({
         'api-key': "b9f91d369ff59547cd47b931d8cbc56b:0:74623931",
@@ -215,18 +219,37 @@ function newsCall() {
 // ==================================================================================================================
 //Horoscopes
 
-function horoscopeCall() {
+function horoscopeCall(signType) {
+    console.log(signType);
     var horoscopeURL = "https://www.horoscopes-and-astrology.com/json";
-
+    console.log(signType);
     $.ajax({
         url: horoscopeURL,
         method: "GET"
     }).then(function (response) {
+        
         // Console log response for testing purposes
-        console.log("Horoscope Obj:")
+        console.log("Horoscope Obj:");
+        console.log(signType);
         console.log(response);
+        var signObj = response.dailyhoroscope[signType];
+        console.log(signObj);
+        $("#horoscope-name").text(signType);
+        var horSum = signObj.split("<a");
+        $("#horoscope-summary").text(horSum[0]);
     });
 }
+
+// Or with jQuery
+$(document).ready(function () {
+    $(".sign-btn").on("click", function(){
+        var signType = $(this).attr("data-sign");
+        horoscopeCall(signType);
+    });
+
+    $('.modal').modal();
+});
+
 
 // ==================================================================================================================
 //Crosswords
@@ -259,7 +282,7 @@ function generateCrossword() {
         //Square Creation
         for (var i = 0; i < rows; i++) {
             var newRow = $("<div class='row-holder'>");
-            newRow.css("width", `${rows*40}px`);
+            newRow.css("width", `${rows * 40}px`);
             for (var j = 0; j < cols; j++) {
                 var count = i * cols + j;
                 //Assign Letter Value/Clue Number Value
@@ -305,7 +328,7 @@ function generateCrossword() {
             answersAcross.push(response.answers.across[i]);
 
             newClue.attr("data-index", index);
-            newClue.text(response.clues.across[i]);
+            newClue.html(`<a class="modal-trigger hint-btn" href="#hint-modal" data-num=${i} data-direction="across">${response.clues.across[i]}</a>`);
             acrossClues.append(newClue);
         }
 
@@ -317,7 +340,7 @@ function generateCrossword() {
             answersDown.push(response.answers.down[i]);
 
             newClue.attr("data-hint", index);
-            newClue.text(response.clues.down[i]);
+            newClue.html(`<a class="modal-trigger hint-btn" href="#hint-modal" data-num=${i} data-direction="down">${response.clues.down[i]}</a>`);
             downClues.append(newClue);
         }
         $("#hints").empty();
@@ -330,6 +353,38 @@ function generateCrossword() {
         $("#failure-div").css("text-align", "center");
     });
 }
+
+$(document).ready(function () {
+    var ans = "";
+    $(document).on("click", ".hint-btn", function () {
+        var hintArray = $(this).text().split(". ");
+        if ($(this).attr("data-direction") === "across") {
+            ans = answersAcross[$(this).attr("data-num")];
+        }
+        else {
+            ans = answersDown[$(this).attr("data-num")];
+        }
+        $("#hint-modal .modal-content").html(`
+        <h1>${hintArray[1]}</h1>
+        <h2>Answer: ${ans}</h2>
+        `);
+    })
+
+    $("#modal-guess").on("click", function () {
+        var guess = "";
+        guess = $("#guess-input").val().trim().toUpperCase();
+        if (guess === ans) {
+            console.log(`Answer: ${ans}`);
+            console.log(`Guess: ${guess}: correct!`);
+        }
+        else {
+            console.log(`Answer: ${ans}`);
+            console.log(`Guess: ${guess}: incorrect!`);
+        }
+    })
+
+    $('.modal').modal();
+});
 
 //Articles
 
@@ -370,10 +425,10 @@ function articleCall() {
             article.append(snippet);
             $(".card").append(article);
         } 
-        // else {
-            
-        // }
+     
     }
+
+        
     }).fail(function (err) {
         throw err;
     });
