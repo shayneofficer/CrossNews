@@ -374,30 +374,51 @@ $(document).ready(function () {
     var ans = "";
     var hintArray;
     var direction;
-    $(document).on("click", ".hint-btn", function () {
+    var hintNum;
+
+    $(document).on("click", ".hint-btn", function (event) {
+        event.preventDefault();
+        $("#guess-input").focus();
         hintArray = $(this).text().split(". ");
         direction = $(this).attr("data-direction");
+        hintNum = $(this).attr("data-num");
+
+        // Fix those hints who had a ". " other than the one following the hint number
+        if (hintArray.length > 2) {
+            for (var i = 2; i < hintArray.length; i++) {
+                hintArray[1] += ". " + hintArray[i];
+            }
+        }
+
         if (direction === "across") {
-            ans = answersAcross[$(this).attr("data-num")];
+            ans = answersAcross[hintNum];
         }
         else {
-            ans = answersDown[$(this).attr("data-num")];
+            ans = answersDown[hintNum];
         }
         $("#hint-modal .modal-content").html(`
         <h1>${hintArray[1]}</h1>
-        <h2>Answer: ${ans}</h2>
+        <!-- <h2>Answer: ${ans}</h2> -->
         `);
     })
 
-    $("#modal-guess").on("click", function () {
+    $(document).on("click", "#modal-guess", function (event) {
+        event.preventDefault();
         var guess = "";
         guess = $("#guess-input").val().trim().toUpperCase();
         $("#guess-input").val("");
         if (guess === ans) {
             fillCorrectAnswer(ans, hintArray[0], direction);
+            $("#hint-modal").modal("close");
+
+            console.log($(`[data-num=${hintNum}][data-direction="${direction}"]`));
+            $(`[data-num=${hintNum}][data-direction="${direction}"]`).css("text-decoration", "line-through");
+            $(`[data-num=${hintNum}][data-direction="${direction}"]`).attr("href", "#");
+            $(`[data-num=${hintNum}][data-direction="${direction}"]`).addClass("clicked-clue");
         }
         else {
             console.log(`Guess: ${guess}: incorrect!`);
+            $("#hint-modal").effect("shake");
         }
     })
 
@@ -409,22 +430,24 @@ $(document).ready(function () {
 });
 
 function fillCorrectAnswer(ans, gridNum, direction) {
-    console.log(`Answer: ${ans} \ngridNum: ${gridNum} \nDirection: ${direction} `)
+    // console.log(`Answer: ${ans} \ngridNum: ${gridNum} \nDirection: ${direction} `)
     firstLetterHolder = $(`[data-clue-number=${gridNum}]`);
     var coords = firstLetterHolder.attr("id").split("y");
     coords[0] = coords[0].substr(1);
-    console.log(firstLetterHolder.attr("id"));
-    console.log(coords);
-    console.log(`x${coords[0]}y${coords[1]}`)
+    // console.log(firstLetterHolder.attr("id"));
+    // console.log(coords);
+    // console.log(`x${coords[0]}y${coords[1]}`)
 
     if (direction === "across") {
         for (var i = 0; i < ans.length; i++) {
-            console.log(`#x${coords[0]}y${parseInt(coords[1]) + i}`)
             $(`#x${parseInt(coords[0]) + i}y${parseInt(coords[1])} .grid-letter`).text(ans[i]);
         }
     }
-    // $(`[data-clue-number=${gridNum}]`).css("background-color", "blue");
-
+    else {
+        for (var i = 0; i < ans.length; i++) {
+            $(`#x${parseInt(coords[0])}y${parseInt(coords[1]) + i} .grid-letter`).text(ans[i]);
+        }
+    }
 }
 
 // ===============================================================================================================
@@ -456,21 +479,21 @@ function articleCall() {
             // console.log(response.response.docs[i].snippet);
             // console.log(response.response.docs[i].web_url);
             // $('#article-section').append("hello");
-           
-       
-        if (response.response.docs[i].news_desk !== "Classified") {
-            var article = $("<div class='card-body'>")
-            var snippet = $("<div>");
-            snippet.text(response.response.docs[i].snippet);
-            
-            article.html("<a href="+response.response.docs[i].web_url +">" +response.response.docs[i].headline.main+"</a>");
-            article.append(snippet);
-            $(".card").append(article);
-        } 
-     
-    }
 
-        
+
+            if (response.response.docs[i].news_desk !== "Classified") {
+                var article = $("<div class='card-body'>")
+                var snippet = $("<div>");
+                snippet.text(response.response.docs[i].snippet);
+
+                article.html("<a href=" + response.response.docs[i].web_url + ">" + response.response.docs[i].headline.main + "</a>");
+                article.append(snippet);
+                $(".card").append(article);
+            }
+
+        }
+
+
     }).fail(function (err) {
         throw err;
     });

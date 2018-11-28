@@ -42,6 +42,10 @@
     background-color: gray;
 }
 
+.clicked-clue:hover {
+    cursor: default;
+}
+
 .page-title {
     font-family: 'Zilla Slab', serif;
     letter-spacing: 3px;
@@ -90,14 +94,16 @@
 .modal-trigger:hover {
     color: white;
 }
-.modal-content{
-    /* width: 50%; */
+
+#modal-horoscope .modal-content{
+    width: 50%;
     height: 100%;
     /* float: right; */
 }
 #card-img-hor {
 max-height: 440px;
 }
+
 .sign-img {
     margin-bottom: 10px;
     vertical-align: middle;
@@ -111,6 +117,10 @@ margin-top: 30px;
 
 #sign-row2 {
 margin-bottom: 60px;
+}
+
+.date-row {
+    width: 90%;
 }
 
 #index-bg{
@@ -185,6 +195,30 @@ footer {
     text-align: justify;
 }
 
+#hint-modal {
+    position: absolute;
+    right: 10px;
+    width: 75%;
+    height: 350px;
+    bottom: 600px;
+}
+
+#hint-modal form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#guess-input {
+    width: 60%;
+}
+
+#guess-input #modal-guess {
+    position: relative;
+    top: 100px;
+}
+
 @media only screen and (max-width: 1360px){
     
 }
@@ -197,6 +231,8 @@ footer {
     
 }
 
-@media only screen and (max-width: 700px){
-    
+@media only screen and (max-width: 480px){
+    .grid-letter {
+        font-size: 1em;
+    }
 }

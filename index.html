@@ -16,6 +16,16 @@
     <link href="https://fonts.googleapis.com/css?family=Prata|Zilla+Slab" rel="stylesheet">
     <!-- Style CSS -->
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <!-- Materialize JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+        crossorigin="anonymous"></script>
 </head>
 
 <body id="index-bg">
@@ -36,7 +46,7 @@
     </nav>
 
     <!-- select date and search -->
-    <div class="row">
+    <div class="row date-row">
         <form class="col s12 form-inline">
             <div class="input-field col s6">
                 <input type="date" id="date-input" placeholder="MM/DD/YYYY">
@@ -59,19 +69,6 @@
         </div>
     </div>
 
-    <!-- Modal Structure -->
-    <div id="hint-modal" class="modal">
-        <div class="modal-content">
-
-        </div>
-        <!-- <form> -->
-        <input type="text" name="answer" placeholder="Do you know this one?" id="guess-input">
-        <input type="button" value="Guess" id="modal-guess">
-        <!-- </form> -->
-        <div class="modal-footer">
-            <!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a> -->
-        </div>
-    </div>
     <div class="container">
         <div id="failure-div"></div>
         <div class="row" id="crossword-and-hints">
@@ -82,6 +79,13 @@
             <!-- id for game hints -->
             <div class="col-lg-6">
                 <div id="hints"></div>
+                <div id="hint-modal" class="modal">
+                    <div class="modal-content"></div>
+                    <form>
+                        <input type="text" name="answer" placeholder="Do you know this one?" id="guess-input"><br><br>
+                        <input class="btn waves-effect waves-light grey darken-3" type="submit" value="Guess" id="modal-guess">
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -94,14 +98,6 @@
         </div>
     </footer>
 
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-    <!-- Moment.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-    <!-- Materialize JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- JavaScript -->
     <script>
         sessionStorage.setItem("page", "index");
