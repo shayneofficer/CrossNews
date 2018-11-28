@@ -58,14 +58,20 @@
     margin-left: 50px;
 }
 
+#crossword-and-hints {
+    margin-bottom: 10em;
+}
+
 #signs-div {
  text-align: center;
     
 }
+
 .sign-dates{
 
     font-style: italic;
 }
+
 .sign-btn {
     width: 150px;
     height: 150px;
@@ -73,18 +79,22 @@
     align-content: center;
 
 }
+
 .sign-img {
     margin-bottom: 10px;
     vertical-align: middle;
     border-style: none;
     padding-top: 10px;
 }
+
 #sign-row1 {
 margin-top: 30px;
 }
+
 #sign-row2 {
 margin-bottom: 60px;
 }
+
 #index-bg{
     background: url("../images/indexbg.jpg");
 }
@@ -105,10 +115,6 @@ margin-bottom: 60px;
     background: url("../images/article.jpg");
 }
 
-#crossword-and-hints {
-    margin-bottom: 10em;
-}
-
 footer {
     position: -webkit-sticky;
     position: sticky;
@@ -127,3 +133,25 @@ footer {
     margin:20px 70px;
 }
 
+@media only screen and (max-width: 1360px){
+    #crossword{
+        margin-left: 10px;
+    }
+}
+
+@media only screen and (max-width: 1280px){
+    #crossword{
+        margin-left: 5px;
+    }
+    #crossword-and-hints {
+        display: block;
+        align-content: center;
+        margin-left: 150px;
+    }
+}
+
+@media only screen and (max-width: 980px){
+    #crossword-and-hints {
+        margin-left: auto;
+    }
+}
