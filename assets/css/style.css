@@ -8,10 +8,12 @@
 }
 
 .row-holder {
+    box-sizing: border-box;
     width: 600px;
 }
 
 .letter-holder {
+    box-sizing: border-box;
     float: left;
     height: 40px;
     width: 40px;
@@ -21,7 +23,7 @@
 }
 
 .grid-letter {
-    /* align-content: center; */
+    align-content: center;
     text-align: center;
     background-color: transparent;
     height: 100%;
@@ -56,7 +58,7 @@
 }
 
 #crossword{
-    margin-left: 50px;
+    padding: 5px;
 }
 
 #crossword-and-hints {
@@ -88,7 +90,14 @@
 .modal-trigger:hover {
     color: white;
 }
+.modal-content{
+    width: 50%;
+    height: 100%;
+    float: right;
+}
+.horoscope-card {
 
+}
 .sign-img {
     margin-bottom: 10px;
     vertical-align: middle;
@@ -150,17 +159,12 @@ footer {
     border-top: 5px solid #79543a;
 }
 
-#weather-display{
-    border:2px solid black;
-    padding:50px;
-<<<<<<< HEAD
-    margin:20px 70px;
-}
-
 .card{
     margin-bottom: 100px;
 }
-=======
+#weather-display{
+    border:2px solid black;
+    padding:50px;
     margin:20px auto;
     background: white;
     width:50%;
@@ -183,25 +187,17 @@ footer {
 }
 
 @media only screen and (max-width: 1360px){
-    #crossword{
-        margin-left: 10px;
-    }
+    
 }
 
 @media only screen and (max-width: 1280px){
-    #crossword{
-        margin-left: 5px;
-    }
-    #crossword-and-hints {
-        display: block;
-        align-content: center;
-        margin-left: 150px;
-    }
+    
 }
 
 @media only screen and (max-width: 980px){
-    #crossword-and-hints {
-        margin-left: auto;
-    }
+    
 }
->>>>>>> 6ffb25ff236b7ab9efa1c313fa08b9b623e834ab
+
+@media only screen and (max-width: 700px){
+    
+}
