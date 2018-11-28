@@ -19,6 +19,10 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <!-- Materialze.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
 <body id="index-bg">
@@ -111,18 +115,12 @@
 
     </div>
 
-    <!-- Modal Trigger -->
-    <!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a> -->
-
     <!-- Modal Structure -->
     <div id="modal-horoscope" class="modal top-sheet">
         <div class="modal-content">
             <h4 id="horoscope-name">Horoscope Name</h4>
             <p id="horoscope-summary">Horoscope Summary</p>
         </div>
-        <!-- <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-        </div> -->
     </div>
 
     <!-- footer -->
@@ -133,6 +131,10 @@
             (Kathy, Bharti, Shayne, Ryan, Victoria)
         </div>
     </footer>
+
+    <!-- JavaScript -->
+    <script>sessionStorage.setItem("page", "horoscope");</script>
+    <script src="./assets/javascript/main.js"></script>
 </body>
 
 </html>
