@@ -52,7 +52,6 @@
     /* text-transform: capitalize; */
     text-align: center;
     font-size: 28px;
-    color: #efefef;
     padding: 8px;
 }
 
@@ -132,8 +131,23 @@ footer {
     position: fixed;
     width: 100%;
     margin: 0px;
-    border-top: 5px solid #4db6ac;
     padding: 5px 0px 5px 0px;
+}
+
+#footer1{
+    border-top: 5px solid #ffffff;
+}
+
+#footer2{
+    border-top: 5px solid seagreen;
+}
+
+#footer3{
+    border-top: 5px solid #01579b;
+}
+
+#footer4{
+    border-top: 5px solid #79543a;
 }
 
 #weather-display{
@@ -180,11 +194,5 @@ footer {
 @media only screen and (max-width: 980px){
     #crossword-and-hints {
         margin-left: auto;
-    }
-}
-
-@media only screen and (max-width: 700px){
-    #crossword-and-hints {
-        margin-left: 0px;
     }
 }
