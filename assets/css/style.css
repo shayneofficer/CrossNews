@@ -90,15 +90,25 @@
 .modal-trigger:hover {
     color: white;
 }
+<<<<<<< HEAD
 
 #modal-horoscope .modal-content{
     width: 50%;
+=======
+.modal-content{
+    /* width: 50%; */
+>>>>>>> fb37f090fe3d086210cf87625649dc88d9c26c7b
     height: 100%;
-    float: right;
+    /* float: right; */
 }
+<<<<<<< HEAD
 
 .horoscope-card {
 
+=======
+#card-img-hor {
+max-height: 440px;
+>>>>>>> fb37f090fe3d086210cf87625649dc88d9c26c7b
 }
 
 .sign-img {
@@ -167,10 +177,10 @@ footer {
 }
 #weather-display{
     border:2px solid black;
-    padding:50px;
-    margin:20px auto;
+    padding:40px;
+    margin:30px auto;
     background: white;
-    width:50%;
+    width:70%;
 }
 
 #weather-icon>img{
@@ -184,9 +194,8 @@ footer {
 }
 
 .weather {
-    font-size: 30px;
+    font-size: 20px;
     text-align: justify;
- 
 }
 
 #hint-modal {
