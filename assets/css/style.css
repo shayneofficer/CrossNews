@@ -91,12 +91,12 @@
     color: white;
 }
 .modal-content{
-    width: 50%;
+    /* width: 50%; */
     height: 100%;
-    float: right;
+    /* float: right; */
 }
-.horoscope-card {
-
+#card-img-hor {
+max-height: 440px;
 }
 .sign-img {
     margin-bottom: 10px;
