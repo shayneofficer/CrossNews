@@ -4,6 +4,8 @@
 var indexedLetters = [];
 var answersDown = [];
 var answersAcross = [];
+var cols = -1;
+var rows = -1;
 
 // Day in History
 var year;
@@ -162,7 +164,7 @@ function weatherCall() {
 
         $("#wind").text(`Wind Speed: ${weather.windSpeed} MPH`);
         var humidity = weather.humidity * 100
-        
+
         $("#humidity").text(`${humidity}% Humidity`);
         var temp = Math.round((weather.temperatureHigh + weather.temperatureLow) / 2);
         $("#temp").html(`${temp}&#8457;`);
@@ -227,7 +229,7 @@ function horoscopeCall(signType) {
         url: horoscopeURL,
         method: "GET"
     }).then(function (response) {
-        
+
         // Console log response for testing purposes
         console.log("Horoscope Obj:");
         console.log(signType);
@@ -242,12 +244,12 @@ function horoscopeCall(signType) {
 
 // Or with jQuery
 $(document).ready(function () {
-    $(".sign-btn").on("click", function(){
+    $(".sign-btn").on("click", function () {
         var signType = $(this).attr("data-sign");
         horoscopeCall(signType);
     });
 
-    $('.modal').modal();
+    $('#modal-horoscope').modal();
 });
 
 
@@ -268,16 +270,17 @@ function generateCrossword() {
         // ===============================================================================================================
         // Crossword Display
         $("#failure-div").empty();
+        $("#crossword").empty();
 
         response = JSON.parse(response);
         console.log("CrossWord Creation:");
-        var rows = response.size.rows;
-        var cols = response.size.cols;
+        rows = response.size.rows;
+        cols = response.size.cols;
         console.log(response);
         console.log(`rows: ${rows}`);
         console.log(`cols: ${cols}`);
         //Figure out board dimensions
-        var crosswordHolder = $("<div class='grid-holder'>");
+        var crosswordHolder = $("#crossword");
         //Calculate square sizes
         //Square Creation
         for (var i = 0; i < rows; i++) {
@@ -311,8 +314,7 @@ function generateCrossword() {
             }
             crosswordHolder.append(newRow);
         }
-        $("#crossword").empty();
-        $("#crossword").append(crosswordHolder);
+
 
         //Crosswords Hints   
         var acrossClues = $("<div class='col s6' id='across-clues'>");
@@ -346,6 +348,7 @@ function generateCrossword() {
         $("#hints").empty();
         $("#hints").append(acrossClues);
         $("#hints").append(downClues);
+        crosswordResize();
     }).fail(function (error) {
         $("#crossword").empty();
         $("#hints").empty();
@@ -354,7 +357,20 @@ function generateCrossword() {
     });
 }
 
+function crosswordResize() {
+    var width = $("#crossword").innerWidth() - 20;
+    // console.log(`width: ${width}`);
+    var newWidth = width / cols;
+    $(".row-holder").css("width", `${width}`);
+    $(".row-holder").css("height", `${newWidth}`);
+    $(".letter-holder").css("width", `${newWidth}px`);
+    $(".letter-holder").css("height", `${newWidth}px`);
+}
+
+crosswordResize();
+
 $(document).ready(function () {
+    //Hint Modals
     var ans = "";
     $(document).on("click", ".hint-btn", function () {
         var hintArray = $(this).text().split(". ");
@@ -384,8 +400,13 @@ $(document).ready(function () {
     })
 
     $('.modal').modal();
+
+    //Crossword Resizing
+    console.log(`cw width: ${$("#crossword").css("width")}`)
+    $(window).resize(crosswordResize);
 });
 
+// ===============================================================================================================
 //Articles
 
 function articleCall() {

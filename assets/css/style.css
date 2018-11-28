@@ -8,10 +8,12 @@
 }
 
 .row-holder {
+    box-sizing: border-box;
     width: 600px;
 }
 
 .letter-holder {
+    box-sizing: border-box;
     float: left;
     height: 40px;
     width: 40px;
@@ -21,7 +23,7 @@
 }
 
 .grid-letter {
-    /* align-content: center; */
+    align-content: center;
     text-align: center;
     background-color: transparent;
     height: 100%;
@@ -57,7 +59,7 @@
 }
 
 #crossword{
-    margin-left: 50px;
+    padding: 5px;
 }
 
 #crossword-and-hints {
@@ -161,30 +163,17 @@ footer {
 }
 
 @media only screen and (max-width: 1360px){
-    #crossword{
-        margin-left: 10px;
-    }
+    
 }
 
 @media only screen and (max-width: 1280px){
-    #crossword{
-        margin-left: 5px;
-    }
-    #crossword-and-hints {
-        display: block;
-        align-content: center;
-        margin-left: 150px;
-    }
+    
 }
 
 @media only screen and (max-width: 980px){
-    #crossword-and-hints {
-        margin-left: auto;
-    }
+    
 }
 
 @media only screen and (max-width: 700px){
-    #crossword-and-hints {
-        margin-left: 0px;
-    }
+    
 }
