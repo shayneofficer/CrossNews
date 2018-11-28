@@ -452,16 +452,25 @@ function articleCall() {
         // Console log response for testing purposes
         for (let i = 0; i < response.response.docs.length; i++) {
             // console.log(response);
-            console.log(response.response.docs[i].headline);
+            // console.log(response.response.docs[i].headline);
             // console.log(response.response.docs[i].snippet);
             // console.log(response.response.docs[i].web_url);
             // $('#article-section').append("hello");
+           
+       
+        if (response.response.docs[i].news_desk !== "Classified") {
             var article = $("<div class='card-body'>")
-            article.text(response.response.docs[i].headline.main);
+            var snippet = $("<div>");
+            snippet.text(response.response.docs[i].snippet);
+            
+            article.html("<a href="+response.response.docs[i].web_url +">" +response.response.docs[i].headline.main+"</a>");
+            article.append(snippet);
             $(".card").append(article);
-        }
+        } 
+     
+    }
 
-        // $('#headline').text(response.response.docs[0].headline.main);
+        
     }).fail(function (err) {
         throw err;
     });
