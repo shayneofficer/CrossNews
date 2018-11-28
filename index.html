@@ -16,8 +16,15 @@
     <link href="https://fonts.googleapis.com/css?family=Prata|Zilla+Slab" rel="stylesheet">
     <!-- Style CSS -->
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <!-- Materialize JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- jQuery UI -->
-    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
         crossorigin="anonymous"></script>
 </head>
 
@@ -75,7 +82,7 @@
                 <div id="hint-modal" class="modal">
                     <div class="modal-content"></div>
                     <form>
-                        <input type="text" name="answer" placeholder="Do you know this one?" id="guess-input">
+                        <input type="text" name="answer" placeholder="Do you know this one?" id="guess-input"><br><br>
                         <input class="btn waves-effect waves-light grey darken-3" type="submit" value="Guess" id="modal-guess">
                     </form>
                 </div>
@@ -91,14 +98,6 @@
         </div>
     </footer>
 
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-    <!-- Moment.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-    <!-- Materialize JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- JavaScript -->
     <script>
         sessionStorage.setItem("page", "index");

@@ -374,10 +374,14 @@ $(document).ready(function () {
     var ans = "";
     var hintArray;
     var direction;
-    $(document).on("click", ".hint-btn", function () {
+    var hintNum;
+
+    $(document).on("click", ".hint-btn", function (event) {
+        event.preventDefault();
         $("#guess-input").focus();
         hintArray = $(this).text().split(". ");
         direction = $(this).attr("data-direction");
+        hintNum = $(this).attr("data-num");
 
         // Fix those hints who had a ". " other than the one following the hint number
         if (hintArray.length > 2) {
@@ -387,10 +391,10 @@ $(document).ready(function () {
         }
 
         if (direction === "across") {
-            ans = answersAcross[$(this).attr("data-num")];
+            ans = answersAcross[hintNum];
         }
         else {
-            ans = answersDown[$(this).attr("data-num")];
+            ans = answersDown[hintNum];
         }
         $("#hint-modal .modal-content").html(`
         <h1>${hintArray[1]}</h1>
@@ -398,7 +402,7 @@ $(document).ready(function () {
         `);
     })
 
-    $("#modal-guess").on("click", function (event) {
+    $(document).on("click", "#modal-guess", function (event) {
         event.preventDefault();
         var guess = "";
         guess = $("#guess-input").val().trim().toUpperCase();
@@ -406,10 +410,15 @@ $(document).ready(function () {
         if (guess === ans) {
             fillCorrectAnswer(ans, hintArray[0], direction);
             $("#hint-modal").modal("close");
+
+            console.log($(`[data-num=${hintNum}][data-direction="${direction}"]`));
+            $(`[data-num=${hintNum}][data-direction="${direction}"]`).css("text-decoration", "line-through");
+            $(`[data-num=${hintNum}][data-direction="${direction}"]`).attr("href", "#");
+            $(`[data-num=${hintNum}][data-direction="${direction}"]`).addClass("clicked-clue");
         }
         else {
             console.log(`Guess: ${guess}: incorrect!`);
-            $("#modal-guess").effect("shake");
+            $("#hint-modal").effect("shake");
         }
     })
 

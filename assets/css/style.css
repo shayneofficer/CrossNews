@@ -42,6 +42,10 @@
     background-color: gray;
 }
 
+.clicked-clue:hover {
+    cursor: default;
+}
+
 .page-title {
     font-family: 'Zilla Slab', serif;
     letter-spacing: 3px;
@@ -201,6 +205,7 @@ footer {
 
 #hint-modal form {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
 }
