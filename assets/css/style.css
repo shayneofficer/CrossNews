@@ -90,14 +90,17 @@
 .modal-trigger:hover {
     color: white;
 }
-.modal-content{
+
+#modal-horoscope .modal-content{
     width: 50%;
     height: 100%;
     float: right;
 }
+
 .horoscope-card {
 
 }
+
 .sign-img {
     margin-bottom: 10px;
     vertical-align: middle;

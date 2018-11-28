@@ -375,6 +375,7 @@ $(document).ready(function () {
     var hintArray;
     var direction;
     $(document).on("click", ".hint-btn", function () {
+        $("#guess-input").focus();
         hintArray = $(this).text().split(". ");
         direction = $(this).attr("data-direction");
         if (direction === "across") {
@@ -389,15 +390,18 @@ $(document).ready(function () {
         `);
     })
 
-    $("#modal-guess").on("click", function () {
+    $("#modal-guess").on("click", function (event) {
+        event.preventDefault();
         var guess = "";
         guess = $("#guess-input").val().trim().toUpperCase();
         $("#guess-input").val("");
         if (guess === ans) {
             fillCorrectAnswer(ans, hintArray[0], direction);
+            $("#hint-modal").modal("close");
         }
         else {
             console.log(`Guess: ${guess}: incorrect!`);
+            $("#guess-input").effect("shake");
         }
     })
 
@@ -409,22 +413,24 @@ $(document).ready(function () {
 });
 
 function fillCorrectAnswer(ans, gridNum, direction) {
-    console.log(`Answer: ${ans} \ngridNum: ${gridNum} \nDirection: ${direction} `)
+    // console.log(`Answer: ${ans} \ngridNum: ${gridNum} \nDirection: ${direction} `)
     firstLetterHolder = $(`[data-clue-number=${gridNum}]`);
     var coords = firstLetterHolder.attr("id").split("y");
     coords[0] = coords[0].substr(1);
-    console.log(firstLetterHolder.attr("id"));
-    console.log(coords);
-    console.log(`x${coords[0]}y${coords[1]}`)
+    // console.log(firstLetterHolder.attr("id"));
+    // console.log(coords);
+    // console.log(`x${coords[0]}y${coords[1]}`)
 
     if (direction === "across") {
         for (var i = 0; i < ans.length; i++) {
-            console.log(`#x${coords[0]}y${parseInt(coords[1]) + i}`)
             $(`#x${parseInt(coords[0]) + i}y${parseInt(coords[1])} .grid-letter`).text(ans[i]);
         }
     }
-    // $(`[data-clue-number=${gridNum}]`).css("background-color", "blue");
-
+    else {
+        for (var i = 0; i < ans.length; i++) {
+            $(`#x${parseInt(coords[0])}y${parseInt(coords[1]) + i} .grid-letter`).text(ans[i]);
+        }
+    }
 }
 
 // ===============================================================================================================
@@ -456,21 +462,21 @@ function articleCall() {
             // console.log(response.response.docs[i].snippet);
             // console.log(response.response.docs[i].web_url);
             // $('#article-section').append("hello");
-           
-       
-        if (response.response.docs[i].news_desk !== "Classified") {
-            var article = $("<div class='card-body'>")
-            var snippet = $("<div>");
-            snippet.text(response.response.docs[i].snippet);
-            
-            article.html("<a href="+response.response.docs[i].web_url +">" +response.response.docs[i].headline.main+"</a>");
-            article.append(snippet);
-            $(".card").append(article);
-        } 
-     
-    }
 
-        
+
+            if (response.response.docs[i].news_desk !== "Classified") {
+                var article = $("<div class='card-body'>")
+                var snippet = $("<div>");
+                snippet.text(response.response.docs[i].snippet);
+
+                article.html("<a href=" + response.response.docs[i].web_url + ">" + response.response.docs[i].headline.main + "</a>");
+                article.append(snippet);
+                $(".card").append(article);
+            }
+
+        }
+
+
     }).fail(function (err) {
         throw err;
     });

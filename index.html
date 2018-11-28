@@ -16,6 +16,9 @@
     <link href="https://fonts.googleapis.com/css?family=Prata|Zilla+Slab" rel="stylesheet">
     <!-- Style CSS -->
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css">
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
+        crossorigin="anonymous"></script>
 </head>
 
 <body id="index-bg">
@@ -64,10 +67,10 @@
         <div class="modal-content">
 
         </div>
-        <!-- <form> -->
-        <input type="text" name="answer" placeholder="Do you know this one?" id="guess-input">
-        <input type="button" value="Guess" id="modal-guess">
-        <!-- </form> -->
+        <form>
+            <input type="text" name="answer" placeholder="Do you know this one?" id="guess-input">
+            <input type="submit" value="Guess" id="modal-guess">
+        </form>
         <div class="modal-footer">
             <!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a> -->
         </div>
