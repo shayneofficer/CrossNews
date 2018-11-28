@@ -378,6 +378,14 @@ $(document).ready(function () {
         $("#guess-input").focus();
         hintArray = $(this).text().split(". ");
         direction = $(this).attr("data-direction");
+
+        // Fix those hints who had a ". " other than the one following the hint number
+        if (hintArray.length > 2) {
+            for (var i = 2; i < hintArray.length; i++) {
+                hintArray[1] += ". " + hintArray[i];
+            }
+        }
+
         if (direction === "across") {
             ans = answersAcross[$(this).attr("data-num")];
         }
@@ -386,7 +394,7 @@ $(document).ready(function () {
         }
         $("#hint-modal .modal-content").html(`
         <h1>${hintArray[1]}</h1>
-        <h2>Answer: ${ans}</h2>
+        <!-- <h2>Answer: ${ans}</h2> -->
         `);
     })
 
@@ -401,7 +409,7 @@ $(document).ready(function () {
         }
         else {
             console.log(`Guess: ${guess}: incorrect!`);
-            $("#guess-input").effect("shake");
+            $("#modal-guess").effect("shake");
         }
     })
 

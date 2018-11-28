@@ -62,19 +62,6 @@
         </div>
     </div>
 
-    <!-- Modal Structure -->
-    <div id="hint-modal" class="modal">
-        <div class="modal-content">
-
-        </div>
-        <form>
-            <input type="text" name="answer" placeholder="Do you know this one?" id="guess-input">
-            <input type="submit" value="Guess" id="modal-guess">
-        </form>
-        <div class="modal-footer">
-            <!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a> -->
-        </div>
-    </div>
     <div class="container">
         <div id="failure-div"></div>
         <div class="row" id="crossword-and-hints">
@@ -85,6 +72,13 @@
             <!-- id for game hints -->
             <div class="col-lg-6">
                 <div id="hints"></div>
+                <div id="hint-modal" class="modal">
+                    <div class="modal-content"></div>
+                    <form>
+                        <input type="text" name="answer" placeholder="Do you know this one?" id="guess-input">
+                        <input class="btn waves-effect waves-light grey darken-3" type="submit" value="Guess" id="modal-guess">
+                    </form>
+                </div>
             </div>
         </div>
     </div>

@@ -189,6 +189,29 @@ footer {
  
 }
 
+#hint-modal {
+    position: absolute;
+    right: 10px;
+    width: 75%;
+    height: 350px;
+    bottom: 600px;
+}
+
+#hint-modal form {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#guess-input {
+    width: 60%;
+}
+
+#guess-input #modal-guess {
+    position: relative;
+    top: 100px;
+}
+
 @media only screen and (max-width: 1360px){
     
 }
@@ -201,6 +224,8 @@ footer {
     
 }
 
-@media only screen and (max-width: 700px){
-    
+@media only screen and (max-width: 480px){
+    .grid-letter {
+        font-size: 1em;
+    }
 }
