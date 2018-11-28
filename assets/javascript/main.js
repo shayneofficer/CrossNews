@@ -4,6 +4,8 @@
 var indexedLetters = [];
 var answersDown = [];
 var answersAcross = [];
+var cols = -1;
+var rows = -1;
 
 // Day in History
 var year;
@@ -247,7 +249,7 @@ $(document).ready(function () {
         horoscopeCall(signType);
     });
 
-    $('.modal').modal();
+    $('#modal-horoscope').modal();
 });
 
 
@@ -268,16 +270,17 @@ function generateCrossword() {
         // ===============================================================================================================
         // Crossword Display
         $("#failure-div").empty();
+        $("#crossword").empty();
 
         response = JSON.parse(response);
         console.log("CrossWord Creation:");
-        var rows = response.size.rows;
-        var cols = response.size.cols;
+        rows = response.size.rows;
+        cols = response.size.cols;
         console.log(response);
         console.log(`rows: ${rows}`);
         console.log(`cols: ${cols}`);
         //Figure out board dimensions
-        var crosswordHolder = $("<div class='grid-holder'>");
+        var crosswordHolder = $("#crossword");
         //Calculate square sizes
         //Square Creation
         for (var i = 0; i < rows; i++) {
@@ -311,8 +314,7 @@ function generateCrossword() {
             }
             crosswordHolder.append(newRow);
         }
-        $("#crossword").empty();
-        $("#crossword").append(crosswordHolder);
+
 
         //Crosswords Hints   
         var acrossClues = $("<div class='col s6' id='across-clues'>");
@@ -346,6 +348,7 @@ function generateCrossword() {
         $("#hints").empty();
         $("#hints").append(acrossClues);
         $("#hints").append(downClues);
+        crosswordResize();
     }).fail(function (error) {
         $("#crossword").empty();
         $("#hints").empty();
@@ -354,7 +357,20 @@ function generateCrossword() {
     });
 }
 
+function crosswordResize() {
+    var width = $("#crossword").innerWidth() - 20;
+    // console.log(`width: ${width}`);
+    var newWidth = width / cols;
+    $(".row-holder").css("width", `${width}`);
+    $(".row-holder").css("height", `${newWidth}`);
+    $(".letter-holder").css("width", `${newWidth}px`);
+    $(".letter-holder").css("height", `${newWidth}px`);
+}
+
+crosswordResize();
+
 $(document).ready(function () {
+    //Hint Modals
     var ans = "";
     var hintArray;
     var direction;
@@ -386,6 +402,10 @@ $(document).ready(function () {
     })
 
     $('.modal').modal();
+
+    //Crossword Resizing
+    console.log(`cw width: ${$("#crossword").css("width")}`)
+    $(window).resize(crosswordResize);
 });
 
 function fillCorrectAnswer(ans, gridNum, direction) {
@@ -407,6 +427,7 @@ function fillCorrectAnswer(ans, gridNum, direction) {
 
 }
 
+// ===============================================================================================================
 //Articles
 
 function articleCall() {
