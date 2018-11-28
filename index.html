@@ -26,7 +26,7 @@
 
     <nav>
         <div class="nav-wrapper grey darken-4" id="navbar">
-            <ul class="left hide-on-med-and-down">
+            <ul id="mobile-demo">
                 <li class="active"><a href="index.html">Crossword Puzzles</a></li>
                 <li><a href="weather.html">Weather</a></li>
                 <li><a href="horoscope.html">Horoscope</a></li>
@@ -41,6 +41,7 @@
             <div class="input-field col s6">
                 <input type="date" id="date-input" placeholder="MM/DD/YYYY">
             </div>
+            
             <div class="col s6">
                 <button class="btn waves-effect waves-light" type="button" id="search">Search</button>
                 <a class="waves-effect waves-light btn white-text" id="random-date">Time Machine</a>
@@ -51,8 +52,8 @@
     <div class="container">
         <div class="row">
             <div class="col s12 m5">
-                <div class="card-panel teal lighten-2" id="headline">
-                    <span class="white-text"></span>
+                <div class="card-panel teal lighten-2 headline" id="headline">
+                    <span class="white-text"> NEWS HEADLINE [Your Date] </span>
                 </div>
             </div>
         </div>
@@ -84,7 +85,9 @@
     <footer class="grey darken-4">
         <div class="footer-copyright text-center white-text">
             <div id="footer">
-                © 2014 Copyright Text
+                © 2018 Copyright
+                <br>
+                (Kathy, Bharti, Shayne, Ryan, Victoria)
             </div>
         </div>
     </footer>
@@ -98,6 +101,9 @@
     <!-- Materialize JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- JavaScript -->
+    <script>
+        sessionStorage.setItem("page", "index");
+    </script>
     <script src="./assets/javascript/main.js"></script>
 </body>
 

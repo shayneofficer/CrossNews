@@ -25,15 +25,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
-<body>
+<body id="index-bg">
     <div class="jumbotron" id="weather-bg">
         <h1 class="display-4 text-center page-title white-text">Project-1</h1>
-        <h3 class="text-center" id="date-historic"></h3>
+        <h3 class="text-center white-text" id="date-historic"></h3>
     </div>
 
     <nav>
         <div class="nav-wrapper grey darken-4">
-            <ul class="left hide-on-med-and-down">
+            <ul>
                 <li><a href="index.html">Crossword Puzzles</a></li>
                 <li class="active"><a href="weather.html">Weather</a></li>
                 <li><a href="horoscope.html">Horoscope</a></li>
@@ -43,9 +43,9 @@
     </nav>
 
     <!-- class for weather -->
-    <div id="weather"></div>
+    <!-- <div id="weather"></div> -->
     <!-- search field for city -->
-    <div class="row">
+    <!-- <div class="row">
         <form class="col s12 form-inline">
             <div class="input-field col s6">
                 <input class="form-control mr-sm-2" type="text" placeholder="City">
@@ -54,26 +54,31 @@
                 <button id="weather-btn" class="btn waves-effect waves-light" type="button">Search</button>
             </div>
         </form>
-    </div>
+    </div> -->
 
-    <div id="weather-icon"></div>
-    <div id="weather-summary"></div>
-    <div id="wind"></div>
-    <div id="humidity"></div>
-    <div id="temp"></div>
-    <div id="cloud-cover"></div>
-    <div id="precip"></div>
+    <div class="text-center" id="weather-display">
+        <div id="weather-icon"></div>
+        <div id="weather-summary"></div>
+        <div id="wind"></div>
+        <div id="humidity"></div>
+        <div id="temp"></div>
+        <div id="cloud-cover"></div>
+        <div id="precip"></div>
+    </div>
 
     <!-- footer -->
     <footer class="grey darken-4">
         <div class="footer-copyright text-center white-text">
             <div id="footer">
-                © 2014 Copyright Text
+                © 2018 Copyright
+                <br>
+                (Kathy, Bharti, Shayne, Ryan, Victoria)
             </div>
         </div>
     </footer>
 
     <!-- JavaScript -->
+    <script>sessionStorage.setItem("page", "weather");</script>
     <script src="./assets/javascript/main.js"></script>
 </body>
 
