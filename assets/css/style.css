@@ -91,12 +91,12 @@
     color: white;
 }
 .modal-content{
-    width: 50%;
+    /* width: 50%; */
     height: 100%;
-    float: right;
+    /* float: right; */
 }
-.horoscope-card {
-
+#card-img-hor {
+max-height: 440px;
 }
 .sign-img {
     margin-bottom: 10px;
@@ -164,10 +164,10 @@ footer {
 }
 #weather-display{
     border:2px solid black;
-    padding:50px;
-    margin:20px auto;
+    padding:40px;
+    margin:30px auto;
     background: white;
-    width:50%;
+    width:70%;
 }
 
 #weather-icon>img{
@@ -181,9 +181,8 @@ footer {
 }
 
 .weather {
-    font-size: 30px;
+    font-size: 20px;
     text-align: justify;
- 
 }
 
 @media only screen and (max-width: 1360px){
