@@ -41,7 +41,7 @@
             <div class="input-field col s6">
                 <input type="date" id="date-input" placeholder="MM/DD/YYYY">
             </div>
-            
+
             <div class="col s6">
                 <button class="btn waves-effect waves-light" type="button" id="search">Search</button>
                 <a class="waves-effect waves-light btn white-text" id="random-date">Time Machine</a>
@@ -62,11 +62,14 @@
     <!-- Modal Structure -->
     <div id="hint-modal" class="modal">
         <div class="modal-content">
-            <h4>Modal Header</h4>
-            <p>A bunch of text</p>
+
         </div>
+        <form>
+            <input type="text" name="answer" placeholder="Do you know this one?" id="guess-input">
+            <input type="button" value="Guess" id="modal-guess">
+        </form>
         <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+            <!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Guess</a> -->
         </div>
     </div>
 
