@@ -41,17 +41,19 @@
 }
 
 .page-title {
-    font-family: 'Vidaloka', serif;
+    font-family: 'Zilla Slab', serif;
     letter-spacing: 3px;
     text-transform: uppercase; 
     font-weight: bold; 
 }
 
 #headline{
-    font-family: 'Vidaloka', serif;
-    text-transform: uppercase;
-    font-weight: bold;
+    font-family: 'Prata', serif;
+    /* text-transform: capitalize; */
+    text-align: center;
+    font-size: 28px;
     color: #efefef;
+    padding: 8px;
 }
 
 #crossword{
