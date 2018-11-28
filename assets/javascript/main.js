@@ -120,7 +120,7 @@ function newDate(date) {
     } else if (sessionStorage.getItem("page") === "weather") {
         weatherCall();
     } else if (sessionStorage.getItem("page") === "horoscope") {
-
+        // horoscopeCall();
     } else if (sessionStorage.getItem("page") === "article") {
         articleCall();
     } else {
@@ -159,8 +159,10 @@ function weatherCall() {
 
         $("#weather-icon").html(`<img src="assets/images/weather-icons/${weather.icon}.jpg" alt="${weather.icon} icon">`);
         $("#weather-summary").text(`${weather.summary}`);
-        $("#wind").text(`${weather.windSpeed} MPH Wind Speed`);
-        var humidity = Math.round(weather.humidity * 100);
+
+        $("#wind").text(`Wind Speed: ${weather.windSpeed} MPH`);
+        var humidity = weather.humidity * 100
+        
         $("#humidity").text(`${humidity}% Humidity`);
         var temp = Math.round((weather.temperatureHigh + weather.temperatureLow) / 2);
         $("#temp").html(`${temp}&#8457;`);
@@ -192,7 +194,9 @@ function newsCall() {
     // var headlineYear = year;
     // var headlineMonth = month;
     // var headlineDay = day;
+
     console.log(headlineYear + headlineMonth + headlineDay);
+
     var nytURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
     nytURL += '?' + $.param({
         'api-key': "b9f91d369ff59547cd47b931d8cbc56b:0:74623931",
@@ -215,18 +219,38 @@ function newsCall() {
 // ==================================================================================================================
 //Horoscopes
 
-function horoscopeCall() {
-    var horoscopeURL = "https://www.horoscopes-and-astrology.com/json";
+function horoscopeCall(signType) {
 
+    var horoscopeURL = "https://www.horoscopes-and-astrology.com/json";
+    console.log(signType);
     $.ajax({
         url: horoscopeURL,
         method: "GET"
     }).then(function (response) {
+        
         // Console log response for testing purposes
-        console.log("Horoscope Obj:")
+        console.log("Horoscope Obj:");
+        console.log(signType);
         console.log(response);
+        var signObj = response.dailyhoroscope[signType];
+        console.log(signObj);
+        $("#horoscope-name").text(signType);
+        var horSum = signObj.split("<a");
+        $("#horoscope-summary").text(horSum[0]);
     });
 }
+
+// Or with jQuery
+
+$(document).ready(function () {
+    $('.modal').modal();
+
+    $(".sign-btn").on("click", function(){
+        var signType = $(this).attr("data-sign");
+        horoscopeCall(signType);
+    });
+});
+
 
 // ==================================================================================================================
 //Crosswords
