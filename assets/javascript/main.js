@@ -220,7 +220,7 @@ function newsCall() {
 //Horoscopes
 
 function horoscopeCall(signType) {
-
+    console.log(signType);
     var horoscopeURL = "https://www.horoscopes-and-astrology.com/json";
     console.log(signType);
     $.ajax({
@@ -241,14 +241,13 @@ function horoscopeCall(signType) {
 }
 
 // Or with jQuery
-
 $(document).ready(function () {
-    $('.modal').modal();
-
     $(".sign-btn").on("click", function(){
         var signType = $(this).attr("data-sign");
         horoscopeCall(signType);
     });
+
+    $('.modal').modal();
 });
 
 
