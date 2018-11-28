@@ -133,7 +133,6 @@ footer {
     margin:20px 70px;
 }
 
-<<<<<<< HEAD
 @media only screen and (max-width: 1360px){
     #crossword{
         margin-left: 10px;
@@ -156,19 +155,3 @@ footer {
         margin-left: auto;
     }
 }
-
-@media only screen and (max-width: 685px){
-    .row-holder {
-        width: 300px;
-    }
-    .letter-holder {
-        height: 20px;
-        width: 20px;
-    }
-    #crossword-and-hints {
-        display: block;
-        margin-left: auto;
-    }
-}
-=======
->>>>>>> c5f447bf151c6f7a0c6db79170ccef9afd4a13e4
