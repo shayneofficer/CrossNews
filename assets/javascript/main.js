@@ -162,7 +162,7 @@ function weatherCall() {
 
         $("#wind").text(`Wind Speed: ${weather.windSpeed} MPH`);
         var humidity = weather.humidity * 100
-        
+
         $("#humidity").text(`${humidity}% Humidity`);
         var temp = Math.round((weather.temperatureHigh + weather.temperatureLow) / 2);
         $("#temp").html(`${temp}&#8457;`);
@@ -227,7 +227,7 @@ function horoscopeCall(signType) {
         url: horoscopeURL,
         method: "GET"
     }).then(function (response) {
-        
+
         // Console log response for testing purposes
         console.log("Horoscope Obj:");
         console.log(signType);
@@ -242,7 +242,7 @@ function horoscopeCall(signType) {
 
 // Or with jQuery
 $(document).ready(function () {
-    $(".sign-btn").on("click", function(){
+    $(".sign-btn").on("click", function () {
         var signType = $(this).attr("data-sign");
         horoscopeCall(signType);
     });
