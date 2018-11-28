@@ -125,3 +125,6 @@ footer {
     padding:50px;
 }
 
+#horoscope-footer {
+    border-top:5px solid #17a2b8;
+}
