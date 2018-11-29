@@ -520,6 +520,11 @@ function articleCall() {
     // var headlineYear = year;
     // var headlineMonth = month;
     // var headlineDay = day;
+
+    //Create loading image
+    $("#article-holder").empty();
+    $("#article-holder").html("<div class='loader'></div>");
+
     console.log(headlineYear + headlineMonth + headlineDay);
     var nytURL = "https://cors-anywhere.herokuapp.com/https://api.nytimes.com/svc/search/v2/articlesearch.json";
     nytURL += '?' + $.param({
