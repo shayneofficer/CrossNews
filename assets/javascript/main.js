@@ -122,6 +122,7 @@ function newDate(date) {
     } else if (sessionStorage.getItem("page") === "weather") {
         weatherCall();
     } else if (sessionStorage.getItem("page") === "horoscope") {
+        $("#date-current").text(moment().format("MM/DD/YYYY"))
         // horoscopeCall();
     } else if (sessionStorage.getItem("page") === "article") {
         articleCall();
