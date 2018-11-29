@@ -4,6 +4,8 @@
 var indexedLetters = [];
 var answersDown = [];
 var answersAcross = [];
+var cols = -1;
+var rows = -1;
 
 // Day in History
 var year;
