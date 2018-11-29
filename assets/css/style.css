@@ -73,7 +73,11 @@
  text-align: center;
     
 }
-
+.sign-name {
+    font-family: 'Zilla Slab', serif;
+    font-weight: 600;
+    font-size: 1.45rem;
+}
 .sign-dates{
 
     font-style: italic;
@@ -96,12 +100,29 @@
 }
 
 #modal-horoscope .modal-content{
-    width: 50%;
+    /* width: 50%; */
     height: 100%;
+    background-color: #001524; 
+    font-family: 'Zilla Slab', serif;
+    font-size: 24px;
+    color: white;
     /* float: right; */
 }
+.col-hor-img {
+    text-align: center;
+} 
+ .col-hor-sum {
+    margin: auto; 
+ } 
+#horoscope-summary {
+    margin: auto;
+    text-align: left;
+    text-justify: inter-word;
+}#horoscope-summary::first-letter {
+    font-size: 225%;
+}
 #card-img-hor {
-max-height: 440px;
+    max-height: 440px;
 }
 
 .sign-img {
