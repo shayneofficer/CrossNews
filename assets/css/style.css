@@ -1,5 +1,5 @@
 h1 {
-    text-shadow: 2px 2px #616161 ;
+    text-shadow: 2px 2px #616161;
 }
 
 .grid-holder {
@@ -49,11 +49,11 @@ h1 {
 .page-title {
     font-family: 'Zilla Slab', serif;
     letter-spacing: 3px;
-    text-transform: uppercase; 
-    font-weight: bold; 
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
-#headline{
+#headline {
     font-family: 'Prata', serif;
     /* text-transform: capitalize; */
     text-align: center;
@@ -61,7 +61,7 @@ h1 {
     padding: 8px;
 }
 
-#crossword{
+#crossword {
     padding: 5px;
 }
 
@@ -70,15 +70,17 @@ h1 {
 }
 
 #signs-div {
- text-align: center;
-    
+    text-align: center;
+
 }
+
 .sign-name {
     font-family: 'Zilla Slab', serif;
     font-weight: 600;
     font-size: 1.45rem;
 }
-.sign-dates{
+
+.sign-dates {
 
     font-style: italic;
 }
@@ -99,19 +101,20 @@ h1 {
     color: white;
 }
 
-#modal-horoscope .modal-content{
+#modal-horoscope .modal-content {
     /* width: 50%; */
     height: 100%;
-    background-color: #001524; 
+    background-color: #001524;
     font-family: 'Zilla Slab', serif;
     font-size: 24px;
     color: white;
-    /* float: right; */
 }
+
 .col-hor-img {
     text-align: center;
-} 
- /* .col-hor-sum {
+}
+
+/* .col-hor-sum {
     margin: auto; 
  }  */
 #horoscope-summary {
@@ -119,9 +122,11 @@ h1 {
     text-justify: inter-word;
     word-spacing: 2px;
 }
+
 #horoscope-summary::first-letter {
     font-size: 225%;
 }
+
 #card-img-hor {
     max-height: 440px;
 }
@@ -134,38 +139,38 @@ h1 {
 }
 
 #sign-row1 {
-margin-top: 30px;
+    margin-top: 30px;
 }
 
 #sign-row2 {
-margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 .date-row {
     width: 90%;
 }
 
-#index-bg{
+#index-bg {
     background: url("../images/indexbg.png");
 }
 
-#crossbg{
+#crossbg {
     background: url("../images/crossword.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }
 
-#weather-bg{
+#weather-bg {
     background: url("../images/weather1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }
 
-#horoscope-bg{
+#horoscope-bg {
     background: url("../images/horoscope.jpg");
 }
 
-#article-bg{
+#article-bg {
     background: url("../images/article.jpg");
 }
 
@@ -183,44 +188,44 @@ footer {
     padding: 5px 0px 5px 0px;
 }
 
-#footer1{
+#footer1 {
     border-top: 5px solid #bdbdbd;
 }
 
-#footer2{
+#footer2 {
     border-top: 5px solid #02338F;
 }
 
-#footer3{
+#footer3 {
     border-top: 5px solid #01579b;
 }
 
-#footer4{
+#footer4 {
     border-top: 5px solid #79543a;
 }
 
-.card{
+.card {
     margin-bottom: 100px;
     border: 2px solid #424242;
     background: #eceff1;
 }
 
-.card-header{
+.card-header {
     font-size: 25px;
     border-bottom: 2px solid #424242;
     background: #bdbdbd;
 }
 
-#weather-display{
-    border:2px solid black;
-    padding:40px;
-    margin:30px auto;
+#weather-display {
+    border: 2px solid black;
+    padding: 40px;
+    margin: 30px auto;
     background: white;
-    width:70%;
+    width: 70%;
 }
 
-#weather-icon>img{
-    width:150px;
+#weather-icon>img {
+    width: 150px;
 }
 
 .icon {
@@ -266,7 +271,7 @@ footer {
 /* https://www.w3schools.com/howto/howto_css_loader.asp */
 .loader {
     margin: 20px auto;
-    border: 16px solid #757575; 
+    border: 16px solid #757575;
     border-top: 16px solid #212121;
     border-radius: 50%;
     width: 120px;
@@ -275,8 +280,13 @@ footer {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 #masthead {
@@ -292,24 +302,46 @@ footer {
 
 
 
-@media only screen and (max-width: 740px){
-    #modal-horoscope {
-        /* background-image: url(""); */
-    }
-    .col-hor-img {
+@media only screen and (max-width: 740px) {
+    /* #modal-horoscope {
+        background-image: url("../images/horoscope\ cards/aries-card.jpg");
+        background-size: contain;
+
+    } */
+
+    /* .col-hor-img {
         display: none;
+    } */
+
+    .col-hor-sum {
+        position: relative;
+        bottom: 0%;
+    }
+
+    #card-img-hor {
+        width: 200px;
     }
 }
 
 
-@media only screen and (max-width: 480px){
+@media only screen and (max-width: 500px) {
     .grid-letter {
         font-size: 1em;
     }
+
     #modal-horoscope {
         /* background-image: url(""); */
     }
+
     .col-hor-img {
         display: none;
     }
+} 
+
+@media only screen and (max-width: 912px) {
+    .row {
+        width: 550px;
+        margin: auto;
+    }
+    
 }
