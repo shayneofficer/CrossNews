@@ -285,7 +285,12 @@ footer {
 
 
 @media only screen and (max-width: 740px){
-
+    #modal-horoscope {
+        /* background-image: url(""); */
+    }
+    .col-hor-img {
+        display: none;
+    }
 }
 
 
@@ -293,10 +298,10 @@ footer {
     .grid-letter {
         font-size: 1em;
     }
+    #modal-horoscope {
+        /* background-image: url(""); */
+    }
     .col-hor-img {
         display: none;
-    }
-    #modal-hosocope {
-        background-image: url("")
     }
 }
