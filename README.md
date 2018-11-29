@@ -7,7 +7,7 @@ Primarily a crossword app, which can display almost all of the puzzles published
  
  Our app also:
 - Prints a NYT headline for a given date using the [NYT API](https://developer.nytimes.com/)
-- Display weather info using the [Dark Sky API](https://darksky.net/dev)
+- Displays weather info using the [Dark Sky API](https://darksky.net/dev)
 - Adds the current date horoscopes from an [astrology API](https://www.horoscopes-and-astrology.com/api)
 
 There are a number of other potential features to be added once this primary task is completed. Namely:
@@ -15,8 +15,8 @@ There are a number of other potential features to be added once this primary tas
 - Add sudoku puzzles
 
 
-Project manager: @vvincent157
+Project manager: [@vvincent157](https://github.com/vvincent157)
 
-HTML & CSS Design: @Btagra and @kat-zhang
+HTML & CSS Design: [@Btagra](https://github.com/Btagra) and [@kat-zhang](https://github.com/kat-zhang)
 
-API and other JavaScript: @rbrodefrank and @shayneofficer
+API and other JavaScript: [@rbrodefrank](https://github.com/rbrodefrank) and [@shayneofficer](https://github.com/shayneofficer)

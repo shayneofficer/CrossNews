@@ -56,8 +56,8 @@ h1 {
     font-weight: bold; 
 }
 
-/* headline */
-#headline{
+/* crossword title and author */
+#crossword-title {
     font-family: 'Prata', serif;
     /* text-transform: capitalize; */
     text-align: center;
