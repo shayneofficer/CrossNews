@@ -549,7 +549,7 @@ function articleCall() {
 
                 article.html("<a href=" + response.response.docs[i].web_url + ">" + response.response.docs[i].headline.main + "</a>");
                 article.append(snippet);
-                $(".card").append(article);
+                $("#article-holder").append(article);
             }
 
         }

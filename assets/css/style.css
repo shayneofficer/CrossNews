@@ -168,6 +168,10 @@ margin-bottom: 60px;
     background: url("../images/article.jpg");
 }
 
+#article-holder {
+    margin-bottom: 0;
+}
+
 footer {
     position: -webkit-sticky;
     position: sticky;
