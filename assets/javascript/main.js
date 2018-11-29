@@ -475,6 +475,7 @@ function articleCall() {
         url: nytURL,
         method: "GET",
     }).then(function (response) {
+        $("#article-holder").empty();
         // Console log response for testing purposes
         for (let i = 0; i < response.response.docs.length; i++) {
             // console.log(response);
