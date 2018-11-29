@@ -274,12 +274,12 @@ function generateCrossword() {
         $("#crossword").empty();
 
         response = JSON.parse(response);
-        console.log("CrossWord Creation:");
+        // console.log("CrossWord Creation:");
         rows = response.size.rows;
         cols = response.size.cols;
-        console.log(response);
-        console.log(`rows: ${rows}`);
-        console.log(`cols: ${cols}`);
+        // console.log(response);
+        // console.log(`rows: ${rows}`);
+        // console.log(`cols: ${cols}`);
         //Figure out board dimensions
         var crosswordHolder = $("#crossword");
         //Calculate square sizes
@@ -397,9 +397,12 @@ $(document).ready(function () {
         else {
             ans = answersDown[hintNum];
         }
+
+        var partialAns = getPartialAns(ans, hintArray[0], direction);
+
         $("#hint-modal .modal-content").html(`
-        <h1>${hintArray[1]}</h1>
-        <!-- <h2>Answer: ${ans}</h2> -->
+        <h2 class="text-center">${hintArray[1]}</h2>
+        <h2 class="text-center">${partialAns}</h2>
         `);
     })
 
@@ -412,7 +415,7 @@ $(document).ready(function () {
             fillCorrectAnswer(ans, hintArray[0], direction);
             $("#hint-modal").modal("close");
 
-            console.log($(`[data-num=${hintNum}][data-direction="${direction}"]`));
+            // console.log($(`[data-num=${hintNum}][data-direction="${direction}"]`));
             $(`[data-num=${hintNum}][data-direction="${direction}"]`).css("text-decoration", "line-through");
             $(`[data-num=${hintNum}][data-direction="${direction}"]`).attr("href", "#");
             $(`[data-num=${hintNum}][data-direction="${direction}"]`).addClass("clicked-clue");
@@ -432,7 +435,7 @@ $(document).ready(function () {
 
 function fillCorrectAnswer(ans, gridNum, direction) {
     // console.log(`Answer: ${ans} \ngridNum: ${gridNum} \nDirection: ${direction} `)
-    firstLetterHolder = $(`[data-clue-number=${gridNum}]`);
+    var firstLetterHolder = $(`[data-clue-number=${gridNum}]`);
     var coords = firstLetterHolder.attr("id").split("y");
     coords[0] = coords[0].substr(1);
     // console.log(firstLetterHolder.attr("id"));
@@ -449,6 +452,42 @@ function fillCorrectAnswer(ans, gridNum, direction) {
             $(`#x${parseInt(coords[0])}y${parseInt(coords[1]) + i} .grid-letter`).text(ans[i]);
         }
     }
+}
+
+function getPartialAns(ans, gridNum, direction) {
+    var firstLetterHolder = $(`[data-clue-number=${gridNum}]`);
+    var coords = firstLetterHolder.attr("id").split("y");
+    coords[0] = coords[0].substr(1);
+
+    var partialString = "";
+
+    if (direction === "across") {
+        for (var i = 0; i < ans.length; i++) {
+            var boxContent = $(`#x${parseInt(coords[0]) + i}y${parseInt(coords[1])} .grid-letter`).text();
+            if (boxContent !== "") {
+                partialString += boxContent;
+                partialString += " ";
+            }
+            else {
+                partialString += "_ ";
+            }
+            // console.log(boxContent);
+        }
+    }
+    else {
+        for (var i = 0; i < ans.length; i++) {
+            var boxContent = $(`#x${parseInt(coords[0])}y${parseInt(coords[1]) + i} .grid-letter`).text();
+            if (boxContent !== "") {
+                partialString += boxContent;
+                partialString += " ";
+            }
+            else {
+                partialString += "_ ";
+            }
+            // console.log(boxContent);
+        }
+    }
+    return partialString;
 }
 
 // ===============================================================================================================
