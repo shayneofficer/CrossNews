@@ -112,7 +112,10 @@
 }
 
 #modal-horoscope .modal-content{
+<<<<<<< HEAD
     /* width: 50%; */
+=======
+>>>>>>> a0cbc61a7c6fc1bfe7b31d099aa1f6753cba1021
     height: 100%;
     background-color: #001524; 
     font-family: 'Zilla Slab', serif;
@@ -215,12 +218,11 @@ footer {
 }
 
 #weather-icon>img{
-    width:200px;
+    width:150px;
 }
 
 .icon {
     float: left;
-    display: inline-block;
     margin-right: 30px;
 }
 
@@ -252,6 +254,13 @@ footer {
     position: relative;
     top: 100px;
 }
+
+#masthead {
+    width: 100%;
+    overflow: auto;
+    color: #ffffff;
+    background: #212121;
+  }
 
 @media only screen and (max-width: 1360px){
     
