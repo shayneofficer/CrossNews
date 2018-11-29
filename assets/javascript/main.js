@@ -333,8 +333,9 @@ function generateCrossword() {
 
             answersAcross.push(response.answers.across[i]);
 
-            newClue.attr("data-index", index);
+
             newClue.html(`<a class="modal-trigger hint-btn" href="#hint-modal" data-num=${i} data-direction="across">${response.clues.across[i]}</a>`);
+            newClue.attr("data-index", index);
             acrossClues.append(newClue);
         }
 
@@ -345,8 +346,9 @@ function generateCrossword() {
 
             answersDown.push(response.answers.down[i]);
 
-            newClue.attr("data-hint", index);
+
             newClue.html(`<a class="modal-trigger hint-btn" href="#hint-modal" data-num=${i} data-direction="down">${response.clues.down[i]}</a>`);
+            newClue.attr("data-hint", index);
             downClues.append(newClue);
         }
         $("#hints").empty();
@@ -418,9 +420,15 @@ $(document).ready(function () {
             $("#hint-modal").modal("close");
 
             // console.log($(`[data-num=${hintNum}][data-direction="${direction}"]`));
-            $(`[data-num=${hintNum}][data-direction="${direction}"]`).css("text-decoration", "line-through");
-            $(`[data-num=${hintNum}][data-direction="${direction}"]`).attr("href", "#");
-            $(`[data-num=${hintNum}][data-direction="${direction}"]`).addClass("clicked-clue");
+            crossOutHint(hintNum, direction);
+
+            if (direction === "across") {
+                checkOtherHints("down");
+            }
+            else {
+                checkOtherHints("across");
+            }
+
         }
         else {
             // console.log(`Guess: ${guess}: incorrect!`);
@@ -434,6 +442,30 @@ $(document).ready(function () {
     console.log(`cw width: ${$("#crossword").css("width")}`)
     $(window).resize(crosswordResize);
 });
+
+// function checkOtherHints(direction) {
+//     var numHints;
+//     if (direction === "down") {
+//         numHints = answersDown.length;
+//         for (var i = 0; i < numHints; i++) {
+//             var hintHum = $(`[data-num=${i}][data-direction="down"]`).text();
+//             console.log(hintNum);
+//         }
+//     }
+//     else {
+//         numHints = answersAcross.length;
+//         for (var i = 0; i < numHints; i++) {
+//             var hintNum = $(`[data-num=${i}][data-direction="across"]`).text();
+//             console.log(hintHum);
+//         }
+//     }
+// }
+
+function crossOutHint(hintNum, direction) {
+    $(`[data-num=${hintNum}][data-direction="${direction}"]`).css("text-decoration", "line-through");
+    $(`[data-num=${hintNum}][data-direction="${direction}"]`).attr("href", "#");
+    $(`[data-num=${hintNum}][data-direction="${direction}"]`).addClass("clicked-clue");
+}
 
 function fillCorrectAnswer(ans, gridNum, direction) {
     // console.log(`Answer: ${ans} \ngridNum: ${gridNum} \nDirection: ${direction} `)
@@ -456,7 +488,7 @@ function fillCorrectAnswer(ans, gridNum, direction) {
     }
 
     if (isGameOver()) {
-        $("#failure-div").html(`<h2 class="text-center">You are very smart! :-)</h2>`);
+        $("#failure-div").html(`<h2 class="text-center">You are very smart! :-)</h2>`).effect("slide");
     }
 }
 
