@@ -151,10 +151,14 @@ margin-bottom: 60px;
 
 #crossbg{
     background: url("../images/crossword.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #weather-bg{
-    background: url("../images/weather1.png");
+    background: url("../images/weather1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #horoscope-bg{
@@ -184,7 +188,7 @@ footer {
 }
 
 #footer2{
-    border-top: 5px solid seagreen;
+    border-top: 5px solid #02338F;
 }
 
 #footer3{
@@ -253,6 +257,10 @@ footer {
     top: 100px;
 }
 
+#weather-failure {
+    margin: 40px auto;
+}
+
 /* .loader and @keyframes from w3schools */
 /* border and border-top colors were changed to fit astetic */
 /* https://www.w3schools.com/howto/howto_css_loader.asp */
@@ -282,8 +290,21 @@ footer {
     margin: 5px 5px 5px 0px;
 }
 
+
+
+@media only screen and (max-width: 740px){
+
+}
+
+
 @media only screen and (max-width: 480px){
     .grid-letter {
         font-size: 1em;
+    }
+    .col-hor-img {
+        display: none;
+    }
+    #modal-hosocope {
+        background-image: url("")
     }
 }
