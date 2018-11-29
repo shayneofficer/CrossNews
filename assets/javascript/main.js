@@ -419,12 +419,12 @@ $(document).ready(function () {
             // console.log($(`[data-num=${hintNum}][data-direction="${direction}"]`));
             crossOutHint(hintNum, direction);
 
-            if (direction === "across") {
-                checkOtherHints("down");
-            }
-            else {
-                checkOtherHints("across");
-            }
+            // if (direction === "across") {
+            //     checkOtherHints("down");
+            // }
+            // else {
+            //     checkOtherHints("across");
+            // }
 
         }
         else {
@@ -445,15 +445,34 @@ $(document).ready(function () {
 //     if (direction === "down") {
 //         numHints = answersDown.length;
 //         for (var i = 0; i < numHints; i++) {
-//             var hintHum = $(`[data-num=${i}][data-direction="down"]`).text();
+//             var hintNum = parseInt($(`[data-num=${i}][data-direction="down"]`).text());
+//             var firstLetterHolder = $(`[data-clue-number=${hintNum}]`);
 //             console.log(hintNum);
+//             var coords = firstLetterHolder.attr("id").split("y");
+//             coords[0] = coords[0].substr(1);
+//             console.log(coords);
+//             var ans = answersDown[i];
+//             console.log(ans);
+//             var str = "";
+//             for (var j = 0; j < ans.length; j++) {
+//                 str += $(`#x${parseInt(coords[0])}y${parseInt(coords[1]) + j} .grid-letter`).text();
+//             }
+//             console.log(str);
 //         }
 //     }
 //     else {
 //         numHints = answersAcross.length;
 //         for (var i = 0; i < numHints; i++) {
-//             var hintNum = $(`[data-num=${i}][data-direction="across"]`).text();
-//             console.log(hintHum);
+//             var hintNum = parseInt($(`[data-num=${i}][data-direction="across"]`).text());
+//             var firstLetterHolder = $(`[data-clue-number=${hintNum}]`);
+//             var coords = firstLetterHolder.attr("id").split("y");
+//             coords[0] = coords[0].substr(1);
+//             var ans = answersAcross[i];
+//             var str = "";
+//             for (var j = 0; j < ans.length; j++) {
+//                 str += $(`#x${parseInt(coords[0]) + j}y${parseInt(coords[1]) + j} .grid-letter`).text();
+//             }
+//             console.log(str);
 //         }
 //     }
 // }
