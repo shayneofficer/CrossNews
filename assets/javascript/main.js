@@ -116,7 +116,8 @@ function newDate(date) {
     console.log(`m/d/y ${month}/${day}/${year}`);
 
     if (sessionStorage.getItem("page") === "index") {
-        generateCrossword(); newsCall();
+        generateCrossword();
+        //  newsCall();
     } else if (sessionStorage.getItem("page") === "weather") {
         weatherCall();
     } else if (sessionStorage.getItem("page") === "horoscope") {
@@ -163,7 +164,7 @@ function weatherCall() {
 
         $("#wind").text(`Wind Speed: ${weather.windSpeed} MPH`);
         var humidity = weather.humidity * 100
-        
+
         $("#humidity").text(`${humidity}% Humidity`);
         var temp = Math.round((weather.temperatureHigh + weather.temperatureLow) / 2);
         $("#temp").html(`${temp}&#8457;`);
@@ -228,7 +229,7 @@ function horoscopeCall(signType) {
         url: horoscopeURL,
         method: "GET"
     }).then(function (response) {
-        
+
         // Console log response for testing purposes
         // console.log("Horoscope Obj:");
         // console.log(signType);
@@ -246,7 +247,7 @@ function horoscopeCall(signType) {
 
 // Or with jQuery
 $(document).ready(function () {
-    $(".sign-btn").on("click", function(){
+    $(".sign-btn").on("click", function () {
         var signType = $(this).attr("data-sign");
         horoscopeCall(signType);
     });
@@ -421,21 +422,21 @@ function articleCall() {
             // console.log(response.response.docs[i].snippet);
             // console.log(response.response.docs[i].web_url);
             // $('#article-section').append("hello");
-           
-       
-        if (response.response.docs[i].news_desk !== "Classified") {
-            var article = $("<div class='card-body'>")
-            var snippet = $("<div>");
-            snippet.text(response.response.docs[i].snippet);
-            
-            article.html("<a href="+response.response.docs[i].web_url +">" +response.response.docs[i].headline.main+"</a>");
-            article.append(snippet);
-            $(".card").append(article);
-        } 
-     
-    }
 
-        
+
+            if (response.response.docs[i].news_desk !== "Classified") {
+                var article = $("<div class='card-body'>")
+                var snippet = $("<div>");
+                snippet.text(response.response.docs[i].snippet);
+
+                article.html("<a href=" + response.response.docs[i].web_url + ">" + response.response.docs[i].headline.main + "</a>");
+                article.append(snippet);
+                $(".card").append(article);
+            }
+
+        }
+
+
     }).fail(function (err) {
         throw err;
     });
