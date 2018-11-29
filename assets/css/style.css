@@ -118,7 +118,9 @@
     margin: auto;
     text-align: left;
     text-justify: inter-word;
-}#horoscope-summary::first-letter {
+    word-spacing: 2px;
+}
+#horoscope-summary::first-letter {
     font-size: 225%;
 }
 #card-img-hor {
