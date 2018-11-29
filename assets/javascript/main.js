@@ -118,8 +118,7 @@ function newDate(date) {
     console.log(`m/d/y ${month}/${day}/${year}`);
 
     if (sessionStorage.getItem("page") === "index") {
-        generateCrossword();
-        //  newsCall();
+        generateCrossword(); newsCall();
     } else if (sessionStorage.getItem("page") === "weather") {
         weatherCall();
     } else if (sessionStorage.getItem("page") === "horoscope") {
@@ -254,7 +253,7 @@ $(document).ready(function () {
         horoscopeCall(signType);
     });
 
-    $('.modal').modal();
+    $('#modal-horoscope').modal();
 });
 
 
@@ -275,16 +274,17 @@ function generateCrossword() {
         // ===============================================================================================================
         // Crossword Display
         $("#failure-div").empty();
+        $("#crossword").empty();
 
         response = JSON.parse(response);
-        console.log("CrossWord Creation:");
-        var rows = response.size.rows;
-        var cols = response.size.cols;
-        console.log(response);
-        console.log(`rows: ${rows}`);
-        console.log(`cols: ${cols}`);
+        // console.log("CrossWord Creation:");
+        rows = response.size.rows;
+        cols = response.size.cols;
+        // console.log(response);
+        // console.log(`rows: ${rows}`);
+        // console.log(`cols: ${cols}`);
         //Figure out board dimensions
-        var crosswordHolder = $("<div class='grid-holder'>");
+        var crosswordHolder = $("#crossword");
         //Calculate square sizes
         //Square Creation
         for (var i = 0; i < rows; i++) {
@@ -293,12 +293,12 @@ function generateCrossword() {
             for (var j = 0; j < cols; j++) {
                 var count = i * cols + j;
                 //Assign Letter Value/Clue Number Value
-                var letterHolder = $(`<div class='letter-holder'id='x${j}:y${i}'>`);
+                var letterHolder = $(`<div class='letter-holder'id='x${j}y${i}'>`);
                 letterHolder.attr("data-index", count);
                 letterHolder.attr("data-clue-number", response.gridnums[count]);
 
                 indexedLetters.push({
-                    id: `x${j}:y${i}`,
+                    id: `x${j}y${i}`,
                     letterValue: response.grid[count]
                 });
 
@@ -318,8 +318,7 @@ function generateCrossword() {
             }
             crosswordHolder.append(newRow);
         }
-        $("#crossword").empty();
-        $("#crossword").append(crosswordHolder);
+
 
         //Crosswords Hints   
         var acrossClues = $("<div class='col s6' id='across-clues'>");
@@ -353,6 +352,7 @@ function generateCrossword() {
         $("#hints").empty();
         $("#hints").append(acrossClues);
         $("#hints").append(downClues);
+        crosswordResize();
     }).fail(function (error) {
         $("#crossword").empty();
         $("#hints").empty();
@@ -360,41 +360,157 @@ function generateCrossword() {
     });
 }
 
+function crosswordResize() {
+    var width = $("#crossword").innerWidth() - 20;
+    // console.log(`width: ${width}`);
+    var newWidth = width / cols;
+    $(".row-holder").css("width", `${width}`);
+    $(".row-holder").css("height", `${newWidth}`);
+    $(".letter-holder").css("width", `${newWidth}px`);
+    $(".letter-holder").css("height", `${newWidth}px`);
+}
+
+crosswordResize();
+
 $(document).ready(function () {
+    //Hint Modals
     var ans = "";
-    $(document).on("click", ".hint-btn", function () {
-        var hintArray = $(this).text().split(". ");
-        if ($(this).attr("data-direction") === "across") {
-            ans = answersAcross[$(this).attr("data-num")];
+    var hintArray;
+    var direction;
+    var hintNum;
+
+    $(document).on("click", ".hint-btn", function (event) {
+        event.preventDefault();
+        $("#guess-input").focus();
+        hintArray = $(this).text().split(". ");
+        direction = $(this).attr("data-direction");
+        hintNum = $(this).attr("data-num");
+
+        // Fix those hints who had a ". " other than the one following the hint number
+        if (hintArray.length > 2) {
+            for (var i = 2; i < hintArray.length; i++) {
+                hintArray[1] += ". " + hintArray[i];
+            }
+        }
+
+        if (direction === "across") {
+            ans = answersAcross[hintNum];
         }
         else {
-            ans = answersDown[$(this).attr("data-num")];
+            ans = answersDown[hintNum];
         }
 
         var partialAns = getPartialAns(ans, hintArray[0], direction);
 
         $("#hint-modal .modal-content").html(`
-        <h1>${hintArray[1]}</h1>
-        <h2>Answer: ${ans}</h2>
+        <h2 class="text-center">${hintArray[1]}</h2>
+        <h2 class="text-center">${partialAns}</h2>
         `);
     })
 
-    $("#modal-guess").on("click", function () {
+    $(document).on("click", "#modal-guess", function (event) {
+        event.preventDefault();
         var guess = "";
         guess = $("#guess-input").val().trim().toUpperCase();
+        $("#guess-input").val("");
         if (guess === ans) {
-            console.log(`Answer: ${ans}`);
-            console.log(`Guess: ${guess}: correct!`);
+            fillCorrectAnswer(ans, hintArray[0], direction);
+            $("#hint-modal").modal("close");
+
+            // console.log($(`[data-num=${hintNum}][data-direction="${direction}"]`));
+            $(`[data-num=${hintNum}][data-direction="${direction}"]`).css("text-decoration", "line-through");
+            $(`[data-num=${hintNum}][data-direction="${direction}"]`).attr("href", "#");
+            $(`[data-num=${hintNum}][data-direction="${direction}"]`).addClass("clicked-clue");
         }
         else {
-            console.log(`Answer: ${ans}`);
-            console.log(`Guess: ${guess}: incorrect!`);
+            // console.log(`Guess: ${guess}: incorrect!`);
+            $("#hint-modal").effect("shake");
         }
     })
 
     $('.modal').modal();
+
+    //Crossword Resizing
+    console.log(`cw width: ${$("#crossword").css("width")}`)
+    $(window).resize(crosswordResize);
 });
 
+function fillCorrectAnswer(ans, gridNum, direction) {
+    // console.log(`Answer: ${ans} \ngridNum: ${gridNum} \nDirection: ${direction} `)
+    var firstLetterHolder = $(`[data-clue-number=${gridNum}]`);
+    var coords = firstLetterHolder.attr("id").split("y");
+    coords[0] = coords[0].substr(1);
+    // console.log(firstLetterHolder.attr("id"));
+    // console.log(coords);
+    // console.log(`x${coords[0]}y${coords[1]}`)
+
+    if (direction === "across") {
+        for (var i = 0; i < ans.length; i++) {
+            $(`#x${parseInt(coords[0]) + i}y${parseInt(coords[1])} .grid-letter`).text(ans[i]);
+        }
+    }
+    else {
+        for (var i = 0; i < ans.length; i++) {
+            $(`#x${parseInt(coords[0])}y${parseInt(coords[1]) + i} .grid-letter`).text(ans[i]);
+        }
+    }
+
+    if (isGameOver()) {
+        $("#failure-div").html(`<h2 class="text-center">You are very smart! :-)</h2>`);
+    }
+}
+
+function getPartialAns(ans, gridNum, direction) {
+    var firstLetterHolder = $(`[data-clue-number=${gridNum}]`);
+    var coords = firstLetterHolder.attr("id").split("y");
+    coords[0] = coords[0].substr(1);
+
+    var partialString = "";
+
+    if (direction === "across") {
+        for (var i = 0; i < ans.length; i++) {
+            var boxContent = $(`#x${parseInt(coords[0]) + i}y${parseInt(coords[1])} .grid-letter`).text();
+            if (boxContent !== "") {
+                partialString += boxContent;
+                partialString += " ";
+            }
+            else {
+                partialString += "_ ";
+            }
+            // console.log(boxContent);
+        }
+    }
+    else {
+        for (var i = 0; i < ans.length; i++) {
+            var boxContent = $(`#x${parseInt(coords[0])}y${parseInt(coords[1]) + i} .grid-letter`).text();
+            if (boxContent !== "") {
+                partialString += boxContent;
+                partialString += " ";
+            }
+            else {
+                partialString += "_ ";
+            }
+            // console.log(boxContent);
+        }
+    }
+    return partialString;
+}
+
+function isGameOver() {
+    for (var i = 0; i < rows; i++) {
+        for (var j = 0; j < cols; j++) {
+            var currentBox = $(`#x${j}y${i}`);
+            // console.log(currentBox.css("background-color") !== "rgb(0, 0, 0)");
+            // console.log(currentBox.find(".grid-letter").text() === "");
+            if (currentBox.css("background-color") !== "rgb(0, 0, 0)" && currentBox.find(".grid-letter").text() === "") {
+                // console.log("empty box!");
+                return false;
+            }
+        }
+    }
+    return true;
+}
+// ===============================================================================================================
 //Articles
 
 function articleCall() {
