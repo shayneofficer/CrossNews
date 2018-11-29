@@ -118,7 +118,8 @@ function newDate(date) {
     // console.log(`m/d/y ${month}/${day}/${year}`);
 
     if (sessionStorage.getItem("page") === "index") {
-        generateCrossword(); newsCall();
+        generateCrossword();
+        // newsCall();
     } else if (sessionStorage.getItem("page") === "weather") {
         weatherCall();
     } else if (sessionStorage.getItem("page") === "horoscope") {
@@ -188,36 +189,36 @@ $("#weather-btn").on("click", function () {
 // ==================================================================================================================
 // Retrieve article info from the New York Times Article Search API
 
-function newsCall() {
+// function newsCall() {
 
-    // Day of headline (set to same date as crossword & weather)
-    var headlineYear = sessionStorage.getItem("year");
-    var headlineMonth = sessionStorage.getItem("month");
-    var headlineDay = sessionStorage.getItem("day");
-    // var headlineYear = year;
-    // var headlineMonth = month;
-    // var headlineDay = day;
+//     // Day of headline (set to same date as crossword & weather)
+//     var headlineYear = sessionStorage.getItem("year");
+//     var headlineMonth = sessionStorage.getItem("month");
+//     var headlineDay = sessionStorage.getItem("day");
+//     // var headlineYear = year;
+//     // var headlineMonth = month;
+//     // var headlineDay = day;
 
-    // console.log(headlineYear + headlineMonth + headlineDay);
+//     // console.log(headlineYear + headlineMonth + headlineDay);
 
-    var nytURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
-    nytURL += '?' + $.param({
-        'api-key': "b9f91d369ff59547cd47b931d8cbc56b:0:74623931",
-        'fl': "web_url,headline",
-        'begin_date': (headlineYear + headlineMonth + headlineDay),
-        'end_date': (headlineYear + headlineMonth + headlineDay)
-    });
-    $.ajax({
-        url: nytURL,
-        method: "GET",
-    }).then(function (response) {
-        // Console log response for testing purposes
-        // console.log(response);
-        $('#headline').text(response.response.docs[0].headline.main);
-    }).fail(function (err) {
-        throw err;
-    });
-}
+//     var nytURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+//     nytURL += '?' + $.param({
+//         'api-key': "b9f91d369ff59547cd47b931d8cbc56b:0:74623931",
+//         'fl': "web_url,headline",
+//         'begin_date': (headlineYear + headlineMonth + headlineDay),
+//         'end_date': (headlineYear + headlineMonth + headlineDay)
+//     });
+//     $.ajax({
+//         url: nytURL,
+//         method: "GET",
+//     }).then(function (response) {
+//         // Console log response for testing purposes
+//         // console.log(response);
+//         // $('#headline').text(response.response.docs[0].headline.main);
+//     }).fail(function (err) {
+//         throw err;
+//     });
+// }
 
 // ==================================================================================================================
 //Horoscopes
@@ -277,6 +278,11 @@ function generateCrossword() {
         $("#crossword").empty();
 
         response = JSON.parse(response);
+
+        // Crossword Title
+        $("#crossword-title").text(`${response.title} - ${response.author}`);
+        // console.log(response.title);
+
         // console.log("CrossWord Creation:");
         rows = response.size.rows;
         cols = response.size.cols;
