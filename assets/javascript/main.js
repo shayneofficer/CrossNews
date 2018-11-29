@@ -120,6 +120,7 @@ function newDate(date) {
     } else if (sessionStorage.getItem("page") === "weather") {
         weatherCall();
     } else if (sessionStorage.getItem("page") === "horoscope") {
+        $("#date-current").text(moment().format("MM/DD/YYYY"))
         // horoscopeCall();
     } else if (sessionStorage.getItem("page") === "article") {
         articleCall();
@@ -229,14 +230,17 @@ function horoscopeCall(signType) {
     }).then(function (response) {
         
         // Console log response for testing purposes
-        console.log("Horoscope Obj:");
-        console.log(signType);
-        console.log(response);
+        // console.log("Horoscope Obj:");
+        // console.log(signType);
+        // console.log(response);
         var signObj = response.dailyhoroscope[signType];
-        console.log(signObj);
+        // console.log(signObj);
         $("#horoscope-name").text(signType);
         var horSum = signObj.split("<a");
         $("#horoscope-summary").text(horSum[0]);
+
+        //Change Horoscope Image
+        $("#card-img-hor").attr("src", `assets/images/horoscope cards/${signType.toLowerCase()}-card.png`);
     });
 }
 
@@ -349,8 +353,7 @@ function generateCrossword() {
     }).fail(function (error) {
         $("#crossword").empty();
         $("#hints").empty();
-        $("#failure-div").html(`<h2>Sorry, we don't have the crossword for that date :-(</h2>`);
-        $("#failure-div").css("text-align", "center");
+        $("#failure-div").html(`<h2 class="text-center">Sorry, we don't have the crossword for that date :-(</h2>`);
     });
 }
 
@@ -364,6 +367,9 @@ $(document).ready(function () {
         else {
             ans = answersDown[$(this).attr("data-num")];
         }
+
+        var partialAns = getPartialAns(ans, hintArray[0], direction);
+
         $("#hint-modal .modal-content").html(`
         <h1>${hintArray[1]}</h1>
         <h2>Answer: ${ans}</h2>
@@ -407,6 +413,7 @@ function articleCall() {
         url: nytURL,
         method: "GET",
     }).then(function (response) {
+        $("#article-holder").empty();
         // Console log response for testing purposes
         for (let i = 0; i < response.response.docs.length; i++) {
             // console.log(response);
