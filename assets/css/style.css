@@ -1,20 +1,11 @@
-.jumbotron{
-    margin-bottom: 0px;
-    background-color: #efefef;
+h1 {
+    text-shadow: 2px 2px #616161 ;
 }
-#title-index {
-   color: white;
-    text-shadow: 4px 3px 0 #616161;
+
+h3 {
+    text-shadow: 2px 2px #616161;
 }
-#title-4 {
-    text-shadow: 4px 3px 0 black;
-    
-}
-#date-historic {
-    color: white;
-    font-family:'Krona One', sans-serif;
-    text-shadow: 2px 2px 0 #616161;
-}
+
 .grid-holder {
     margin-left: 50px;
 }
@@ -32,6 +23,7 @@
     box-sizing: border-box;
     border: 1px solid black;
     position: relative;
+    background: white;
 }
 
 .grid-letter {
@@ -158,11 +150,11 @@ margin-bottom: 60px;
 }
 
 #index-bg{
-    background: url("../images/indexbg.jpg");
+    background: url("../images/indexbg.png");
 }
 
 #crossbg{
-    background: url("../images/crossword1.jpg");
+    background: url("../images/crossword.jpg");
 }
 
 #weather-bg{
@@ -174,7 +166,7 @@ margin-bottom: 60px;
 }
 
 #article-bg{
-    background: url("../images/article1.jpg");
+    background: url("../images/article.jpg");
 }
 
 footer {
@@ -188,7 +180,7 @@ footer {
 }
 
 #footer1{
-    border-top: 5px solid #ffffff;
+    border-top: 5px solid #bdbdbd;
 }
 
 #footer2{
@@ -205,7 +197,16 @@ footer {
 
 .card{
     margin-bottom: 100px;
+    border: 2px solid #424242;
+    background: #eceff1;
 }
+
+.card-header{
+    font-size: 25px;
+    border-bottom: 2px solid #424242;
+    background: #bdbdbd;
+}
+
 #weather-display{
     border:2px solid black;
     padding:40px;
