@@ -1,7 +1,9 @@
+/* header */
 h1 {
     text-shadow: 2px 2px #616161;
 }
 
+/* crossword puzzle */
 .grid-holder {
     margin-left: 50px;
 }
@@ -16,7 +18,7 @@ h1 {
     float: left;
     height: 40px;
     width: 40px;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     border: 1px solid black;
     position: relative;
     background: white;
@@ -38,6 +40,7 @@ h1 {
     font-size: .7em;
 }
 
+/* hints across and down */
 .clue:hover {
     background-color: gray;
 }
@@ -53,7 +56,8 @@ h1 {
     font-weight: bold;
 }
 
-#headline {
+/* crossword title and author */
+#crossword-title {
     font-family: 'Prata', serif;
     /* text-transform: capitalize; */
     text-align: center;
@@ -61,7 +65,9 @@ h1 {
     padding: 8px;
 }
 
-#crossword {
+
+/* crossword and hints */
+#crossword{
     padding: 5px;
 }
 
@@ -69,9 +75,10 @@ h1 {
     margin-bottom: 10em;
 }
 
-#signs-div {
-    text-align: center;
 
+/* horoscope buttons */
+#signs-div,.col-hor-img {
+ text-align: center;
 }
 
 .sign-name {
@@ -93,6 +100,7 @@ h1 {
 
 }
 
+/* modals */
 .modal-trigger {
     color: black;
 }
@@ -114,9 +122,7 @@ h1 {
     text-align: center;
 }
 
-/* .col-hor-sum {
-    margin: auto; 
- }  */
+ /* horoscope-modal */
 #horoscope-summary {
     text-align: left;
     text-justify: inter-word;
@@ -150,7 +156,9 @@ h1 {
     width: 90%;
 }
 
-#index-bg {
+/* background images */
+#index-bg{
+
     background: url("../images/indexbg.png");
 }
 
@@ -178,6 +186,7 @@ h1 {
     margin-bottom: 0;
 }
 
+/* footer */
 footer {
     position: -webkit-sticky;
     position: sticky;
@@ -204,7 +213,8 @@ footer {
     border-top: 5px solid #79543a;
 }
 
-.card {
+/* top articles */
+.card{
     margin-bottom: 100px;
     border: 2px solid #424242;
     background: #eceff1;
@@ -216,10 +226,11 @@ footer {
     background: #bdbdbd;
 }
 
-#weather-display {
-    border: 2px solid black;
-    padding: 40px;
-    margin: 30px auto;
+/* weather */
+#weather-display{
+    border:2px solid black;
+    padding:40px;
+    margin:30px auto;
     background: white;
     width: 70%;
 }
@@ -238,6 +249,7 @@ footer {
     text-align: justify;
 }
 
+/* hint modals and crossword */
 #hint-modal {
     position: absolute;
     right: 10px;
@@ -289,6 +301,7 @@ footer {
     }
 }
 
+/* navbar */
 #masthead {
     width: 100%;
     overflow: auto;
@@ -296,6 +309,7 @@ footer {
     background: #212121;
 }
 
+/* search button */
 #search {
     margin: 5px 5px 5px 0px;
 }
