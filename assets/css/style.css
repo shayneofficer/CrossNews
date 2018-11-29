@@ -286,8 +286,21 @@ footer {
     margin: 5px 5px 5px 0px;
 }
 
+
+
+@media only screen and (max-width: 740px){
+
+}
+
+
 @media only screen and (max-width: 480px){
     .grid-letter {
         font-size: 1em;
+    }
+    .col-hor-img {
+        display: none;
+    }
+    #modal-hosocope {
+        background-image: url("")
     }
 }
