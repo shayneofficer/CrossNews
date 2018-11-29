@@ -356,8 +356,7 @@ function generateCrossword() {
     }).fail(function (error) {
         $("#crossword").empty();
         $("#hints").empty();
-        $("#failure-div").html(`<h2>Sorry, we don't have the crossword for that date :-(</h2>`);
-        $("#failure-div").css("text-align", "center");
+        $("#failure-div").html(`<h2 class="text-center">Sorry, we don't have the crossword for that date :-(</h2>`);
     });
 }
 
@@ -424,7 +423,7 @@ $(document).ready(function () {
             $(`[data-num=${hintNum}][data-direction="${direction}"]`).addClass("clicked-clue");
         }
         else {
-            console.log(`Guess: ${guess}: incorrect!`);
+            // console.log(`Guess: ${guess}: incorrect!`);
             $("#hint-modal").effect("shake");
         }
     })
@@ -454,6 +453,10 @@ function fillCorrectAnswer(ans, gridNum, direction) {
         for (var i = 0; i < ans.length; i++) {
             $(`#x${parseInt(coords[0])}y${parseInt(coords[1]) + i} .grid-letter`).text(ans[i]);
         }
+    }
+
+    if (isGameOver()) {
+        $("#failure-div").html(`<h2 class="text-center">You are very smart! :-)</h2>`);
     }
 }
 
@@ -493,6 +496,20 @@ function getPartialAns(ans, gridNum, direction) {
     return partialString;
 }
 
+function isGameOver() {
+    for (var i = 0; i < rows; i++) {
+        for (var j = 0; j < cols; j++) {
+            var currentBox = $(`#x${j}y${i}`);
+            // console.log(currentBox.css("background-color") !== "rgb(0, 0, 0)");
+            // console.log(currentBox.find(".grid-letter").text() === "");
+            if (currentBox.css("background-color") !== "rgb(0, 0, 0)" && currentBox.find(".grid-letter").text() === "") {
+                // console.log("empty box!");
+                return false;
+            }
+        }
+    }
+    return true;
+}
 // ===============================================================================================================
 //Articles
 
