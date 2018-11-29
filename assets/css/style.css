@@ -111,11 +111,10 @@
 .col-hor-img {
     text-align: center;
 } 
- .col-hor-sum {
+ /* .col-hor-sum {
     margin: auto; 
- } 
+ }  */
 #horoscope-summary {
-    margin: auto;
     text-align: left;
     text-justify: inter-word;
     word-spacing: 2px;
