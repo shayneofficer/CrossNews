@@ -30,8 +30,8 @@ if (
 //Assign selected historic date on button click
 $("#search").on("click", function () {
     var stringDate = $("#date-input").val();
-    console.log(stringDate);
-    console.log(typeof stringDate);
+    // console.log(stringDate);
+    // console.log(typeof stringDate);
 
     if (stringDate != "") {
         var date = moment(stringDate);
@@ -40,7 +40,7 @@ $("#search").on("click", function () {
         newDate(date);
 
     } else {
-        console.log("Error: Not valid Date");
+        // console.log("Error: Not valid Date");
     }
 });
 
@@ -115,7 +115,7 @@ function newDate(date) {
     sessionStorage.setItem("year", year);
 
 
-    console.log(`m/d/y ${month}/${day}/${year}`);
+    // console.log(`m/d/y ${month}/${day}/${year}`);
 
     if (sessionStorage.getItem("page") === "index") {
         generateCrossword(); newsCall();
@@ -127,7 +127,7 @@ function newDate(date) {
     } else if (sessionStorage.getItem("page") === "article") {
         articleCall();
     } else {
-        console.log(`ERROR UNKNOWN PAGE: Session Storage 'page':${sessionStorage.getItem("page")}`)
+        // console.log(`ERROR UNKNOWN PAGE: Session Storage 'page':${sessionStorage.getItem("page")}`)
     }
 
 }
@@ -144,7 +144,7 @@ function weatherCall() {
     var weatherYear = sessionStorage.getItem("year");
     var weatherMonth = sessionStorage.getItem("month");
     var weatherDay = sessionStorage.getItem("day");
-    console.log(`Weather date: ${weatherMonth}/${weatherDay}/${weatherYear}`);
+    // console.log(`Weather date: ${weatherMonth}/${weatherDay}/${weatherYear}`);
 
     var weatherKey = "ec5b98b7b3c4b26cd294595db6f0a868"
     var weatherURL = `https://api.darksky.net/forecast/${weatherKey}/${weatherLattitude},${weatherLongitude},${weatherYear}-${weatherMonth}-${weatherDay}T12:00:00?exclude=currently,minutely,hourly,flags`;
@@ -155,10 +155,10 @@ function weatherCall() {
         dataType: "jsonp"
     }).then(function (response) {
         // Console log the response object for testing purposes
-        console.log(response);
+        // console.log(response);
 
         var weather = response.daily.data[0];
-        console.log(weather);
+        // console.log(weather);
 
         $("#weather-icon").html(`<img src="assets/images/weather-icons/${weather.icon}.jpg" alt="${weather.icon} icon">`);
         $("#weather-summary").text(`${weather.summary}`);
@@ -198,7 +198,7 @@ function newsCall() {
     // var headlineMonth = month;
     // var headlineDay = day;
 
-    console.log(headlineYear + headlineMonth + headlineDay);
+    // console.log(headlineYear + headlineMonth + headlineDay);
 
     var nytURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
     nytURL += '?' + $.param({
@@ -212,7 +212,7 @@ function newsCall() {
         method: "GET",
     }).then(function (response) {
         // Console log response for testing purposes
-        console.log(response);
+        // console.log(response);
         $('#headline').text(response.response.docs[0].headline.main);
     }).fail(function (err) {
         throw err;
@@ -223,9 +223,9 @@ function newsCall() {
 //Horoscopes
 
 function horoscopeCall(signType) {
-    console.log(signType);
+    // console.log(signType);
     var horoscopeURL = "https://www.horoscopes-and-astrology.com/json";
-    console.log(signType);
+    // console.log(signType);
     $.ajax({
         url: horoscopeURL,
         method: "GET"
@@ -439,7 +439,7 @@ $(document).ready(function () {
     $('.modal').modal();
 
     //Crossword Resizing
-    console.log(`cw width: ${$("#crossword").css("width")}`)
+    // console.log(`cw width: ${$("#crossword").css("width")}`)
     $(window).resize(crosswordResize);
 });
 
@@ -576,7 +576,7 @@ function articleCall() {
     $("#article-holder").empty();
     $("#article-holder").html("<div class='loader'></div>");
 
-    console.log(headlineYear + headlineMonth + headlineDay);
+    // console.log(headlineYear + headlineMonth + headlineDay);
     var nytURL = "https://cors-anywhere.herokuapp.com/https://api.nytimes.com/svc/search/v2/articlesearch.json";
     nytURL += '?' + $.param({
         'api-key': "38cde8a8164048079300ba0c929f5022",
