@@ -2,7 +2,10 @@
     margin-bottom: 0px;
     background-color: #efefef;
 }
-
+#title-4 {
+    text-shadow: 4px 3px 0 black;
+    
+}
 .grid-holder {
     margin-left: 50px;
 }
@@ -162,7 +165,7 @@ margin-bottom: 60px;
 }
 
 #article-bg{
-    background: url("../images/article.jpg");
+    background: url("../images/article1.jpg");
 }
 
 footer {
