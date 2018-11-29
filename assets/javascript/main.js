@@ -118,7 +118,8 @@ function newDate(date) {
     console.log(`m/d/y ${month}/${day}/${year}`);
 
     if (sessionStorage.getItem("page") === "index") {
-        generateCrossword(); newsCall();
+        generateCrossword(); 
+        newsCall();
     } else if (sessionStorage.getItem("page") === "weather") {
         weatherCall();
     } else if (sessionStorage.getItem("page") === "horoscope") {
@@ -136,6 +137,9 @@ function newDate(date) {
 // Retrieve weather info from the Dark Sky API
 
 function weatherCall() {
+
+    $(".loader").css("display", "block");
+
     // (Chicago) lattitude & longitude
     var weatherLattitude = "41.881832";
     var weatherLongitude = "-87.623177";
@@ -159,7 +163,11 @@ function weatherCall() {
 
         var weather = response.daily.data[0];
         console.log(weather);
+        $("#weather-icon").css("display", "block");
+        $(".weather").css("display", "block");
+        $("#weather-failure").empty();
 
+        $(".loader").css("display", "none");
         $("#weather-icon").html(`<img src="assets/images/weather-icons/${weather.icon}.jpg" alt="${weather.icon} icon">`);
         $("#weather-summary").text(`${weather.summary}`);
 
@@ -178,6 +186,10 @@ function weatherCall() {
             $("#precip").empty();
         }
 
+    }).fail(function (error) {
+        $("#weather-icon").css("display", "none");
+        $(".weather").css("display", "none");
+        $("#weather-failure").html(`<h2 class="text-center">Sorry, the weather for that date is unavailable</h2>`);
     });
 }
 
