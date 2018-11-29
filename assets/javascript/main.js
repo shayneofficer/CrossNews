@@ -598,7 +598,7 @@ function articleCall() {
     var nytURL = "https://cors-anywhere.herokuapp.com/https://api.nytimes.com/svc/search/v2/articlesearch.json";
     nytURL += '?' + $.param({
         'api-key': "38cde8a8164048079300ba0c929f5022",
-        // 'fl': "web_url,headline",
+        'fl': "web_url,headline,snippet",
         'begin_date': (headlineYear + headlineMonth + headlineDay),
         'end_date': (headlineYear + headlineMonth + headlineDay)
     });
@@ -621,7 +621,7 @@ function articleCall() {
                 var snippet = $("<div>");
                 snippet.text(response.response.docs[i].snippet);
 
-                article.html("<a href=" + response.response.docs[i].web_url + ">" + response.response.docs[i].headline.main + "</a>");
+                article.html("<a href=" + response.response.docs[i].web_url + " target='_blank'>" + response.response.docs[i].headline.main + "</a>");
                 article.append(snippet);
                 $("#article-holder").append(article);
             }
