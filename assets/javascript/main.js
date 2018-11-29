@@ -122,6 +122,7 @@ function newDate(date) {
     } else if (sessionStorage.getItem("page") === "weather") {
         weatherCall();
     } else if (sessionStorage.getItem("page") === "horoscope") {
+        $("#date-current").text(moment().format("MM/DD/YYYY"))
         // horoscopeCall();
     } else if (sessionStorage.getItem("page") === "article") {
         articleCall();
@@ -231,14 +232,17 @@ function horoscopeCall(signType) {
     }).then(function (response) {
 
         // Console log response for testing purposes
-        console.log("Horoscope Obj:");
-        console.log(signType);
-        console.log(response);
+        // console.log("Horoscope Obj:");
+        // console.log(signType);
+        // console.log(response);
         var signObj = response.dailyhoroscope[signType];
-        console.log(signObj);
+        // console.log(signObj);
         $("#horoscope-name").text(signType);
         var horSum = signObj.split("<a");
         $("#horoscope-summary").text(horSum[0]);
+
+        //Change Horoscope Image
+        $("#card-img-hor").attr("src", `assets/images/horoscope cards/${signType.toLowerCase()}-card.png`);
     });
 }
 
@@ -273,12 +277,12 @@ function generateCrossword() {
         $("#crossword").empty();
 
         response = JSON.parse(response);
-        console.log("CrossWord Creation:");
+        // console.log("CrossWord Creation:");
         rows = response.size.rows;
         cols = response.size.cols;
-        console.log(response);
-        console.log(`rows: ${rows}`);
-        console.log(`cols: ${cols}`);
+        // console.log(response);
+        // console.log(`rows: ${rows}`);
+        // console.log(`cols: ${cols}`);
         //Figure out board dimensions
         var crosswordHolder = $("#crossword");
         //Calculate square sizes
@@ -352,8 +356,7 @@ function generateCrossword() {
     }).fail(function (error) {
         $("#crossword").empty();
         $("#hints").empty();
-        $("#failure-div").html(`<h2>Sorry, we don't have the crossword for that date :-(</h2>`);
-        $("#failure-div").css("text-align", "center");
+        $("#failure-div").html(`<h2 class="text-center">Sorry, we don't have the crossword for that date :-(</h2>`);
     });
 }
 
@@ -396,9 +399,12 @@ $(document).ready(function () {
         else {
             ans = answersDown[hintNum];
         }
+
+        var partialAns = getPartialAns(ans, hintArray[0], direction);
+
         $("#hint-modal .modal-content").html(`
-        <h1>${hintArray[1]}</h1>
-        <!-- <h2>Answer: ${ans}</h2> -->
+        <h2 class="text-center">${hintArray[1]}</h2>
+        <h2 class="text-center">${partialAns}</h2>
         `);
     })
 
@@ -411,13 +417,13 @@ $(document).ready(function () {
             fillCorrectAnswer(ans, hintArray[0], direction);
             $("#hint-modal").modal("close");
 
-            console.log($(`[data-num=${hintNum}][data-direction="${direction}"]`));
+            // console.log($(`[data-num=${hintNum}][data-direction="${direction}"]`));
             $(`[data-num=${hintNum}][data-direction="${direction}"]`).css("text-decoration", "line-through");
             $(`[data-num=${hintNum}][data-direction="${direction}"]`).attr("href", "#");
             $(`[data-num=${hintNum}][data-direction="${direction}"]`).addClass("clicked-clue");
         }
         else {
-            console.log(`Guess: ${guess}: incorrect!`);
+            // console.log(`Guess: ${guess}: incorrect!`);
             $("#hint-modal").effect("shake");
         }
     })
@@ -431,7 +437,7 @@ $(document).ready(function () {
 
 function fillCorrectAnswer(ans, gridNum, direction) {
     // console.log(`Answer: ${ans} \ngridNum: ${gridNum} \nDirection: ${direction} `)
-    firstLetterHolder = $(`[data-clue-number=${gridNum}]`);
+    var firstLetterHolder = $(`[data-clue-number=${gridNum}]`);
     var coords = firstLetterHolder.attr("id").split("y");
     coords[0] = coords[0].substr(1);
     // console.log(firstLetterHolder.attr("id"));
@@ -448,8 +454,62 @@ function fillCorrectAnswer(ans, gridNum, direction) {
             $(`#x${parseInt(coords[0])}y${parseInt(coords[1]) + i} .grid-letter`).text(ans[i]);
         }
     }
+
+    if (isGameOver()) {
+        $("#failure-div").html(`<h2 class="text-center">You are very smart! :-)</h2>`);
+    }
 }
 
+function getPartialAns(ans, gridNum, direction) {
+    var firstLetterHolder = $(`[data-clue-number=${gridNum}]`);
+    var coords = firstLetterHolder.attr("id").split("y");
+    coords[0] = coords[0].substr(1);
+
+    var partialString = "";
+
+    if (direction === "across") {
+        for (var i = 0; i < ans.length; i++) {
+            var boxContent = $(`#x${parseInt(coords[0]) + i}y${parseInt(coords[1])} .grid-letter`).text();
+            if (boxContent !== "") {
+                partialString += boxContent;
+                partialString += " ";
+            }
+            else {
+                partialString += "_ ";
+            }
+            // console.log(boxContent);
+        }
+    }
+    else {
+        for (var i = 0; i < ans.length; i++) {
+            var boxContent = $(`#x${parseInt(coords[0])}y${parseInt(coords[1]) + i} .grid-letter`).text();
+            if (boxContent !== "") {
+                partialString += boxContent;
+                partialString += " ";
+            }
+            else {
+                partialString += "_ ";
+            }
+            // console.log(boxContent);
+        }
+    }
+    return partialString;
+}
+
+function isGameOver() {
+    for (var i = 0; i < rows; i++) {
+        for (var j = 0; j < cols; j++) {
+            var currentBox = $(`#x${j}y${i}`);
+            // console.log(currentBox.css("background-color") !== "rgb(0, 0, 0)");
+            // console.log(currentBox.find(".grid-letter").text() === "");
+            if (currentBox.css("background-color") !== "rgb(0, 0, 0)" && currentBox.find(".grid-letter").text() === "") {
+                // console.log("empty box!");
+                return false;
+            }
+        }
+    }
+    return true;
+}
 // ===============================================================================================================
 //Articles
 
@@ -472,6 +532,7 @@ function articleCall() {
         url: nytURL,
         method: "GET",
     }).then(function (response) {
+        $("#article-holder").empty();
         // Console log response for testing purposes
         for (let i = 0; i < response.response.docs.length; i++) {
             // console.log(response);
