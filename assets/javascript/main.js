@@ -254,8 +254,11 @@ function horoscopeCall(signType) {
         var horSum = signObj.split("<a");
         $("#horoscope-summary").text(horSum[0]);
 
-        //Change Horoscope Image
+        // console.log($(window).innerWidth());
+       //Change Horoscope Image
+      
         $("#card-img-hor").attr("src", `assets/images/horoscope cards/${signType.toLowerCase()}-card.png`);
+    
     });
 }
 
