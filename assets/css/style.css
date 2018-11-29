@@ -253,6 +253,24 @@ footer {
     top: 100px;
 }
 
+/* .loader and @keyframes from w3schools */
+/* border and border-top colors were changed to fit astetic */
+/* https://www.w3schools.com/howto/howto_css_loader.asp */
+.loader {
+    margin: 20px auto;
+    border: 16px solid #757575; 
+    border-top: 16px solid #212121;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 #masthead {
     width: 100%;
     overflow: auto;
