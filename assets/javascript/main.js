@@ -231,14 +231,17 @@ function horoscopeCall(signType) {
     }).then(function (response) {
 
         // Console log response for testing purposes
-        console.log("Horoscope Obj:");
-        console.log(signType);
-        console.log(response);
+        // console.log("Horoscope Obj:");
+        // console.log(signType);
+        // console.log(response);
         var signObj = response.dailyhoroscope[signType];
-        console.log(signObj);
+        // console.log(signObj);
         $("#horoscope-name").text(signType);
         var horSum = signObj.split("<a");
         $("#horoscope-summary").text(horSum[0]);
+
+        //Change Horoscope Image
+        $("#card-img-hor").attr("src", `assets/images/horoscope cards/${signType.toLowerCase()}-card.png`);
     });
 }
 
@@ -472,6 +475,7 @@ function articleCall() {
         url: nytURL,
         method: "GET",
     }).then(function (response) {
+        $("#article-holder").empty();
         // Console log response for testing purposes
         for (let i = 0; i < response.response.docs.length; i++) {
             // console.log(response);
