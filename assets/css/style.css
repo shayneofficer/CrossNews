@@ -181,12 +181,11 @@ footer {
 }
 
 #weather-icon>img{
-    width:200px;
+    width:150px;
 }
 
 .icon {
     float: left;
-    display: inline-block;
     margin-right: 30px;
 }
 
@@ -218,6 +217,13 @@ footer {
     position: relative;
     top: 100px;
 }
+
+#masthead {
+    width: 100%;
+    overflow: auto;
+    color: #ffffff;
+    background: #212121;
+  }
 
 @media only screen and (max-width: 1360px){
     
