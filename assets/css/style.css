@@ -151,10 +151,14 @@ margin-bottom: 60px;
 
 #crossbg{
     background: url("../images/crossword.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #weather-bg{
-    background: url("../images/weather1.png");
+    background: url("../images/weather1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #horoscope-bg{
@@ -184,7 +188,7 @@ footer {
 }
 
 #footer2{
-    border-top: 5px solid seagreen;
+    border-top: 5px solid #02338F;
 }
 
 #footer3{
