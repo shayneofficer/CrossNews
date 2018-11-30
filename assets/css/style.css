@@ -358,9 +358,11 @@ footer {
 @media only screen and (max-width: 912px) {
     #signs-div {
         width: 550px;
-         margin: auto;
+        margin: auto;
     }
-    
+    #horoscope-bg {
+        min-width: 550px;
+    }   
 }
     
 
