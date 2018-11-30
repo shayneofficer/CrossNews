@@ -3,7 +3,6 @@ h1 {
     text-shadow: 2px 2px #616161;
 }
 
-
 /* crossword puzzle */
 .grid-holder {
     margin-left: 50px;
@@ -157,6 +156,8 @@ h1 {
     width: 90%;
 }
 
+
+
 /* background images */
 #index-bg{
 
@@ -167,20 +168,24 @@ h1 {
     background: url("../images/crossword.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    min-width: 400px;
 }
 
 #weather-bg {
     background: url("../images/weather1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    min-width: 400px;
 }
 
 #horoscope-bg {
     background: url("../images/horoscope.jpg");
+    min-width: 580px;
 }
 
 #article-bg {
     background: url("../images/article.jpg");
+    min-width: 400px;
 }
 
 #article-holder {
@@ -356,9 +361,6 @@ footer {
          margin: auto;
     }
     
-    #horoscope-bg {
-        min-width: 580px;
-    }
 }
     
 
