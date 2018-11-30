@@ -3,6 +3,7 @@ h1 {
     text-shadow: 2px 2px #616161;
 }
 
+
 /* crossword puzzle */
 .grid-holder {
     margin-left: 50px;
@@ -315,29 +316,6 @@ footer {
 }
 
 
-
-@media only screen and (max-width: 740px) {
-    /* #modal-horoscope {
-        background-image: url("../images/horoscope\ cards/aries-card.jpg");
-        background-size: contain;
-
-    } */
-
-    /* .col-hor-img {
-        display: none;
-    } */
-
-    .col-hor-sum {
-        position: relative;
-        bottom: 0%;
-    }
-
-    #card-img-hor {
-        width: 200px;
-    }
-}
-
-
 @media only screen and (max-width: 500px) {
     .grid-letter {
         font-size: 1em;
@@ -345,6 +323,7 @@ footer {
 
     #modal-horoscope {
         /* background-image: url(""); */
+        overflow: auto;
     }
 
     .col-hor-img {
@@ -352,10 +331,37 @@ footer {
     }
 } 
 
-@media only screen and (max-width: 912px) {
-    .row {
-        width: 550px;
-        margin: auto;
+
+@media only screen and (max-width: 740px) {
+    #modal-horoscope {
+        /* background-image: url(""); */
+        overflow: auto;
+    }
+
+    .col-hor-sum {
+        position: relative;
+        bottom: 0%;
+    }
+
+    .col-hor-img {
+        display: none;
     }
     
 }
+
+
+@media only screen and (max-width: 912px) {
+    #signs-div {
+        width: 550px;
+         margin: auto;
+    }
+    
+    #horoscope-bg {
+        min-width: 580px;
+    }
+}
+    
+
+
+    
+
