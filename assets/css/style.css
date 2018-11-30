@@ -118,9 +118,6 @@ h1 {
     color: white;
 }
 
-.col-hor-img {
-    text-align: center;
-}
 
  /* horoscope-modal */
 #horoscope-summary {
@@ -128,7 +125,12 @@ h1 {
     text-justify: inter-word;
     word-spacing: 2px;
 }
-
+.col-hor-img {
+    text-align: center;
+}
+.col-hor-sum {
+    overflow: scroll;
+}
 #horoscope-summary::first-letter {
     font-size: 225%;
 }
