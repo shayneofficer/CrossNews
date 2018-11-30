@@ -10,7 +10,7 @@ Primarily a crossword app, which can display almost all of the puzzles published
 - Displays weather info using the [Dark Sky API](https://darksky.net/dev)
 - Adds the current date horoscopes from an [astrology API](https://www.horoscopes-and-astrology.com/api)
 
-Our App allows user to cross reference data over multiple databases and dates. Imagine having the crosswoed, weather, and article headlines from your birthday or any day you could think of within range. The interactive nature of the crosword allows users to actively work on said NYT crossword from any date ranging back to the 1980s! Also allows users to search any article date ranging back to 1900. Wonder what the weather was like on 12/25/1995 in Chicago, wonder no more!
+Our app allows user to retrieve data from multiple databases for given dates. Imagine having the crossword, weather, and article headlines from your birthday or any date you can think of within range. The crosword is interactive, and allows users to challenge themselves with a NYT crossword from almost any date ranging back to 1977! The app also allows users to search for articles from any date ranging back to September 18, 1851. Additionally, the user can view horoscopes for each astrological sign for the present day (updated each day). Wonder what the weather was like on 12/25/1995 in Chicago? Wonder no more!
 
 Our App:
 
